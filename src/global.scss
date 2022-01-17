@@ -16,7 +16,7 @@
 @import "~@ionic/angular/css/normalize.css";
 @import "~@ionic/angular/css/structure.css";
 @import "~@ionic/angular/css/typography.css";
-@import '~@ionic/angular/css/display.css';
+@import "~@ionic/angular/css/display.css";
 
 /* Optional CSS utils that can be commented out */
 @import "~@ionic/angular/css/padding.css";
@@ -24,3 +24,43 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+@font-face {
+  font-family: Roboto;
+  src: url(assets/font/Roboto-Bold.ttf) format("opentype");
+}
+
+.wave1 {
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+  height: 6.47em;
+  /* zoom: 0.75; */
+  top: 0;
+  left: 0;
+  right: 0;
+  background-repeat: repeat-x;
+  background: url("assets/img/arriba.png");
+}
+
+.wave2 {
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+  height: 5.47em;
+  /* zoom: 0.75; */
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-repeat: repeat-x;
+  background: url("assets/img/abajo.png");
+}
+.slide-bg {
+  background: url(assets/img/screen-1.png);
+}
+.slide-bg2 {
+  background: url(assets/img/screen2.png);
+}
+.slide-bg3 {
+  background: url(assets/img/screen3.png);
+}
