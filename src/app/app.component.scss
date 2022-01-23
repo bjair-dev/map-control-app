@@ -1,0 +1,160 @@
+@import "src/assets/styles/colors";
+.btnfab {
+  margin-bottom: 3rem;
+  margin-right: 1rem;
+}
+.btnf {
+  color: $sec_color;
+}
+.contentmenu {
+  border-top: 24px solid $sec_color;
+}
+
+.linkedit {
+  color: $sec_color;
+  font-weight: bold;
+}
+ion-avatar {
+  width: 80px;
+  height: 80px;
+}
+.userdata {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+.user-profile {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  width: 50%;
+}
+
+.medals-profile {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+  width: 50%;
+}
+.medals {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  overflow: auto;
+  img {
+    width: 25px;
+    margin-inline: 3px;
+  }
+}
+.divnivel {
+  padding-top: 10px;
+  border-top: 1px solid $default_color;
+  margin-top: 7px;
+  text-align: center;
+}
+.nivel {
+  color: $default_color;
+  font-size: 10px;
+  //   font-weight: bold;
+}
+.username {
+  font-size: 18px;
+  font-weight: bold;
+}
+.useremail {
+  font-size: 14px;
+  // font-weight: bold;
+  color: #00000099;
+}
+.btnedit {
+  align-self: flex-end;
+}
+.imgmenu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 1rem;
+}
+.imgstatic {
+  width: 200px;
+  zoom: 1.2;
+}
+.btn-simulador {
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 30px !important;
+  background: $sec_color;
+  right: 0;
+  left: 0;
+  width: 75%;
+  height: 44px;
+  border: 1px solid $sec_color;
+}
+.btn-tips {
+  color: $sec_color;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 30px !important;
+  background: white;
+  right: 0;
+  left: 0;
+  width: 75%;
+  height: 44px;
+  border: 1px solid $sec_color;
+  margin-top: 0.5rem;
+}
+.opc-name {
+  color: #00000099;
+  font-size: 13px;
+}
+.list-items {
+  //   margin-left: 20px;
+  margin-right: 20px;
+  margin-top: 0.5rem;
+}
+.list-item {
+  margin-left: 20px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+}
+.item-disabled {
+  color: #0000004d;
+  .icon-circle {
+    background-color: #0000004d;
+    border: 1px solid #0000004d;
+  }
+}
+.list-item-select {
+  background-color: #25368c15;
+  background: rgba(37, 54, 140, 0.08);
+}
+.items-nivel {
+  border-top: 3px solid $default_color;
+  width: 85%;
+  margin-top: 3px;
+}
+.nivel-text {
+  width: 15%;
+  font-size: 9.5px;
+  color: $default_color;
+  padding-left: 5px;
+}
+.line-nivel {
+  display: flex;
+}
+.icon-circle {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  border: 1px solid $sec_color;
+  background-color: $sec_color;
+  color: white;
+  font-size: 25px;
+  margin-right: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
