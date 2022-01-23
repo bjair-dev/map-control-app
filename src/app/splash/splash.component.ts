@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-splash',
@@ -6,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./splash.component.scss'],
 })
 export class SplashComponent implements OnInit {
-  constructor() {}
+  constructor(public router: Router) {}
   users: any[];
 
   ngOnInit() {}
@@ -18,4 +19,8 @@ export class SplashComponent implements OnInit {
       delay: 4000,
     },
   };
+
+  entraLogin() {
+    this.router.navigateByUrl('login');
+  }
 }

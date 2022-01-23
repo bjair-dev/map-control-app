@@ -1,17 +1,104 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Tab 1
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-toolbar>
+  <ion-buttons
+    slot="start"
+    menu="mprincipal"
+    id="main-content"
+    class="menucolor"
+  >
+    <ion-menu-button>
+      <img src="assets/img/Menu.png" />
+    </ion-menu-button>
+  </ion-buttons>
+  <ion-buttons slot="end">
+    <ion-avatar class="perfil">
+      <img src="../assets/img/adriana.png" class="img-e" />
+    </ion-avatar>
+  </ion-buttons>
+</ion-toolbar>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding dash-content bg-white">
+  <div style="display: flex; height: 100%; flex-direction: column">
+    <div
+      style="
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        margin-right: 10px;
+        margin-left: 10px;
+      "
+    >
+      <ion-label class="username" *ngIf="_sGenerales.user"
+        >¡Bienvenido {{ _sGenerales.user.name }} {{ _sGenerales.user.lastname
+        }}!</ion-label
+      >
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+      <img src="assets/img/maps.jpg" class="mapa" />
+      <ion-item class="itm-input">
+        <ion-input required maxlength="90" placeholder="Correo"></ion-input>
+      </ion-item>
+      <button class="btn-empezar">Informar</button>
+    </div>
+    <div
+      style="
+        border: 1px solid #707070;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        border-radius: 22px;
+        overflow: scroll;
+      "
+    >
+      <div style="display: flex; flex-direction: row">
+        <img src="../assets/img/adriana.png" class="img-ex" />
+        <p style="color: #090909">Bryan Ortiz</p>
+      </div>
+      <div style="margin-left: 24px; font-size: 13.5px; font-family: 'Roboto'">
+        <a style="color: #090909"
+          >Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias,
+          quas. Cum consequatur enim assumenda laborum esse accusantium nisi id.
+          Fugit non nihil odio laborum commodi dignissimos nulla soluta
+          voluptates culpa?</a
+        >
+      </div>
+
+      <div style="display: flex; flex-direction: row">
+        <img src="../assets/img/adriana.png" class="img-ex" />
+        <p style="color: #090909">Bryan Ortiz</p>
+      </div>
+      <div style="margin-left: 24px; font-size: 13.5px; font-family: 'Roboto'">
+        <a style="color: #090909"
+          >Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias,
+          quas. Cum consequatur enim assumenda laborum esse accusantium nisi id.
+          Fugit non nihil odio laborum commodi dignissimos nulla soluta
+          voluptates culpa?</a
+        >
+      </div>
+
+      <div style="display: flex; flex-direction: row">
+        <img src="../assets/img/adriana.png" class="img-ex" />
+        <p style="color: #090909">Bryan Ortiz</p>
+      </div>
+      <div style="margin-left: 24px; font-size: 13.5px; font-family: 'Roboto'">
+        <a style="color: #090909"
+          >Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias,
+          quas. Cum consequatur enim assumenda laborum esse accusantium nisi id.
+          Fugit non nihil odio laborum commodi dignissimos nulla soluta
+          voluptates culpa?</a
+        >
+      </div>
+
+      <div style="display: flex; flex-direction: row">
+        <img src="../assets/img/adriana.png" class="img-ex" />
+        <p style="color: #090909">Bryan Ortiz</p>
+      </div>
+      <div style="margin-left: 24px; font-size: 13.5px; font-family: 'Roboto'">
+        <a style="color: #090909"
+          >Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias,
+          quas. Cum consequatur enim assumenda laborum esse accusantium nisi id.
+          Fugit non nihil odio laborum commodi dignissimos nulla soluta
+          voluptates culpa?</a
+        >
+      </div>
+    </div>
+  </div>
 </ion-content>

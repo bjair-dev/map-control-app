@@ -27,11 +27,11 @@
 
 @font-face {
   font-family: Roboto;
-  src: url(assets/font/Roboto-Bold.ttf) format("opentype");
+  src: url(assets/font/Roboto-Light.ttf) format("opentype");
 }
 
 .wave1 {
-  position: absolute;
+  position: fixed;
   z-index: 1;
   width: 100%;
   height: 6.47em;
@@ -44,7 +44,7 @@
 }
 
 .wave2 {
-  position: absolute;
+  position: fixed;
   z-index: 1;
   width: 100%;
   height: 5.47em;
@@ -63,4 +63,14 @@
 }
 .slide-bg3 {
   background: url(assets/img/screen3.png);
+}
+.sc-ion-input-md-h {
+  --padding-top: 0px;
+  --padding-end: 0;
+  --padding-bottom: 10px;
+  --padding-start: 8px;
+  font-size: inherit;
+}
+.swiper-pagination-bullet-active {
+  background: #c90000 !important;
 }

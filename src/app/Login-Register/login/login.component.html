@@ -1,0 +1,118 @@
+<ion-content>
+  <div class="wraper-container">
+    <div class="wave3"></div>
+
+    <div class="el-wrapper">
+      <div style="text-align: center; margin-top: 20px">
+        <img height="150px" src="assets/img/logo-nikav2.png" />
+      </div>
+    </div>
+    <h2 class="ion-text-center welcome-title" style="margin: 0">
+      ¡Hola Nika usuario!
+    </h2>
+    <div>
+      <ion-slides pager="true" mode="ios" class="slides-messages">
+        <ion-slide>
+          <app-welcome-message
+            [message]="
+              'Vamos a ayudarte a ordenar tu presupuesto, proponerte
+        objetivos y celebrar pequeños triunfos todos los días.
+                '
+            "
+          ></app-welcome-message>
+        </ion-slide>
+      </ion-slides>
+    </div>
+
+    <div>
+      <ion-slides
+        pager="false"
+        #loginSlider
+        [options]="slideOpts"
+        style="width: 100%"
+      >
+        <ion-slide style="flex-direction: column">
+          <form [formGroup]="form">
+            <div class="inli-fx">
+              <ion-item class="itm-input">
+                <ion-input
+                  required
+                  maxlength="90"
+                  formControlName="email"
+                  placeholder="Correo"
+                ></ion-input>
+              </ion-item>
+              <button
+                expand="block"
+                class="btn-fb fxf-i"
+                (click)="loginWithFb()"
+              >
+                <i class="emp-fx"> <img src="assets/icon/fb.png" /> </i>
+                <a class="txt-red">Iniciar sesión con Facebook </a>
+              </button>
+              <button
+                expand="block"
+                class="btn-google fxf-i"
+                (click)="loginWithGoogle()"
+              >
+                <i class="emp-fx">
+                  <img src="assets/icon/google.png" />
+                </i>
+                <a class="txt-red">Iniciar sesión con Google </a>
+              </button>
+            </div>
+
+            <div class="ion-text-center">
+              <button
+                (click)="verifyEmail(loginSlider)"
+                expand="block"
+                class="btn-empezar"
+              >
+                Empecemos
+              </button>
+            </div>
+            <br />
+          </form>
+        </ion-slide>
+        <ion-slide style="flex-direction: column">
+          <div style="height: 100%">
+            <form [formGroup]="form2">
+              <div class="inli-fxd">
+                <ion-item class="itm-input">
+                  <app-password>
+                    <ion-input
+                      required
+                      maxlength="50"
+                      formControlName="password"
+                      type="password"
+                      placeholder="Contraseña"
+                    ></ion-input>
+                  </app-password>
+                </ion-item>
+              </div>
+            </form>
+          </div>
+          <div style="width: 60%">
+            <div (click)="olvidePass()" class="txt-subsub">
+              Olvidé mi contraseña
+            </div>
+            <div class="ion-text-center">
+              <button expand="block" class="btn-empezar" (click)="login()">
+                Iniciar sesión
+              </button>
+            </div>
+          </div>
+        </ion-slide>
+      </ion-slides>
+    </div>
+    <br />
+    <div (click)="entrarRegister()" class="txt-subsub">
+      ¿Primera vez? Registrate gratis.
+    </div>
+    <!-- <div>
+      <button>walk1</button>
+    </div> -->
+    <br />
+    <div class="wave4"></div>
+  </div>
+</ion-content>
