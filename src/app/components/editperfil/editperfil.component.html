@@ -1,0 +1,15 @@
+<ion-content fullscreen>
+  <div style="padding-top: 30px; padding-left: 25px" (click)="close()">
+    <span class="linkedit">Cerrar</span>
+  </div>
+  <div style="height: 100%">
+    <div class="perfil" *ngIf="_sGenerales.user">
+      <img [src]="_sGenerales.user.path" class="img-e" />
+    </div>
+    <ion-fab horizontal="end" vertical="bottom" slot="fixed">
+      <ion-fab-button>
+        <ion-icon name="pencil-outline"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+  </div>
+</ion-content>

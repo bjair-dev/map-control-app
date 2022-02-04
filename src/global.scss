@@ -74,3 +74,32 @@
 .swiper-pagination-bullet-active {
   background: #c90000 !important;
 }
+.info-modal {
+  position: absolute !important;
+  min-height: initial !important;
+  /* top: initial !important; */
+  /* height: 66vh !important; */
+  /* width: 50%; */
+  top: 155px;
+  height: 50%;
+  // border-radius: 40px;
+}
+.modal-wrapper {
+  background: #222;
+}
+
+/* Works - pass "my-custom-class" in cssClass to increase specificity */
+.my-custom-class {
+  background: red;
+}
+.video-modal {
+  z-index: 99999 !important;
+  .modal-default {
+    position: absolute;
+    min-height: initial;
+    top: initial;
+    height: 76vh;
+    --backdrop-opacity: 0.4;
+    // border-radius: 40px;
+  }
+}

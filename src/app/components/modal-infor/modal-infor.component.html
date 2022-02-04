@@ -1,0 +1,42 @@
+<div class="stylebox">
+  <div class="medi-r">
+    <ion-item class="bord-item">
+      <ion-select
+        placeholder="Seleccione una opción"
+        class="brd-item"
+        (ionChange)="actualizarTipo($event)"
+      >
+        <ion-select-option selected value="reportpos"
+          >Califica tú Ubicación</ion-select-option
+        >
+        <ion-select-option value="reportneg"
+          >Reportar tú Ubicación</ion-select-option
+        >
+      </ion-select>
+    </ion-item>
+  </div>
+
+  <div *ngIf="aparecePositivo" style="color: black">
+    <ion-item style="margin-inline: 20px">
+      <ion-label position="floating" class="tx-lis">Mensaje</ion-label>
+      <ion-textarea rows="6" cols="20" class="tx-send"></ion-textarea>
+    </ion-item>
+  </div>
+  <div *ngIf="apareceNegativo" style="color: black">
+    <ion-item class="bord-item">
+      <ion-select placeholder="Seleccione una opción" class="brd-item">
+        <ion-select-option selected value="asesinato"
+          >Asesinato</ion-select-option
+        >
+        <ion-select-option value="robo">Robo</ion-select-option>
+        <ion-select-option value="viola">Violación</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </div>
+
+  <div style="display: flex; margin-bottom: 2rem; justify-content: center">
+    <button mat-stroked-button class="btn-empezar" (click)="close()">
+      Enviar
+    </button>
+  </div>
+</div>

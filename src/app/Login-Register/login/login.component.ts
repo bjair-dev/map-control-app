@@ -140,7 +140,7 @@ export class LoginComponent implements OnInit {
             localStorage.setItem('email', this.form.get('email').value);
             this.form.reset();
             this.form2.reset();
-            this.router.navigateByUrl('/register-cofide');
+            this.router.navigateByUrl('/register');
           }
 
           if (
@@ -168,5 +168,9 @@ export class LoginComponent implements OnInit {
           loading.dismiss();
         }
       );
+  }
+
+  entrarRegister() {
+    this.router.navigateByUrl('/register');
   }
 }

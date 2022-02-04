@@ -8,8 +8,8 @@
     <ion-content class="contentmenu">
       <div class="userdata">
         <div class="user-profile">
-          <ion-avatar>
-            <img src="../assets/img/adriana.png" />
+          <ion-avatar *ngIf="_sGenerales.user">
+            <img [src]="_sGenerales.user.path" />
           </ion-avatar>
           <ion-label class="username" *ngIf="_sGenerales.user">{{
             _sGenerales.user.name

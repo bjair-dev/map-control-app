@@ -1,0 +1,38 @@
+@import "src/assets/styles/colors";
+
+ion-content {
+  --background: url(../../../assets/img/cuadroperfil.png) no-repeat;
+  height: 66%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  /* background-attachment: fixed; */
+  background-size: cover;
+  position: fixed;
+  left: 0;
+  right: 0;
+}
+.img-e {
+  width: 300px;
+  height: 300px;
+  border: 6px solid white;
+  border-radius: 150px;
+}
+.perfil {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+}
+ion-fab-button {
+  --background: #41eda5;
+  border: 3px solid white;
+  border-radius: 30px;
+}
+.linkedit {
+  color: white;
+  font-family: Roboto;
+  font-weight: bold;
+}
+.btnedit {
+  align-self: flex-end;
+}

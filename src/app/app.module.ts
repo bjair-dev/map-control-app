@@ -15,7 +15,6 @@ import { ComponentsModule } from './components/components.module';
   imports: [
     BrowserModule,
     ComponentsModule,
-
     HttpClientModule,
     IonicModule.forRoot(),
     AppRoutingModule,

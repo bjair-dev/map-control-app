@@ -5,7 +5,6 @@ import { WelcomeMessageComponent } from './welcome-message/welcome-message.compo
 /* import { DotLinesComponent } from './dot-lines/dot-lines.component';
 import { QuestionInViewComponent } from './question-in-view/question-in-view.component';
 import { QuestionOutViewComponent } from './question-out-view/question-out-view.component';
-import { VideoViewComponent } from './video-view/video-view.component'; import { TitleComponent } from './title/title.component';
 
 import { ResumeViewComponent } from './resume-view/resume-view.component';
 import { MedalViewComponent } from './medal-view/medal-view.component';
@@ -14,6 +13,8 @@ import { NoContentViewComponent } from './no-content-view/no-content-view.compon
 import { SearchContentViewComponent } from './search-content-view/search-content-view.component';
 import { UserProfileComponent } from './user-profile/user-profile.component'; */
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { EditperfilComponent } from './editperfil/editperfil.component';
+import { ModalInforComponent } from './modal-infor/modal-infor.component';
 /* 
 import { ChallengeComponent } from './challenge/challenge.component';
 import { QuestionComponent } from './challenge/question/question.component';
@@ -28,6 +29,8 @@ import { SocialSharing } from '@awesome-cordova-plugins/social-sharing/ngx'; */
 @NgModule({
   declarations: [
     WelcomeMessageComponent,
+    EditperfilComponent,
+    ModalInforComponent,
     /*  TitleComponent,
     DotLinesComponent,
     QuestionInViewComponent,
@@ -47,6 +50,7 @@ import { SocialSharing } from '@awesome-cordova-plugins/social-sharing/ngx'; */
   ],
   exports: [
     WelcomeMessageComponent,
+    ModalInforComponent,
     /* TitleComponent,
     DotLinesComponent,
     QuestionInViewComponent,
