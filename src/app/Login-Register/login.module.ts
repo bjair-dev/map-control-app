@@ -9,12 +9,19 @@ import { ComponentsModule } from '../components/components.module';
 import { PasswordComponent } from './password/password.component';
 import { RegisterComponent } from './register/register.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { ValidationCodeComponent } from './validation-code/validation-code.component';
+import { CodeInputModule } from 'angular-code-input';
+import { TermConditionComponent } from './term-condition/term-condition.component';
+import { ValidationTwoComponent } from './validation-two/validation-two.component';
+import { SendPasswordComponent } from './send-password/send-password.component';
+
 @NgModule({
   imports: [
     CommonModule,
     ReactiveFormsModule,
     IonicModule,
     FormsModule,
+    CodeInputModule,
     ComponentsModule,
   ],
   declarations: [
@@ -22,6 +29,10 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
     PasswordComponent,
     RegisterComponent,
     ForgotPasswordComponent,
+    TermConditionComponent,
+    ValidationCodeComponent,
+    ValidationTwoComponent,
+    SendPasswordComponent,
   ],
 })
 export class LoginCofidePageModule {}

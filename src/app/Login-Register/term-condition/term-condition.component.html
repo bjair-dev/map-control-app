@@ -1,0 +1,2287 @@
+<ion-content>
+  <div class="c-padd">
+    <div style="height: 80%">
+      <!-- <div
+        *ngIf="!isModal"
+        (click)="volverLogin()"
+        class="ion-text-center t-cancel"
+      >
+        Cancelar
+      </div> -->
+      <div
+        *ngIf="isModal"
+        (click)="cerrarModal()"
+        class="ion-text-center t-cancel"
+      >
+        Cerrar
+      </div>
+      <h2 class="ion-text-center welcome-title">
+        Términos<br />
+        y condiciones.
+      </h2>
+
+      <div
+        style="margin-top: 1em; overflow: scroll; height: 63%"
+        *ngIf="dataTerms"
+      >
+        <a class="ion-text-center colo-text">
+          <p
+            style="
+              margin-top: 0cm;
+              margin-right: 0cm;
+              margin-bottom: 0cm;
+              margin-left: 0cm;
+              line-height: normal;
+              font-size: 15px;
+              font-family: 'Calibri', sans-serif;
+              text-align: justify;
+            "
+          >
+            <span style="font-family: Roboto"
+              >Los siguientes t&eacute;rminos y condiciones regulan el uso de la
+              Aplicaci&oacute;n M&oacute;vil Mi Yunta Financiero. Por favor lea
+              atentamente estos t&eacute;rminos y condiciones antes de empezar a
+              usar la presente Aplicaci&oacute;n M&oacute;vil. Si el usuario no
+              acepta estos t&eacute;rminos y condiciones o si el usuario es
+              menor de 18 a&ntilde;os no debe usar nuestra a Aplicaci&oacute;n
+              M&oacute;vil. Usando esta Aplicaci&oacute;n M&oacute;vil, EL
+              USUARIO acepta conocer y aceptar cada uno de los t&eacute;rminos y
+              condiciones establecidos por la Corporaci&oacute;n Financiera de
+              Desarrollo S.A. - COFIDE, a trav&eacute;s de su Aplicaci&oacute;n
+              M&oacute;vil Mi Yunta Financiero.</span
+            >
+          </p>
+          <p
+            style="
+              margin-top: 0cm;
+              margin-right: 0cm;
+              margin-bottom: 0cm;
+              margin-left: 0cm;
+              line-height: normal;
+              font-size: 15px;
+              font-family: 'Calibri', sans-serif;
+            "
+          >
+            <span style="font-family: Roboto">&nbsp;</span>
+          </p>
+          <p
+            style="
+              margin-top: 0cm;
+              margin-right: 0cm;
+              margin-bottom: 0cm;
+              margin-left: 0cm;
+              line-height: normal;
+              font-size: 15px;
+              text-align: start;
+              font-family: 'Calibri', sans-serif;
+            "
+          >
+            <strong
+              ><span style="font-family: Roboto; text-align: start"
+                >Definiciones.</span
+              ></strong
+            >
+          </p>
+          <p
+            style="
+              margin-top: 0cm;
+              margin-right: 0cm;
+              margin-bottom: 0cm;
+              margin-left: 0cm;
+              line-height: normal;
+              font-size: 15px;
+              font-family: 'Calibri', sans-serif;
+              text-align: justify;
+            "
+          >
+            <span style="font-family: Roboto"
+              >De la empresa: COFIDE (en adelante, LA EMPRESA) es una empresa
+              del Estado con accionariado privado, organizada como sociedad
+              an&oacute;nima, que cuenta con autonom&iacute;a administrativa,
+              econ&oacute;mica y financiera, es una organizaci&oacute;n
+              legalmente constituida conforme a la legislaci&oacute;n de
+              Per&uacute; y comprometida con el desarrollo sostenible e
+              inclusivo del pa&iacute;s, impulsando su productividad y
+              competitividad, otorgando financiamiento y otros servicios
+              financieros.</span
+            >
+          </p>
+          <p
+            style="
+              margin-top: 0cm;
+              margin-right: 0cm;
+              margin-bottom: 0cm;
+              margin-left: 0cm;
+              line-height: normal;
+              font-size: 15px;
+              font-family: 'Calibri', sans-serif;
+              text-align: justify;
+            "
+          >
+            <span style="font-family: Roboto">&nbsp;</span>
+          </p>
+          <p
+            style="
+              margin-top: 0cm;
+              margin-right: 0cm;
+              margin-bottom: 0cm;
+              margin-left: 0cm;
+              line-height: normal;
+              font-size: 15px;
+              font-family: 'Calibri', sans-serif;
+              text-align: justify;
+            "
+          >
+            <span
+              style="
+                font-size: 15px;
+                font-family: Roboto;
+                color: rgba(0, 0, 0, 0.4);
+              "
+              >Mi Yunta Financiero, es un producto de COFIDE, cuyo objetivo
+              principal es brindar orientaci&oacute;n financiera y herramientas
+              para la toma de decisiones financieras a trav&eacute;s de esta
+              aplicaci&oacute;n de uso libre. La prestaci&oacute;n de servicios
+              al usuario por parte de la empresa es gratuita.&nbsp;</span
+            >
+          </p>
+          <p
+            style="
+              margin: 0cm;
+              font-size: 16px;
+              font-family: 'Arial', sans-serif;
+              color: black;
+            "
+          >
+            <span
+              style="
+                font-size: 15px;
+                font-family: Roboto;
+                color: rgba(0, 0, 0, 0.4);
+              "
+              >&nbsp;</span
+            >
+          </p>
+          <p
+            style="
+              margin-top: 0cm;
+              margin-right: 0cm;
+              margin-bottom: 0cm;
+              margin-left: 0cm;
+              line-height: normal;
+              font-size: 15px;
+              font-family: 'Calibri', sans-serif;
+              text-align: justify;
+            "
+          >
+            <span
+              style="
+                font-size: 15px;
+                font-family: Roboto;
+                color: rgba(0, 0, 0, 0.4);
+              "
+              >Del usuario (en adelante, EL USUARIO): Se entiende por usuario a
+              aquella persona natural que hace uso de la Aplicaci&oacute;n
+              M&oacute;vil Mi Yunta Financiero con la finalidad de acceder a la
+              prestaci&oacute;n de servicios brindados gratuitamente por la
+              empresa. Entre el usuario y LA EMPRESA no hay dependencia
+              econ&oacute;mica ni ning&uacute;n tipo de onerosidad en las
+              prestaciones, raz&oacute;n por la cual no se configura una
+              relaci&oacute;n de consumo. Todo servicio brindado por la empresa
+              a el usuario es gratuito.&nbsp;</span
+            >
+          </p>
+          <br />
+          <p
+            style="
+              margin-top: 0cm;
+              margin-right: 0cm;
+              margin-bottom: 0cm;
+              margin-left: 0cm;
+              text-align: start;
+              line-height: normal;
+              font-size: 15px;
+              font-family: 'Calibri', sans-serif;
+            "
+          >
+            <strong
+              ><span style="font-family: Roboto"
+                >1. T&eacute;rminos de uso, condiciones de uso de la
+                Aplicaci&oacute;n M&oacute;vil Mi Yunta Financiero y su
+                aceptaci&oacute;n.</span
+              ></strong
+            >
+          </p>
+          <p
+            style="
+              margin-top: 0cm;
+              margin-right: 0cm;
+              margin-bottom: 0cm;
+              margin-left: 0cm;
+              line-height: normal;
+              font-size: 15px;
+              font-family: 'Calibri', sans-serif;
+              text-align: justify;
+            "
+          >
+            <span style="font-family: Roboto">&nbsp;</span>
+          </p>
+          <p
+            style="
+              margin-top: 0cm;
+              margin-right: 0cm;
+              margin-bottom: 0cm;
+              margin-left: 0cm;
+              line-height: normal;
+              font-size: 15px;
+              font-family: 'Calibri', sans-serif;
+              text-align: justify;
+            "
+          >
+            <strong
+              ><span style="font-family: Roboto"
+                >Sobre el acceso a la aplicaci&oacute;n y su contenido.</span
+              ></strong
+            >
+          </p>
+          <p
+            style="
+              margin-top: 0cm;
+              margin-right: 0cm;
+              margin-bottom: 0cm;
+              margin-left: 0cm;
+              line-height: normal;
+              text-align: justify;
+              font-size: 15px;
+              font-family: 'Calibri', sans-serif;
+              text-align: justify;
+            "
+          >
+            <span style="font-family: Roboto"
+              >El usuario se obliga a abstenerse de utilizar la
+              Aplicaci&oacute;n M&oacute;vil y los servicios con fines
+              il&iacute;citos, lesivos de los derechos e intereses de terceros,
+              o de modo tal pueda da&ntilde;ar, inutilizar, sobrecargar o
+              deteriorar la aplicaci&oacute;n y los servicios, o impedir su
+              normal utilizaci&oacute;n o disfrute.&nbsp;</span
+            >
+          </p>
+          <p
+            style="
+              margin-top: 0cm;
+              margin-right: 0cm;
+              margin-bottom: 0cm;
+              margin-left: 0cm;
+              line-height: normal;
+              font-size: 15px;
+              font-family: 'Calibri', sans-serif;
+              text-align: justify;
+            "
+          >
+            <span style="font-family: Roboto">&nbsp;</span>
+          </p>
+          <p
+            style="
+              margin-top: 0cm;
+              margin-right: 0cm;
+              margin-bottom: 0cm;
+              margin-left: 0cm;
+              line-height: normal;
+              font-size: 15px;
+              font-family: 'Calibri', sans-serif;
+              text-align: justify;
+            "
+          >
+            <span style="font-family: Roboto"
+              >La Aplicaci&oacute;n M&oacute;vil se reserva el derecho a denegar
+              el acceso a la aplicaci&oacute;n m&oacute;vil y/o a los servicios,
+              en cualquier momento y sin necesidad de preaviso, a aquellos
+              usuarios que incumplan las condiciones de uso. EL USUARIO
+              responder&aacute; por los da&ntilde;os y perjuicios de toda
+              naturaleza que la Aplicaci&oacute;n M&oacute;vil pueda sufrir,
+              directa o indirectamente, como consecuencia del incumplimiento de
+              cualquiera de las obligaciones derivadas de las condiciones
+              relacionadas con la utilizaci&oacute;n de la aplicaci&oacute;n
+              m&oacute;vil.&nbsp;</span
+            >
+          </p>
+          <p
+            style="
+              margin-top: 0cm;
+              margin-right: 0cm;
+              margin-bottom: 0cm;
+              margin-left: 0cm;
+              line-height: normal;
+              font-size: 15px;
+              font-family: 'Calibri', sans-serif;
+              text-align: justify;
+            "
+          >
+            <span style="font-family: Roboto">&nbsp;</span>
+          </p>
+          <p
+            style="
+              margin-top: 0cm;
+              margin-right: 0cm;
+              margin-bottom: 0cm;
+              margin-left: 0cm;
+              line-height: normal;
+              font-size: 15px;
+              font-family: 'Calibri', sans-serif;
+              text-align: justify;
+            "
+          >
+            <span style="font-family: Roboto"
+              >&nbsp;LA EMPRESA procurara proveer al usuario un acceso
+              ininterrumpido a la Aplicaci&oacute;n M&oacute;vil, mas no asegura
+              que eso suceda siempre, por lo cual no se hace responsable del
+              t&eacute;rmino, suspensi&oacute;n o restricci&oacute;n del acceso
+              a la aplicaci&oacute;n m&oacute;vil en cualquier momento. La
+              Aplicaci&oacute;n M&oacute;vil cambia regularmente. LA EMPRESA
+              hace el mayor esfuerzo razonable para asegurar que el contenido de
+              la Aplicaci&oacute;n M&oacute;vil este actualizado y libre de
+              errores, raz&oacute;n por la cual realiza actualizaciones
+              diariamente, las cuales no es posible de notificar al usuario en
+              cada uno de ellas.&nbsp;</span
+            >
+          </p>
+          <p
+            style="
+              margin-top: 0cm;
+              margin-right: 0cm;
+              margin-bottom: 0cm;
+              margin-left: 0cm;
+              line-height: normal;
+              font-size: 15px;
+              font-family: 'Calibri', sans-serif;
+              text-align: justify;
+            "
+          >
+            <span style="font-family: Roboto">&nbsp;</span>
+          </p>
+          <p
+            style="
+              margin-top: 0cm;
+              margin-right: 0cm;
+              margin-bottom: 0cm;
+              margin-left: 0cm;
+              line-height: normal;
+              font-size: 15px;
+              font-family: 'Calibri', sans-serif;
+              text-align: justify;
+            "
+          >
+            <strong
+              ><span style="font-family: Roboto"
+                >Sobre los Derechos de Propiedad Intelectual.</span
+              ></strong
+            >
+          </p>
+          <p
+            style="
+              margin-top: 0cm;
+              margin-right: 0cm;
+              margin-bottom: 0cm;
+              margin-left: 0cm;
+              line-height: normal;
+              font-size: 15px;
+              font-family: 'Calibri', sans-serif;
+              text-align: justify;
+            "
+          >
+            <span style="font-family: Roboto"
+              >Los logos denotados con &reg; son marcas registradas de la
+              empresa. LA EMPRESA es una marca registrada y no se puede usar sin
+              permiso por escrito de LA EMPRESA.&nbsp;</span
+            >
+          </p>
+          <p
+            style="
+              margin-top: 0cm;
+              margin-right: 0cm;
+              margin-bottom: 0cm;
+              margin-left: 0cm;
+              line-height: normal;
+              font-size: 15px;
+              font-family: 'Calibri', sans-serif;
+              text-align: justify;
+            "
+          >
+            <span style="font-family: Roboto">&nbsp;</span>
+          </p>
+          <p
+            style="
+              margin-top: 0cm;
+              margin-right: 0cm;
+              margin-bottom: 0cm;
+              margin-left: 0cm;
+              line-height: normal;
+              font-size: 15px;
+              font-family: 'Calibri', sans-serif;
+              text-align: justify;
+            "
+          >
+            <span style="font-family: Roboto"
+              >LA EMPRESA tambi&eacute;n posee los derechos de propiedad
+              intelectual y las licencias sobre la Aplicaci&oacute;n
+              M&oacute;vil, las cuales incluyen el Software usado para correr la
+              aplicaci&oacute;n m&oacute;vil y todo el material que se publicita
+              en el mismo.</span
+            >
+          </p>
+          <p
+            style="
+              margin-top: 0cm;
+              margin-right: 0cm;
+              margin-bottom: 0cm;
+              margin-left: 0cm;
+              line-height: normal;
+              font-size: 15px;
+              font-family: 'Calibri', sans-serif;
+              text-align: justify;
+            "
+          >
+            <span style="font-family: Roboto">&nbsp;</span>
+          </p>
+          <p
+            style="
+              margin-top: 0cm;
+              margin-right: 0cm;
+              margin-bottom: 0cm;
+              margin-left: 0cm;
+              line-height: normal;
+              font-size: 15px;
+              font-family: 'Calibri', sans-serif;
+              text-align: justify;
+            "
+          >
+            <span style="font-family: Roboto">&nbsp;</span>
+          </p>
+          <p
+            style="
+              margin-top: 0cm;
+              margin-right: 0cm;
+              margin-bottom: 0cm;
+              margin-left: 0cm;
+              line-height: normal;
+              font-size: 15px;
+              font-family: 'Calibri', sans-serif;
+              text-align: justify;
+            "
+          >
+            <span style="font-family: Roboto"
+              >EL USUARIO reconoce y acepta que se pone a su disposici&oacute;n
+              los derechos de propiedad intelectual de la Aplicaci&oacute;n,
+              exclusivamente para su uso personal y no lucrativo; no pudiendo
+              copiar, alterar, modificar, vender, distribuir, publicitar o crear
+              un trabajo deliberado a partir de cualquier material publicado o
+              creado por la Aplicaci&oacute;n M&oacute;vil, sin contar
+              previamente con el permiso por escrito por parte de LA
+              EMPRESA.&nbsp;</span
+            >
+          </p>
+          <p
+            style="
+              margin-top: 0cm;
+              margin-right: 0cm;
+              margin-bottom: 0cm;
+              margin-left: 0cm;
+              line-height: normal;
+              font-size: 15px;
+              font-family: 'Calibri', sans-serif;
+            "
+          >
+            <span style="font-family: Roboto">&nbsp;</span>
+          </p>
+          <p
+            style="
+              margin-top: 0cm;
+              margin-right: 0cm;
+              margin-bottom: 0cm;
+              margin-left: 0cm;
+              line-height: normal;
+              font-size: 15px;
+              text-align: start;
+              font-family: 'Calibri', sans-serif;
+            "
+          >
+            <strong><span style="font-family: Roboto">2. Objeto.</span></strong>
+          </p>
+          <p
+            style="
+              margin-top: 0cm;
+              margin-right: 0cm;
+              margin-bottom: 0cm;
+              margin-left: 0cm;
+              line-height: normal;
+              font-size: 15px;
+              font-family: 'Calibri', sans-serif;
+              text-align: justify;
+            "
+          >
+            <span style="font-size: 15px; font-family: Roboto"
+              >La Aplicaci&oacute;n M&oacute;vil tiene por objeto la
+              difusi&oacute;n de informaci&oacute;n referida a
+              orientaci&oacute;n financiera</span
+            ><span style="font-size: 15px; font-family: Roboto"
+              >&nbsp;y herramientas para la toma de decisiones financieras a
+              trav&eacute;s de esta aplicaci&oacute;n de uso libre. La
+              prestaci&oacute;n de servicios al usuario por parte de la empresa
+              es gratuita.&nbsp;</span
+            ><span style="font-size: 15px; font-family: Roboto"
+              >&nbsp;LA EMPRESA se reserva el derecho a modificar
+              unilateralmente, en cualquier momento y sin aviso previo, la
+              presentaci&oacute;n y configuraci&oacute;n de la Aplicaci&oacute;n
+              M&oacute;vil, as&iacute; como tambi&eacute;n se reserva el derecho
+              a modificar o eliminar, en cualquier momento y sin previo aviso,
+              los servicios y las condiciones requeridas para acceder y/o
+              utilizar la aplicaci&oacute;n m&oacute;vil y los servicios.</span
+            >
+          </p>
+          <p
+            style="
+              margin-top: 0cm;
+              margin-right: 0cm;
+              margin-bottom: 0cm;
+              margin-left: 0cm;
+              line-height: normal;
+              font-size: 15px;
+              font-family: 'Calibri', sans-serif;
+            "
+          >
+            <span style="font-family: Roboto">&nbsp;</span>
+          </p>
+          <p
+            style="
+              margin-top: 0cm;
+              margin-right: 0cm;
+              margin-bottom: 0cm;
+              margin-left: 0cm;
+              line-height: normal;
+              font-size: 15px;
+              text-align: start;
+              font-family: 'Calibri', sans-serif;
+            "
+          >
+            <strong
+              ><span style="font-family: Roboto"
+                >3. Exclusi&oacute;n de garant&iacute;as y de
+                responsabilidad.</span
+              ></strong
+            >
+          </p>
+          <p
+            style="
+              margin-top: 0cm;
+              margin-right: 0cm;
+              margin-bottom: 0cm;
+              margin-left: 0cm;
+              line-height: normal;
+              font-size: 15px;
+              font-family: 'Calibri', sans-serif;
+              text-align: justify;
+            "
+          >
+            <span style="font-family: Roboto"
+              >LA EMPRESA no garantiza la disponibilidad y continuidad del
+              funcionamiento de la Aplicaci&oacute;n M&oacute;vil y de los
+              servicios. EL USUARIO es consciente y acepta voluntariamente que
+              el uso de la Aplicaci&oacute;n M&oacute;vil, de los servicios y de
+              cualesquiera de sus contenidos tiene lugar, en todo caso, bajo su
+              &uacute;nica y exclusiva responsabilidad.&nbsp;</span
+            >
+          </p>
+          <p
+            style="
+              margin-top: 0cm;
+              margin-right: 0cm;
+              margin-bottom: 0cm;
+              margin-left: 0cm;
+              line-height: normal;
+              font-size: 15px;
+              font-family: 'Calibri', sans-serif;
+              text-align: justify;
+            "
+          >
+            <span style="font-family: Roboto">&nbsp;</span>
+          </p>
+          <p
+            style="
+              margin-top: 0cm;
+              margin-right: 0cm;
+              margin-bottom: 0cm;
+              margin-left: 0cm;
+              line-height: normal;
+              font-size: 15px;
+              font-family: 'Calibri', sans-serif;
+              text-align: justify;
+            "
+          >
+            <span style="font-family: Roboto"
+              >LA EMPRESA no se responsabiliza de la utilidad o infalibilidad de
+              la Aplicaci&oacute;n M&oacute;vil y de los servicios para la toma
+              de decisiones en el campo de las finanzas personales o cualquier
+              otro &aacute;mbito. LA EMPRESA se exime de responsabilidad por
+              da&ntilde;os y perjuicios de toda naturaleza que puedan resultar
+              como efecto de la falta de exactitud, veracidad, exhaustividad y/o
+              actualidad de los contenidos, por cuanto el servicio brindado por
+              la empresa es meramente informativo y de referencia de servicios
+              financieros ofertados por terceros, conforme a la
+              informaci&oacute;n que se registra en el portal de la
+              SBS.&nbsp;</span
+            >
+          </p>
+          <p
+            style="
+              margin-top: 0cm;
+              margin-right: 0cm;
+              margin-bottom: 0cm;
+              margin-left: 0cm;
+              line-height: normal;
+              font-size: 15px;
+              font-family: 'Calibri', sans-serif;
+              text-align: justify;
+            "
+          >
+            <span style="font-family: Roboto">&nbsp;</span>
+          </p>
+          <p
+            style="
+              margin-top: 0cm;
+              margin-right: 0cm;
+              margin-bottom: 0cm;
+              margin-left: 0cm;
+              line-height: normal;
+              font-size: 15px;
+              font-family: 'Calibri', sans-serif;
+              text-align: justify;
+            "
+          >
+            <span style="font-family: Roboto"
+              >La funci&oacute;n de los links que aparecen en la
+              Aplicaci&oacute;n M&oacute;vil es exclusivamente la de informar al
+              USUARIO acerca de la existencia de otras fuentes de
+              informaci&oacute;n disponibles en internet y, por ello LA EMPRESA
+              no ser&aacute; responsable por el contenido de los mismos,
+              eximi&eacute;ndose de tal modo de toda responsabilidad respecto a
+              la informaci&oacute;n que se encuentre fuera de esta
+              aplicaci&oacute;n m&oacute;vil y aquella no gestionada
+              directamente por LA EMPRESA.&nbsp;</span
+            >
+          </p>
+          <p
+            style="
+              margin-top: 0cm;
+              margin-right: 0cm;
+              margin-bottom: 0cm;
+              margin-left: 0cm;
+              line-height: normal;
+              font-size: 15px;
+              font-family: 'Calibri', sans-serif;
+              text-align: justify;
+            "
+          >
+            <span style="font-family: Roboto">&nbsp;</span>
+          </p>
+          <p
+            style="
+              margin-top: 0cm;
+              margin-right: 0cm;
+              margin-bottom: 0cm;
+              margin-left: 0cm;
+              line-height: normal;
+              font-size: 15px;
+              font-family: 'Calibri', sans-serif;
+              text-align: justify;
+            "
+          >
+            <span style="font-family: Roboto"
+              >LA EMPRESA deslinda cualquier responsabilidad respecto a la
+              calidad y veracidad de los bienes y/o servicios ofrecidos por las
+              instituciones financieras que son promocionados y/o referenciados
+              en la presente Aplicaci&oacute;n M&oacute;vil.</span
+            >
+          </p>
+          <p
+            style="
+              margin-top: 0cm;
+              margin-right: 0cm;
+              margin-bottom: 0cm;
+              margin-left: 0cm;
+              line-height: normal;
+              font-size: 15px;
+              font-family: 'Calibri', sans-serif;
+            "
+          >
+            <span style="font-family: Roboto">&nbsp;</span>
+          </p>
+          <p
+            style="
+              margin-top: 0cm;
+              margin-right: 0cm;
+              margin-bottom: 0cm;
+              margin-left: 0cm;
+              line-height: normal;
+              font-size: 15px;
+              font-family: 'Calibri', sans-serif;
+              text-align: justify;
+            "
+          >
+            <strong
+              ><span style="font-family: Roboto"
+                >3.1. Exclusi&oacute;n de garant&iacute;as y de responsabilidad
+                por el funcionamiento de la Aplicaci&oacute;n M&oacute;vil y de
+                los servicios.</span
+              ></strong
+            >
+          </p>
+          <p
+            style="
+              margin-top: 0cm;
+              margin-right: 0cm;
+              margin-bottom: 0cm;
+              margin-left: 0cm;
+              line-height: normal;
+              font-size: 15px;
+              font-family: 'Calibri', sans-serif;
+              text-align: justify;
+            "
+          >
+            <span style="font-family: Roboto"
+              >3.1.1. Disponibilidad y continuidad.</span
+            >
+          </p>
+          <p
+            style="
+              margin-top: 0cm;
+              margin-right: 0cm;
+              margin-bottom: 0cm;
+              margin-left: 0cm;
+              line-height: normal;
+              font-size: 15px;
+              font-family: 'Calibri', sans-serif;
+              text-align: justify;
+            "
+          >
+            <span style="font-family: Roboto"
+              >LA EMPRESA no garantiza la disponibilidad y continuidad del
+              funcionamiento de la Aplicaci&oacute;n M&oacute;vil y de los
+              servicios. La empresa se exime de toda responsabilidad por los
+              da&ntilde;os y perjuicios que puedan generarse por la falta de
+              disponibilidad o de continuidad del funcionamiento de la
+              aplicaci&oacute;n m&oacute;vil y de los servicios.</span
+            >
+          </p>
+          <p
+            style="
+              margin-top: 0cm;
+              margin-right: 0cm;
+              margin-bottom: 0cm;
+              margin-left: 0cm;
+              line-height: normal;
+              font-size: 15px;
+              font-family: 'Calibri', sans-serif;
+              text-align: justify;
+            "
+          >
+            <u
+              ><span style="font-family: Roboto"
+                ><span style="text-decoration: none">&nbsp;</span></span
+              ></u
+            >
+          </p>
+          <p
+            style="
+              margin-top: 0cm;
+              margin-right: 0cm;
+              margin-bottom: 0cm;
+              margin-left: 0cm;
+              line-height: normal;
+              font-size: 15px;
+              font-family: 'Calibri', sans-serif;
+              text-align: justify;
+            "
+          >
+            <strong
+              ><span style="font-family: Roboto">3.1.2. Utilidad.</span></strong
+            >
+          </p>
+          <p
+            style="
+              margin-top: 0cm;
+              margin-right: 0cm;
+              margin-bottom: 0cm;
+              margin-left: 0cm;
+              line-height: normal;
+              font-size: 15px;
+              font-family: 'Calibri', sans-serif;
+              text-align: justify;
+            "
+          >
+            <span style="font-family: Roboto"
+              >LA EMPRESA no garantiza que la Aplicaci&oacute;n M&oacute;vil y
+              los servicios sean &uacute;tiles para la realizaci&oacute;n de
+              ninguna actividad en particular, raz&oacute;n por la cual la
+              empresa se exime de toda responsabilidad por los da&ntilde;os y
+              perjuicios que pudieran generarse por la insatisfacci&oacute;n del
+              usuario respecto a la utilidad de la Aplicaci&oacute;n
+              M&oacute;vil.</span
+            >
+          </p>
+          <p
+            style="
+              margin-top: 0cm;
+              margin-right: 0cm;
+              margin-bottom: 0cm;
+              margin-left: 0cm;
+              line-height: normal;
+              font-size: 15px;
+              font-family: 'Calibri', sans-serif;
+              text-align: justify;
+            "
+          >
+            <span style="font-family: Roboto">&nbsp;</span>
+          </p>
+          <p
+            style="
+              margin-top: 0cm;
+              margin-right: 0cm;
+              margin-bottom: 0cm;
+              margin-left: 0cm;
+              line-height: normal;
+              font-size: 15px;
+              font-family: 'Calibri', sans-serif;
+              text-align: justify;
+            "
+          >
+            <strong
+              ><span style="font-family: Roboto"
+                >3.1.3. Fiabilidad.</span
+              ></strong
+            >
+          </p>
+          <p
+            style="
+              margin-top: 0cm;
+              margin-right: 0cm;
+              margin-bottom: 0cm;
+              margin-left: 0cm;
+              line-height: normal;
+              font-size: 15px;
+              font-family: 'Calibri', sans-serif;
+              text-align: justify;
+            "
+          >
+            <span style="font-family: Roboto"
+              >LA EMPRESA no garantiza la fiabilidad de la Aplicaci&oacute;n
+              M&oacute;vil ni de los servicios, y en particular, aunque no de
+              modo exclusivo; que los usuarios puedan efectivamente acceder a
+              las distintas p&aacute;ginas web promocionadas y/o referenciadas a
+              trav&eacute;s de la Aplicaci&oacute;n M&oacute;vil o a los
+              distintos servicios, ni que a trav&eacute;s de &eacute;stos se
+              puedan transmitir, difundir, almacenar o poner a
+              disposici&oacute;n de terceros los contenidos, o recibir, obtener
+              o acceder a los contenidos. LA EMPRESA excluye toda
+              responsabilidad por los da&ntilde;os y perjuicios de toda
+              naturaleza que pudieran deberse a la falta de fiabilidad de la
+              aplicaci&oacute;n m&oacute;vil y de los servicios, y en
+              particular; aunque no de modo exclusivo, a los fallos en el acceso
+              a las distintas p&aacute;ginas web del sitio o a los distintos
+              servicios, as&iacute; como a los fallos en la transmisi&oacute;n,
+              difusi&oacute;n, almacenamiento o puesta a disposici&oacute;n de
+              terceros de los contenidos o en la recepci&oacute;n,
+              obtenci&oacute;n o acceso a los contenidos.</span
+            >
+          </p>
+          <p
+            style="
+              margin-top: 0cm;
+              margin-right: 0cm;
+              margin-bottom: 0cm;
+              margin-left: 0cm;
+              line-height: normal;
+              font-size: 15px;
+              font-family: 'Calibri', sans-serif;
+              text-align: justify;
+            "
+          >
+            <span style="font-family: Roboto">&nbsp;</span>
+          </p>
+          <p
+            style="
+              margin-top: 0cm;
+              margin-right: 0cm;
+              margin-bottom: 0cm;
+              margin-left: 0cm;
+              line-height: normal;
+              font-size: 15px;
+              font-family: 'Calibri', sans-serif;
+              text-align: justify;
+            "
+          >
+            <strong
+              ><span style="font-family: Roboto"
+                >3.2. Exclusi&oacute;n de garant&iacute;as y de responsabilidad
+                por los contenidos y por los servicios prestados por terceros a
+                trav&eacute;s de la aplicaci&oacute;n m&oacute;vil.</span
+              ></strong
+            >
+          </p>
+          <p
+            style="
+              margin-top: 0cm;
+              margin-right: 0cm;
+              margin-bottom: 0cm;
+              margin-left: 0cm;
+              line-height: normal;
+              font-size: 15px;
+              font-family: 'Calibri', sans-serif;
+              text-align: justify;
+            "
+          >
+            <strong
+              ><span style="font-family: Roboto">3.2.1. Calidad.</span></strong
+            >
+          </p>
+          <p
+            style="
+              margin-top: 0cm;
+              margin-right: 0cm;
+              margin-bottom: 0cm;
+              margin-left: 0cm;
+              line-height: normal;
+              font-size: 15px;
+              font-family: 'Calibri', sans-serif;
+              text-align: justify;
+            "
+          >
+            <span style="font-family: Roboto"
+              >LA EMPRESA no controla con car&aacute;cter previo y no garantiza
+              la ausencia de virus en los contenidos, ni la ausencia de otros
+              elementos en los contenidos que puedan producir alteraciones en su
+              sistema inform&aacute;tico (software y hardware), o en los
+              documentos electr&oacute;nicos y ficheros almacenados en su
+              sistema inform&aacute;tico, raz&oacute;n por la cual la empresa se
+              exime de cualquier responsabilidad por los da&ntilde;os y
+              perjuicios de toda naturaleza que puedan deberse a la presencia de
+              virus o a la presencia de otros elementos lesivos en los
+              contenidos.</span
+            >
+          </p>
+          <p
+            style="
+              margin-top: 0cm;
+              margin-right: 0cm;
+              margin-bottom: 0cm;
+              margin-left: 0cm;
+              line-height: normal;
+              font-size: 15px;
+              font-family: 'Calibri', sans-serif;
+              text-align: justify;
+            "
+          >
+            <u
+              ><span style="font-family: Roboto"
+                ><span style="text-decoration: none">&nbsp;</span></span
+              ></u
+            >
+          </p>
+          <p
+            style="
+              margin-top: 0cm;
+              margin-right: 0cm;
+              margin-bottom: 0cm;
+              margin-left: 0cm;
+              line-height: normal;
+              font-size: 15px;
+              font-family: 'Calibri', sans-serif;
+              text-align: justify;
+            "
+          >
+            <strong
+              ><span style="font-family: Roboto"
+                >3.2.2. Licitud, fiabilidad y utilidad.</span
+              ></strong
+            >
+          </p>
+          <p
+            style="
+              margin-top: 0cm;
+              margin-right: 0cm;
+              margin-bottom: 0cm;
+              margin-left: 0cm;
+              line-height: normal;
+              font-size: 15px;
+              font-family: 'Calibri', sans-serif;
+              text-align: justify;
+            "
+          >
+            <span style="font-family: Roboto"
+              >LA EMPRESA no garantiza la licitud, fiabilidad y utilidad de los
+              contenidos. LA EMPRESA no asume responsabilidad por los
+              da&ntilde;os y perjuicios de toda naturaleza que puedan deberse a
+              la transmisi&oacute;n, difusi&oacute;n, almacenamiento, puesta a
+              disposici&oacute;n, recepci&oacute;n, obtenci&oacute;n o acceso a
+              los contenidos, y en particular, aunque no de modo exclusivo, por
+              los da&ntilde;os y perjuicios que puedan deberse a:</span
+            >
+          </p>
+          <p
+            style="
+              margin-top: 0cm;
+              margin-right: 0cm;
+              margin-bottom: 0cm;
+              margin-left: 0cm;
+              line-height: normal;
+              font-size: 15px;
+              font-family: 'Calibri', sans-serif;
+              text-align: justify;
+            "
+          >
+            <span style="font-family: Roboto">&nbsp;</span>
+          </p>
+          <ol
+            start="1"
+            style="list-style-type: lower-alpha; text-align: justify"
+          >
+            <li>
+              <span style="font-family: Roboto"
+                >el incumplimiento de la ley, la moral y las buenas costumbres
+                generalmente aceptadas o el orden p&uacute;blico como
+                consecuencia de la transmisi&oacute;n, difusi&oacute;n,
+                almacenamiento, puesta a disposici&oacute;n, recepci&oacute;n,
+                obtenci&oacute;n o acceso a los contenidos;</span
+              >
+            </li>
+            <li>
+              <span style="font-family: Roboto"
+                >la infracci&oacute;n de los derechos de propiedad intelectual e
+                industrial, de los secretos empresariales, de compromisos
+                contractuales de cualquier clase, de los derechos al honor, a la
+                intimidad personal y familiar y a la imagen de las personas, de
+                los derechos de propiedad y de toda otra naturaleza
+                pertenecientes a un tercero, como consecuencia de la
+                transmisi&oacute;n, difusi&oacute;n, almacenamiento, puesta a
+                disposici&oacute;n, recepci&oacute;n, obtenci&oacute;n o acceso
+                a los contenidos;</span
+              >
+            </li>
+            <li>
+              <span style="font-family: Roboto"
+                >la realizaci&oacute;n de actos de competencia desleal y
+                publicidad il&iacute;cita como consecuencia de la
+                transmisi&oacute;n, difusi&oacute;n, almacenamiento, puesta a
+                disposici&oacute;n, recepci&oacute;n, obtenci&oacute;n o acceso
+                a los contenidos;</span
+              >
+            </li>
+            <li>
+              <span style="font-family: Roboto"
+                >la falta de veracidad, exactitud, exhaustividad, pertinencia
+                y/o actualidad de los contenidos;</span
+              >
+            </li>
+            <li>
+              <span style="font-family: Roboto"
+                >la inadecuaci&oacute;n para cualquier clase de prop&oacute;sito
+                de y la defraudaci&oacute;n de las expectativas generadas por
+                los contenidos;</span
+              >
+            </li>
+            <li>
+              <span style="font-family: Roboto"
+                >el incumplimiento, retraso en el cumplimiento, cumplimiento
+                defectuoso o terminaci&oacute;n por cualquier causa de las
+                obligaciones contra&iacute;das por terceros y contratos
+                realizados con terceros a trav&eacute;s de o con motivo del
+                acceso a los contenidos;</span
+              >
+            </li>
+            <li>
+              <span style="font-family: Roboto"
+                >los vicios y defectos de toda clase de los contenidos
+                transmitidos, difundidos, almacenados, puestos a
+                disposici&oacute;n o de otra forma transmitidos o puestos a
+                disposici&oacute;n, recibidos, obtenidos o a los que se haya
+                accedido a trav&eacute;s de la aplicaci&oacute;n m&oacute;vil o
+                de los servicios.</span
+              >
+            </li>
+          </ol>
+          <p
+            style="
+              margin-top: 0cm;
+              margin-right: 0cm;
+              margin-bottom: 0cm;
+              margin-left: 0cm;
+              line-height: normal;
+              font-size: 15px;
+              font-family: 'Calibri', sans-serif;
+            "
+          >
+            <span style="font-family: Roboto">&nbsp;</span>
+          </p>
+          <p
+            style="
+              margin-top: 0cm;
+              margin-right: 0cm;
+              margin-bottom: 0cm;
+              margin-left: 0cm;
+              line-height: normal;
+              font-size: 15px;
+              font-family: 'Calibri', sans-serif;
+              text-align: justify;
+            "
+          >
+            <strong
+              ><span style="font-family: Roboto"
+                >3.3. Exclusi&oacute;n de garant&iacute;as y de responsabilidad
+                por los servicios y contenidos alojados fuera de la
+                Aplicaci&oacute;n M&oacute;vil.</span
+              ></strong
+            ><span style="font-family: Roboto">&nbsp;</span>
+          </p>
+          <p
+            style="
+              margin-top: 0cm;
+              margin-right: 0cm;
+              margin-bottom: 0cm;
+              margin-left: 0cm;
+              line-height: normal;
+              font-size: 15px;
+              font-family: 'Calibri', sans-serif;
+              text-align: justify;
+            "
+          >
+            <span style="font-family: Roboto">&nbsp;</span>
+          </p>
+          <p
+            style="
+              margin-top: 0cm;
+              margin-right: 0cm;
+              margin-bottom: 0cm;
+              margin-left: 0cm;
+              line-height: normal;
+              font-size: 15px;
+              font-family: 'Calibri', sans-serif;
+              text-align: justify;
+            "
+          >
+            <span style="font-family: Roboto"
+              >La Aplicaci&oacute;n M&oacute;vil pone a disposici&oacute;n de
+              los usuarios dispositivos t&eacute;cnicos de enlace (tales como,
+              entre otros, links y botones), directorios y herramientas de
+              b&uacute;squeda que permiten a los usuarios acceder a sitios web
+              pertenecientes a terceros (en adelante, &quot;sitios
+              enlazados&quot;). La instalaci&oacute;n de estos enlaces,
+              directorios y herramientas de b&uacute;squeda en la
+              aplicaci&oacute;n m&oacute;vil tiene por &uacute;nico objeto
+              facilitar a los usuarios la b&uacute;squeda de y acceso a la
+              informaci&oacute;n disponible en internet, y no presupone que
+              exista ninguna clase de v&iacute;nculo o asociaci&oacute;n entre
+              la empresa y los operadores de los sitios enlazados. LA EMPRESA no
+              controla previamente, aprueba ni hace propios los servicios,
+              informaci&oacute;n, datos, archivos, productos y cualquier clase
+              de material existente en los sitios enlazados. EL USUARIO, por
+              tanto, debe extremar la prudencia en la valoraci&oacute;n y
+              utilizaci&oacute;n de los servicios, informaci&oacute;n, datos,
+              archivos, productos y cualquier clase de material existente en los
+              sitios enlazados. LA EMPRESA no garantiza ni asume ning&uacute;n
+              tipo de responsabilidad por los da&ntilde;os y perjuicios de toda
+              clase que puedan deberse a:</span
+            >
+          </p>
+          <p
+            style="
+              margin-top: 0cm;
+              margin-right: 0cm;
+              margin-bottom: 0cm;
+              margin-left: 0cm;
+              line-height: normal;
+              font-size: 15px;
+              font-family: 'Calibri', sans-serif;
+              text-align: justify;
+            "
+          >
+            <span style="font-family: Roboto">&nbsp;</span>
+          </p>
+          <ol
+            class="decimal_type"
+            start="1"
+            style="list-style-type: lower-alpha; text-align: justify"
+          >
+            <li>
+              <span style="font-family: Roboto"
+                >el funcionamiento, disponibilidad, accesibilidad o continuidad
+                de los sitios enlazados;</span
+              >
+            </li>
+            <li>
+              <span style="font-family: Roboto"
+                >el mantenimiento de los servicios, informaci&oacute;n, datos,
+                archivos, productos y cualquier clase de material existente en
+                los sitios enlazados;</span
+              >
+            </li>
+            <li>
+              <span style="font-family: Roboto"
+                >la prestaci&oacute;n o transmisi&oacute;n de los servicios,
+                informaci&oacute;n, datos, archivos, productos y cualquier clase
+                de material existente en los sitios enlazados;</span
+              >
+            </li>
+            <li>
+              <span style="font-family: Roboto"
+                >la calidad, licitud, fiabilidad y utilidad de los servicios,
+                informaci&oacute;n, datos, archivos, productos y cualquier clase
+                de material existente en los sitios enlazados, en los mismos
+                t&eacute;rminos y con el mismo alcance dispuesto en las
+                condiciones generales 3.2 y 3.3, respecto de los contenidos y de
+                los servicios prestados por terceros a trav&eacute;s de la
+                aplicaci&oacute;n m&oacute;vil.</span
+              >
+            </li>
+          </ol>
+          <p
+            style="
+              margin-top: 0cm;
+              margin-right: 0cm;
+              margin-bottom: 0cm;
+              margin-left: 0cm;
+              line-height: normal;
+              font-size: 15px;
+              font-family: 'Calibri', sans-serif;
+              text-align: justify;
+            "
+          >
+            <span style="font-family: Roboto">&nbsp;</span>
+          </p>
+          <p
+            style="
+              margin-top: 0cm;
+              margin-right: 0cm;
+              margin-bottom: 0cm;
+              margin-left: 0cm;
+              line-height: normal;
+              font-size: 15px;
+              font-family: 'Calibri', sans-serif;
+              text-align: justify;
+            "
+          >
+            <strong
+              ><span style="font-family: Roboto"
+                >3.4. Exclusi&oacute;n de garant&iacute;as y de responsabilidad
+                por la utilizaci&oacute;n de la Aplicaci&oacute;n M&oacute;vil,
+                de los servicios y de los contenidos por los usuarios.</span
+              ></strong
+            ><span style="font-family: Roboto">&nbsp;</span>
+          </p>
+          <p
+            style="
+              margin-top: 0cm;
+              margin-right: 0cm;
+              margin-bottom: 0cm;
+              margin-left: 0cm;
+              line-height: normal;
+              font-size: 15px;
+              font-family: 'Calibri', sans-serif;
+              text-align: justify;
+            "
+          >
+            <span style="font-family: Roboto"
+              >LA EMPRESA no controla el acceso ni la utilizaci&oacute;n que los
+              usuarios hacen de la Aplicaci&oacute;n M&oacute;vil, de los
+              servicios y de los contenidos. En particular, LA EMPRESA no
+              garantiza que los usuarios utilicen la Aplicaci&oacute;n
+              M&oacute;vil, los servicios y los contenidos de conformidad con la
+              ley, estas condiciones generales y, en su caso, las condiciones
+              particulares que resulten de aplicaci&oacute;n, la moral y buenas
+              costumbres generalmente aceptadas y el orden p&uacute;blico, ni
+              que lo hagan de forma diligente y prudente.</span
+            >
+          </p>
+          <p
+            style="
+              margin-top: 0cm;
+              margin-right: 0cm;
+              margin-bottom: 0cm;
+              margin-left: 0cm;
+              line-height: normal;
+              font-size: 15px;
+              font-family: 'Calibri', sans-serif;
+              text-align: justify;
+            "
+          >
+            <span style="font-family: Roboto">&nbsp;</span>
+          </p>
+          <p
+            style="
+              margin-top: 0cm;
+              margin-right: 0cm;
+              margin-bottom: 0cm;
+              margin-left: 0cm;
+              line-height: normal;
+              font-size: 15px;
+              font-family: 'Calibri', sans-serif;
+              text-align: justify;
+            "
+          >
+            <strong
+              ><span style="font-family: Roboto"
+                >3.5. Identidad e informaci&oacute;n relativa a los usuarios
+                proporcionada por los propios usuarios.&nbsp;</span
+              ></strong
+            >
+          </p>
+          <p
+            style="
+              margin-top: 0cm;
+              margin-right: 0cm;
+              margin-bottom: 0cm;
+              margin-left: 0cm;
+              line-height: normal;
+              font-size: 15px;
+              font-family: 'Calibri', sans-serif;
+              text-align: justify;
+            "
+          >
+            <span style="font-family: Roboto"
+              >LA EMPRESA no controla ni ofrece ninguna clase de garant&iacute;a
+              sobre la identidad de los usuarios, ni sobre la veracidad,
+              vigencia, exhaustividad y/o autenticidad de los datos que los
+              usuarios proporcionan sobre s&iacute; mismos y proporcionan a o
+              hacen accesibles para otros usuarios.</span
+            >
+          </p>
+          <p
+            style="
+              margin-top: 0cm;
+              margin-right: 0cm;
+              margin-bottom: 0cm;
+              margin-left: 0cm;
+              line-height: normal;
+              font-size: 15px;
+              font-family: 'Calibri', sans-serif;
+              text-align: justify;
+            "
+          >
+            <span style="font-family: Roboto"
+              >&nbsp;LA EMPRESA no asume ninguna responsabilidad por los
+              da&ntilde;os y perjuicios de toda naturaleza que puedan deberse a
+              la incorrecta identidad de los usuarios y a la falta de veracidad,
+              vigencia, exhaustividad y/o autenticidad de la informaci&oacute;n
+              que los usuarios proporcionan acerca de s&iacute; mismos y
+              proporcionan o hacen accesibles para otros usuarios, y en
+              particular, aunque no de forma exclusiva, por los da&ntilde;os y
+              perjuicios de toda naturaleza que puedan deberse a la
+              suplantaci&oacute;n de la personalidad de un tercero efectuada por
+              un usuario en cualquier clase de comunicaci&oacute;n o
+              transacci&oacute;n realizada a trav&eacute;s de la
+              Aplicaci&oacute;n M&oacute;vil.</span
+            >
+          </p>
+          <p
+            style="
+              margin-top: 0cm;
+              margin-right: 0cm;
+              margin-bottom: 0cm;
+              margin-left: 0cm;
+              line-height: normal;
+              font-size: 15px;
+              font-family: 'Calibri', sans-serif;
+            "
+          >
+            <span style="font-family: Roboto">&nbsp;</span>
+          </p>
+          <p
+            style="
+              margin-top: 0cm;
+              margin-right: 0cm;
+              margin-bottom: 0cm;
+              margin-left: 0cm;
+              line-height: normal;
+              font-size: 15px;
+              font-family: 'Calibri', sans-serif;
+              text-align: justify;
+            "
+          >
+            <strong
+              ><span style="font-family: Roboto"
+                >4. Pol&iacute;tica de Privacidad.</span
+              ></strong
+            >
+          </p>
+          <p
+            style="
+              margin-top: 0cm;
+              margin-right: 0cm;
+              margin-bottom: 0cm;
+              margin-left: 0cm;
+              line-height: normal;
+              font-size: 15px;
+              font-family: 'Calibri', sans-serif;
+              text-align: justify;
+            "
+          >
+            <span style="font-family: Roboto"
+              >Esta secci&oacute;n explica qu&eacute; informaci&oacute;n
+              recogemos sobre el usuario, c&oacute;mo la recogemos, como la
+              almacenamos y como la podemos utilizar en las circunstancias en
+              que la ofrecemos a terceros. Para aprovechar las ventajas de
+              algunos de los servicios ofrecidos a trav&eacute;s de nuestra
+              Aplicaci&oacute;n M&oacute;vil podr&iacute;a ser necesario que nos
+              proporcione cierta informaci&oacute;n sobre usted. Esto puede
+              incluir hacer el registro de sus datos de contacto o completar
+              algunos formularios en nuestra aplicaci&oacute;n m&oacute;vil. Es
+              posible que tambi&eacute;n le pidamos que proporcione
+              informaci&oacute;n acerca de usted al usar el comparador en
+              nuestra aplicaci&oacute;n m&oacute;vil, o si decide ponerse en
+              contacto con nosotros por cualquier motivo. La naturaleza de
+              nuestro servicio es tal que podemos, tambi&eacute;n solicitar que
+              proporcione datos personales (como n&uacute;mero de documento,
+              nombre y apellido, su estado laboral, crediticio y otros datos
+              adicionales).</span
+            >
+          </p>
+          <p
+            style="
+              margin-top: 0cm;
+              margin-right: 0cm;
+              margin-bottom: 0cm;
+              margin-left: 0cm;
+              line-height: normal;
+              font-size: 15px;
+              font-family: 'Calibri', sans-serif;
+              text-align: justify;
+            "
+          >
+            <span style="font-family: Roboto">&nbsp;</span>
+          </p>
+          <p
+            style="
+              margin-top: 0cm;
+              margin-right: 0cm;
+              margin-bottom: 0cm;
+              margin-left: 0cm;
+              line-height: normal;
+              font-size: 15px;
+              font-family: 'Calibri', sans-serif;
+              text-align: justify;
+            "
+          >
+            <span style="font-family: Roboto"
+              >Al estar de acuerdo con los presentes t&eacute;rminos y
+              condiciones, usted acepta proporcionar esta informaci&oacute;n y
+              nos comprometemos a tomar las medidas adecuadas para proteger
+              dichos datos de &iacute;ndole personal.</span
+            >
+          </p>
+          <p
+            style="
+              margin-top: 0cm;
+              margin-right: 0cm;
+              margin-bottom: 0cm;
+              margin-left: 0cm;
+              line-height: normal;
+              font-size: 15px;
+              font-family: 'Calibri', sans-serif;
+              text-align: justify;
+            "
+          >
+            <strong><span style="font-family: Roboto">&nbsp;</span></strong>
+          </p>
+          <p
+            style="
+              margin-top: 0cm;
+              margin-right: 0cm;
+              margin-bottom: 0cm;
+              margin-left: 0cm;
+              line-height: normal;
+              font-size: 15px;
+              font-family: 'Calibri', sans-serif;
+              text-align: justify;
+            "
+          >
+            <strong
+              ><span style="font-family: Roboto"
+                >4.1. Protecci&oacute;n de Datos Personales&nbsp;</span
+              ></strong
+            >
+          </p>
+          <p
+            style="
+              margin-top: 0cm;
+              margin-right: 0cm;
+              margin-bottom: 0cm;
+              margin-left: 0cm;
+              line-height: normal;
+              font-size: 15px;
+              font-family: 'Calibri', sans-serif;
+              text-align: justify;
+            "
+          >
+            <u
+              ><span style="font-family: Roboto"
+                ><span style="text-decoration: none">&nbsp;</span></span
+              ></u
+            >
+          </p>
+          <p
+            style="
+              margin-top: 0cm;
+              margin-right: 0cm;
+              margin-bottom: 0cm;
+              margin-left: 0cm;
+              line-height: normal;
+              font-size: 15px;
+              font-family: 'Calibri', sans-serif;
+              text-align: justify;
+            "
+          >
+            <strong
+              ><u><span style="font-family: Roboto">Finalidad</span></u></strong
+            >
+          </p>
+          <p
+            style="
+              margin-top: 0cm;
+              margin-right: 0cm;
+              margin-bottom: 0cm;
+              margin-left: 0cm;
+              line-height: normal;
+              font-size: 15px;
+              font-family: 'Calibri', sans-serif;
+              text-align: justify;
+            "
+          >
+            <span style="font-family: Roboto"
+              >LA EMPRESA incorporar&aacute; sus datos personales al Banco de
+              Datos Personales que administra en su calidad de titular,
+              gestionado por la Gerencia de Desarrollo e Innovaci&oacute;n, con
+              la finalidad de recopilar informaci&oacute;n de los clientes de la
+              Aplicaci&oacute;n M&oacute;vil Mi Yunta Financiero para realizar
+              estudios acad&eacute;micos, evaluaciones de impacto y evaluaciones
+              de resultados, gestiones comerciales y de calidad. Asimismo, en
+              estricta l&iacute;nea con la finalidad del tratamiento de sus
+              datos personales, los usos previstos de estos, se
+              realizar&aacute;n con fines estad&iacute;sticos e
+              hist&oacute;ricos o cient&iacute;ficos.&nbsp;</span
+            >
+          </p>
+          <p
+            style="
+              margin-top: 0cm;
+              margin-right: 0cm;
+              margin-bottom: 0cm;
+              margin-left: 0cm;
+              line-height: normal;
+              font-size: 15px;
+              font-family: 'Calibri', sans-serif;
+              text-align: justify;
+            "
+          >
+            <span style="font-family: Roboto">&nbsp;</span>
+          </p>
+          <p
+            style="
+              margin-top: 0cm;
+              margin-right: 0cm;
+              margin-bottom: 0cm;
+              margin-left: 0cm;
+              line-height: normal;
+              font-size: 15px;
+              font-family: 'Calibri', sans-serif;
+              text-align: justify;
+            "
+          >
+            <strong
+              ><u
+                ><span style="font-family: Roboto"
+                  >Tipos de Datos Personales a ser tratados en la base de
+                  datos</span
+                ></u
+              ></strong
+            >
+          </p>
+          <p
+            style="
+              margin-top: 0cm;
+              margin-right: 0cm;
+              margin-bottom: 0cm;
+              margin-left: 0cm;
+              line-height: normal;
+              font-size: 15px;
+              font-family: 'Calibri', sans-serif;
+              text-align: justify;
+            "
+          >
+            <span style="font-family: Roboto"
+              >Los tipos de datos personales son los siguientes:</span
+            >
+          </p>
+          <p
+            style="
+              margin-top: 0cm;
+              margin-right: 0cm;
+              margin-bottom: 0cm;
+              margin-left: 0cm;
+              line-height: normal;
+              font-size: 15px;
+              font-family: 'Calibri', sans-serif;
+              text-align: justify;
+            "
+          >
+            <strong><span style="font-family: Roboto">&nbsp;</span></strong>
+          </p>
+          <ul style="list-style-type: square; text-align: justify">
+            <li>
+              <span style="font-family: Roboto">Nombres y apellidos</span>
+            </li>
+            <li><span style="font-family: Roboto">N&deg; DNI</span></li>
+            <li><span style="font-family: Roboto">Tel&eacute;fono</span></li>
+            <li>
+              <span style="font-family: Roboto"
+                >Direcci&oacute;n de correo electr&oacute;nico</span
+              >
+            </li>
+            <li><span style="font-family: Roboto">Nacionalidad</span></li>
+            <li><span style="font-family: Roboto">Sexo</span></li>
+            <li><span style="font-family: Roboto">Profesi&oacute;n</span></li>
+            <li><span style="font-family: Roboto">Edad</span></li>
+            <li><span style="font-family: Roboto">Estado civil</span></li>
+            <li>
+              <span style="font-family: Roboto">Datos acad&eacute;micos</span>
+            </li>
+          </ul>
+          <p
+            style="
+              margin-top: 0cm;
+              margin-right: 0cm;
+              margin-bottom: 0cm;
+              margin-left: 0cm;
+              line-height: normal;
+              font-size: 15px;
+              font-family: 'Calibri', sans-serif;
+              text-align: justify;
+            "
+          >
+            <span style="font-family: Roboto">&nbsp;</span>
+          </p>
+          <p
+            style="
+              margin-top: 0cm;
+              margin-right: 0cm;
+              margin-bottom: 0cm;
+              margin-left: 0cm;
+              line-height: normal;
+              font-size: 15px;
+              font-family: 'Calibri', sans-serif;
+              text-align: justify;
+            "
+          >
+            <strong
+              ><u
+                ><span style="font-family: Roboto"
+                  >Transferencias y destinatarios</span
+                ></u
+              ></strong
+            >
+          </p>
+          <p
+            style="
+              margin-top: 0cm;
+              margin-right: 0cm;
+              margin-bottom: 0cm;
+              margin-left: 0cm;
+              line-height: normal;
+              font-size: 15px;
+              font-family: 'Calibri', sans-serif;
+              text-align: justify;
+            "
+          >
+            <span style="font-family: Roboto"
+              >Los datos personales que sean recolectados y tratados (pudiendo
+              ser estos automatizados y no automatizados), podr&aacute;n ser
+              transferidos a nivel nacional a entidades financieras, centrales
+              de riesgo y ONG&rsquo;s. De igual manera, tambi&eacute;n
+              podr&aacute;n ser transferidos a nivel internacional a entidades
+              financieras, garantiz&aacute;ndose el nivel de protecci&oacute;n
+              adecuado del flujo transfronterizo de los datos personales.</span
+            >
+          </p>
+          <p
+            style="
+              margin-top: 0cm;
+              margin-right: 0cm;
+              margin-bottom: 0cm;
+              margin-left: 0cm;
+              line-height: normal;
+              font-size: 15px;
+              font-family: 'Calibri', sans-serif;
+              text-align: justify;
+            "
+          >
+            <strong><span style="font-family: Roboto">&nbsp;</span></strong>
+          </p>
+          <p
+            style="
+              margin-top: 0cm;
+              margin-right: 0cm;
+              margin-bottom: 0cm;
+              margin-left: 0cm;
+              line-height: normal;
+              font-size: 15px;
+              font-family: 'Calibri', sans-serif;
+              text-align: justify;
+            "
+          >
+            <span style="font-family: Roboto">&nbsp;</span>
+          </p>
+          <p
+            style="
+              margin-top: 0cm;
+              margin-right: 0cm;
+              margin-bottom: 0cm;
+              margin-left: 0cm;
+              line-height: normal;
+              font-size: 15px;
+              font-family: 'Calibri', sans-serif;
+              text-align: justify;
+            "
+          >
+            <span style="font-family: Roboto">&nbsp;</span>
+          </p>
+          <p
+            style="
+              margin-top: 0cm;
+              margin-right: 0cm;
+              margin-bottom: 0cm;
+              margin-left: 0cm;
+              line-height: normal;
+              font-size: 15px;
+              font-family: 'Calibri', sans-serif;
+              text-align: justify;
+            "
+          >
+            <strong
+              ><span style="font-family: Roboto">4.2. Cookies.</span></strong
+            >
+          </p>
+          <p
+            style="
+              margin-top: 0cm;
+              margin-right: 0cm;
+              margin-bottom: 0cm;
+              margin-left: 0cm;
+              line-height: normal;
+              font-size: 15px;
+              font-family: 'Calibri', sans-serif;
+              text-align: justify;
+            "
+          >
+            <span style="font-family: Roboto"
+              >Tambi&eacute;n podemos recopilar informaci&oacute;n acerca de su
+              dispositivo, incluyendo cuando se disponga de su direcci&oacute;n
+              IP, sistema operativo y el tipo de navegador utiliza una cookie
+              que se almacena en el disco duro de su dispositivo. Las cookies
+              nos ayudan a mejorar nuestra Aplicaci&oacute;n M&oacute;vil y
+              ofrecer un mejor y m&aacute;s personalizado servicio a usted. El
+              uso de las cookies nos permite permiten personalizar su
+              experiencia en nuestra aplicaci&oacute;n m&oacute;vil, acelerar
+              sus b&uacute;squedas, seleccionar los servicios o materiales para
+              su inclusi&oacute;n en la aplicaci&oacute;n m&oacute;vil, los
+              cuales pueden ser de inter&eacute;s para usted, seguimiento de los
+              patrones de tr&aacute;fico en general y el uso de nuestra
+              aplicaci&oacute;n m&oacute;vil para ayudarnos a mejorar nuestro
+              servicio y dise&ntilde;o.&nbsp;</span
+            >
+          </p>
+          <p
+            style="
+              margin-top: 0cm;
+              margin-right: 0cm;
+              margin-bottom: 0cm;
+              margin-left: 0cm;
+              line-height: normal;
+              font-size: 15px;
+              font-family: 'Calibri', sans-serif;
+              text-align: justify;
+            "
+          >
+            <span style="font-family: Roboto">&nbsp;</span>
+          </p>
+          <p
+            style="
+              margin-top: 0cm;
+              margin-right: 0cm;
+              margin-bottom: 0cm;
+              margin-left: 0cm;
+              line-height: normal;
+              font-size: 15px;
+              font-family: 'Calibri', sans-serif;
+              text-align: justify;
+            "
+          >
+            <span style="font-family: Roboto">&nbsp;</span>
+          </p>
+          <p
+            style="
+              margin-top: 0cm;
+              margin-right: 0cm;
+              margin-bottom: 0cm;
+              margin-left: 0cm;
+              line-height: normal;
+              font-size: 15px;
+              font-family: 'Calibri', sans-serif;
+              text-align: justify;
+            "
+          >
+            <strong
+              ><span style="font-family: Roboto"
+                >4.3. Orientaci&oacute;n gratuita</span
+              ></strong
+            >
+          </p>
+          <p
+            style="
+              margin-top: 0cm;
+              margin-right: 0cm;
+              margin-bottom: 0cm;
+              margin-left: 0cm;
+              line-height: normal;
+              font-size: 15px;
+              font-family: 'Calibri', sans-serif;
+              text-align: justify;
+            "
+          >
+            <span style="font-family: Roboto"
+              >LA EMPRESA ofrecer&aacute; orientaci&oacute;n gratuita para todos
+              los clientes que manifiesten su aceptaci&oacute;n hacia este
+              servicio. La orientaci&oacute;n consta en brindar
+              informaci&oacute;n y herramientas a nuestros usuarios para que
+              puedan tomar decisiones informadas al momento de tomar una
+              decisi&oacute;n financiera o elegir que producto se ajusta
+              m&aacute;s a sus necesidades.</span
+            >
+          </p>
+          <p
+            style="
+              margin-top: 0cm;
+              margin-right: 0cm;
+              margin-bottom: 0cm;
+              margin-left: 0cm;
+              line-height: normal;
+              font-size: 15px;
+              font-family: 'Calibri', sans-serif;
+              text-align: justify;
+            "
+          >
+            <span style="font-family: Roboto"
+              >Para ello es indispensable poder contactar al usuario por lo que
+              este servicio gratuito incluye el env&iacute;o de
+              informaci&oacute;n a su correo electr&oacute;nico e inclusive el
+              contacto telef&oacute;nico cuando sea necesario.</span
+            >
+          </p>
+          <p
+            style="
+              margin-top: 0cm;
+              margin-right: 0cm;
+              margin-bottom: 0cm;
+              margin-left: 0cm;
+              line-height: normal;
+              font-size: 15px;
+              font-family: 'Calibri', sans-serif;
+              text-align: justify;
+            "
+          >
+            <span style="font-family: Roboto"
+              >El USUARIO podr&aacute; rechazar la orientaci&oacute;n gratuita
+              en cualquier oportunidad, eliminando la aplicaci&oacute;n MI Yunta
+              Financiero de su dispositivo y no volver&aacute; a ser contactado
+              a menos que vuelva a realizar la descarga de la aplicaci&oacute;n
+              nuevamente.</span
+            >
+          </p>
+          <p
+            style="
+              margin-top: 0cm;
+              margin-right: 0cm;
+              margin-bottom: 0cm;
+              margin-left: 0cm;
+              line-height: normal;
+              font-size: 15px;
+              font-family: 'Calibri', sans-serif;
+            "
+          >
+            <span style="font-family: Roboto">&nbsp;</span>
+          </p>
+          <p
+            style="
+              margin-top: 0cm;
+              margin-right: 0cm;
+              margin-bottom: 0cm;
+              margin-left: 0cm;
+              line-height: normal;
+              font-size: 15px;
+              font-family: 'Calibri', sans-serif;
+              text-align: justify;
+            "
+          >
+            <strong
+              ><span style="font-family: Roboto"
+                >4.4. Usos de informaci&oacute;n del usuario</span
+              ></strong
+            >
+          </p>
+          <p
+            style="
+              margin-top: 0cm;
+              margin-right: 0cm;
+              margin-bottom: 0cm;
+              margin-left: 0cm;
+              line-height: normal;
+              font-size: 15px;
+              font-family: 'Calibri', sans-serif;
+              text-align: justify;
+            "
+          >
+            <span style="font-family: Roboto"
+              >La empresa puede utilizar su informaci&oacute;n personal de las
+              siguientes maneras:</span
+            >
+          </p>
+          <ol
+            start="1"
+            style="list-style-type: lower-alpha; text-align: justify"
+          >
+            <li>
+              <span style="font-family: Roboto"
+                >Para proporcionarle informaci&oacute;n, productos o servicios
+                que usted pide de nosotros.</span
+              >
+            </li>
+            <li>
+              <span style="font-family: Roboto"
+                >Para permitir a usted a participar en las funciones
+                interactivas de nuestro servicio, cuando usted decide
+                hacerlo.</span
+              >
+            </li>
+            <li>
+              <span style="font-family: Roboto"
+                >Para contactar con usted por correo, tel&eacute;fono o correo
+                electr&oacute;nico.</span
+              >
+            </li>
+            <li>
+              <span style="font-family: Roboto"
+                >Para informarle sobre otros productos y servicios que pueden
+                ser de inter&eacute;s para usted.</span
+              >
+            </li>
+          </ol>
+          <p
+            style="
+              margin-top: 0cm;
+              margin-right: 0cm;
+              margin-bottom: 0cm;
+              margin-left: 0cm;
+              line-height: normal;
+              font-size: 15px;
+              font-family: 'Calibri', sans-serif;
+            "
+          >
+            <span style="font-family: Roboto">&nbsp;</span>
+          </p>
+          <p
+            style="
+              margin-top: 0cm;
+              margin-right: 0cm;
+              margin-bottom: 0cm;
+              margin-left: 0cm;
+              line-height: normal;
+              font-size: 15px;
+              font-family: 'Calibri', sans-serif;
+              text-align: justify;
+            "
+          >
+            <span style="font-family: Roboto"
+              >Usted podr&aacute; ser notificado de nuestras noticias, de los
+              cambios en la Aplicaci&oacute;n M&oacute;vil, eventos especiales u
+              otros servicios que creemos que pueden interesarle. Tambi&eacute;n
+              podemos revelar su informaci&oacute;n personal a terceros solo
+              para fines de estudios e investigaci&oacute;n. Asimismo, podemos
+              dar a conocer su informaci&oacute;n personal cuando sea necesario
+              para cumplir con cualquier Ley Aplicable o para proteger a LA
+              EMPRESA y usuarios (incluido el intercambio de informaci&oacute;n
+              con otras empresas a los efectos de la protecci&oacute;n contra el
+              fraude). Asimismo, la informaci&oacute;n personal del USUARIO
+              podr&aacute; ser brindado al eventual adquirente del servicio
+              brindado por LA EMPRESA, en el eventual caso que se realice la
+              transferencia del servicio a una tercera persona.</span
+            >
+          </p>
+          <p
+            style="
+              margin-top: 0cm;
+              margin-right: 0cm;
+              margin-bottom: 0cm;
+              margin-left: 0cm;
+              line-height: normal;
+              font-size: 15px;
+              font-family: 'Calibri', sans-serif;
+            "
+          >
+            <strong><span style="font-family: Roboto">&nbsp;</span></strong>
+          </p>
+          <p
+            style="
+              margin-top: 0cm;
+              margin-right: 0cm;
+              margin-bottom: 0cm;
+              margin-left: 0cm;
+              line-height: normal;
+              font-size: 15px;
+              font-family: 'Calibri', sans-serif;
+              text-align: justify;
+            "
+          >
+            <strong
+              ><span style="font-family: Roboto"
+                >4.5. Derechos del usuario</span
+              ></strong
+            >
+          </p>
+          <p
+            style="
+              margin-top: 0cm;
+              margin-right: 0cm;
+              margin-bottom: 0cm;
+              margin-left: 0cm;
+              line-height: normal;
+              font-size: 15px;
+              font-family: 'Calibri', sans-serif;
+              text-align: justify;
+            "
+          >
+            <span style="font-family: Roboto"
+              >Si usted no est&aacute; de acuerdo con esta pol&iacute;tica de
+              privacidad de estos T&eacute;rminos y Condiciones, entonces usted
+              no debe descargar nuestra Aplicaci&oacute;n M&oacute;vil. Si en
+              cualquier momento despu&eacute;s de que usted ha proporcionado su
+              informaci&oacute;n personal en nuestra Aplicaci&oacute;n
+              M&oacute;vil, quiere oponerse a que sus datos de car&aacute;cter
+              personal sean utilizados por nosotros, tiene que hacernos llegar
+              un correo electr&oacute;nico a
+              <a
+                href="file:///C%3A/Users/rzapata/AppData/Local/Microsoft/Windows/INetCache/Content.Outlook/BE7TPDTR/borrar.suscripcion@miyuntafinanciero.com"
+                >borrar.suscripcion@miyuntafinanciero.com</a
+              >, Nos esforzaremos en procesar su solicitud lo antes posible.
+              Tenga en cuenta que el plazo m&aacute;ximo para proceder con el
+              requerimiento es de 30 d&iacute;as.&nbsp;</span
+            >
+          </p>
+          <p
+            style="
+              margin-top: 0cm;
+              margin-right: 0cm;
+              margin-bottom: 0cm;
+              margin-left: 0cm;
+              line-height: normal;
+              font-size: 15px;
+              font-family: 'Calibri', sans-serif;
+              text-align: justify;
+            "
+          >
+            <span style="font-family: Roboto">&nbsp;</span>
+          </p>
+          <p
+            style="
+              margin-top: 0cm;
+              margin-right: 0cm;
+              margin-bottom: 0cm;
+              margin-left: 0cm;
+              line-height: normal;
+              font-size: 15px;
+              font-family: 'Calibri', sans-serif;
+              text-align: justify;
+            "
+          >
+            <span style="font-family: Roboto"
+              >Nuestra pol&iacute;tica de privacidad se aplica &uacute;nicamente
+              a informaci&oacute;n recopilada por nosotros a trav&eacute;s de
+              nuestra Aplicaci&oacute;n M&oacute;vil. EL USUARIO debe tener en
+              cuenta que LA EMPRESA no se hace responsable por los contenidos
+              brindados por terceros que ofrecen bienes y servicios a
+              trav&eacute;s de la aplicaci&oacute;n. Por lo que se recomienda al
+              usuario asegurarse que tambi&eacute;n lea su protecci&oacute;n de
+              datos y condiciones de privacidad de t&eacute;rminos y condiciones
+              cuidadosamente antes de darles sus datos personales. Comentarios,
+              sugerencias, preguntas y peticiones con respecto a nuestra
+              pol&iacute;tica de privacidad son bienvenidos y deben ser
+              abordados a trav&eacute;s del correo electr&oacute;nico
+              <a
+                href="file:///C%3A/Users/rzapata/AppData/Local/Microsoft/Windows/INetCache/Content.Outlook/BE7TPDTR/info@miyuntafinanciero.com"
+                >info@miyuntafinanciero.com</a
+              >. Si cualquier parte de estas condiciones es considerada ilegal,
+              inv&aacute;lida o inejecutable por alguna disposici&oacute;n, se
+              considerar&aacute; separada de la validez y la aplicabilidad de
+              las disposiciones restantes de estos t&eacute;rminos, dado que no
+              se ver&aacute;n afectados. Cualquier fallo de nuestra parte para
+              hacer valer cualquier derecho no constituir&aacute; una renuncia a
+              los mismos. Los presentes t&eacute;rminos y condiciones se
+              regir&aacute;n e interpretar&aacute;n en conformidad con el
+              derecho peruano.</span
+            >
+          </p>
+          <p
+            style="
+              margin-top: 0cm;
+              margin-right: 0cm;
+              margin-bottom: 0cm;
+              margin-left: 0cm;
+              line-height: normal;
+              font-size: 15px;
+              font-family: 'Calibri', sans-serif;
+              text-align: justify;
+            "
+          >
+            <span style="font-family: Roboto">&nbsp;</span>
+          </p>
+          <p
+            style="
+              margin-top: 0cm;
+              margin-right: 0cm;
+              margin-bottom: 0cm;
+              margin-left: 0cm;
+              line-height: normal;
+              font-size: 15px;
+              font-family: 'Calibri', sans-serif;
+            "
+          >
+            <span style="font-family: Roboto">&nbsp;</span>
+          </p>
+          <p
+            style="
+              margin-top: 0cm;
+              margin-right: 0cm;
+              margin-bottom: 0cm;
+              margin-left: 0cm;
+              line-height: normal;
+              font-size: 15px;
+              font-family: 'Calibri', sans-serif;
+              text-align: justify;
+            "
+          >
+            <strong
+              ><span style="font-family: Roboto"
+                >5. Licencia de uso.</span
+              ></strong
+            >
+          </p>
+          <p
+            style="
+              margin-top: 0cm;
+              margin-right: 0cm;
+              margin-bottom: 0cm;
+              margin-left: 0cm;
+              line-height: normal;
+              font-size: 15px;
+              font-family: 'Calibri', sans-serif;
+              text-align: justify;
+            "
+          >
+            <span style="font-family: Roboto"
+              >LA EMPRESA autoriza al USUARIO a la utilizaci&oacute;n de los
+              Derechos de Propiedad Intelectual e Industrial y de los secretos
+              empresariales relativos al Software instalado en su dispositivo,
+              &uacute;nicamente para utilizar la Aplicaci&oacute;n M&oacute;vil
+              y los servicios de conformidad con lo establecido en estas
+              condiciones generales. LA EMPRESA no concede ninguna otra licencia
+              o autorizaci&oacute;n de uso de ninguna clase sobre sus derechos
+              de Propiedad Industrial e Intelectual, secretos empresariales o
+              sobre cualquier otra propiedad o derecho relacionado con la
+              Aplicaci&oacute;n M&oacute;vil, los servicios o los
+              contenidos.</span
+            >
+          </p>
+          <p
+            style="
+              margin-top: 0cm;
+              margin-right: 0cm;
+              margin-bottom: 0cm;
+              margin-left: 0cm;
+              line-height: normal;
+              font-size: 15px;
+              font-family: 'Calibri', sans-serif;
+            "
+          >
+            <span style="font-family: Roboto">&nbsp;</span>
+          </p>
+          <p
+            style="
+              margin-top: 0cm;
+              margin-right: 0cm;
+              margin-bottom: 0cm;
+              margin-left: 0cm;
+              line-height: normal;
+              font-size: 15px;
+              font-family: 'Calibri', sans-serif;
+              text-align: justify;
+            "
+          >
+            <strong
+              ><span style="font-family: Roboto"
+                >6. Ley aplicable y jurisdicci&oacute;n.</span
+              ></strong
+            >
+          </p>
+          <p style="text-align: justify">
+            <span
+              style="font-size: 15px; line-height: 107%; font-family: Roboto"
+              >Estas condiciones de uso se regir&aacute;n por la Ley de la
+              Rep&uacute;blica del Per&uacute;. LA EMPRESA y EL USUARIO, con
+              renuncia expresa a cualquier otro fuero, se someter&aacute;n a la
+              jurisdicci&oacute;n exclusiva del Poder Judicial peruano para la
+              resoluci&oacute;n de cualquier controversia en relaci&oacute;n con
+              los presentes T&eacute;rminos y Condiciones o la relaci&oacute;n
+              entre las mismas.&nbsp;</span
+            >
+          </p>
+        </a>
+      </div>
+
+      <!--    <ion-col size="12">
+          <div class="ion-text-center">
+            <button
+              expand="block"
+              (click)="entraDashboard()"
+              class="btn-empezar"
+            >
+              Aceptar
+            </button>
+          </div>
+        </ion-col> -->
+    </div>
+    <div class="ion-text-center position">
+      <button
+        *ngIf="!isModal"
+        expand="block"
+        (click)="entraDashboard()"
+        class="btn-empezar"
+      >
+        Aceptar
+      </button>
+      <!-- <button
+        *ngIf="isModal"
+        expand="block"
+        (click)="cerrarModal()"
+        class="btn-empezar"
+      >
+        Aceptar
+      </button> -->
+    </div>
+    <br />
+  </div>
+</ion-content>

@@ -1,9 +1,21 @@
-import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import {
+  Component,
+  HostListener,
+  Input,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
+import {
+  AlertController,
+  ModalController,
+  Platform,
+  ToastController,
+} from '@ionic/angular';
 import { ServiciosGenerales } from 'src/app/components/services/servicios-generales.service';
 import { EditperfilComponent } from 'src/app/components/editperfil/editperfil.component';
 import { ModalInforComponent } from 'src/app/components/modal-infor/modal-infor.component';
 import { ComponentsService } from 'src/app/components/services/components.service';
+import { Subscription } from 'rxjs';
 declare var google;
 interface Marker {
   position: {
@@ -18,10 +30,16 @@ interface Marker {
   styleUrls: ['tab1.page.scss'],
 })
 export class Tab1Page implements OnInit, OnDestroy {
+  @Input() isModal;
+
   constructor(
     public modalController: ModalController,
     public _sGenerales: ServiciosGenerales,
-    private _sComponents: ComponentsService
+    private alertController: AlertController,
+    private _sToast: ToastController,
+
+    private _sComponents: ComponentsService,
+    private platform: Platform
   ) {
     this._sGenerales.getProfile();
   }
@@ -113,5 +131,68 @@ export class Tab1Page implements OnInit, OnDestroy {
       map: this.map,
       title: marker.title,
     });
+  }
+  async presentToast(m) {
+    const toast = await this._sToast.create({
+      message: m,
+      duration: 3000,
+    });
+    toast.present();
+  }
+
+  subscription = new Subscription();
+  time;
+  flag = false;
+  ionViewDidEnter() {
+    if (this.isModal) {
+    } else {
+      this.subscription = this.platform.backButton.subscribeWithPriority(
+        9999,
+        async (a) => {
+          if (this.time > 0) {
+            let tactual = new Date().getTime();
+            if (tactual - this.time < 500 && this.flag == false) {
+              const alert = await this.alertController.create({
+                cssClass: 'my-custom-class',
+                header: '¡Aviso!',
+                message: '¿Esta seguro de cerrar su sesión?',
+                buttons: [
+                  {
+                    text: 'Cancelar',
+                    role: 'cancel',
+                    cssClass: 'secondary',
+                    handler: (blah) => {
+                      this.flag = false;
+                      this.time = tactual;
+                    },
+                  },
+                  {
+                    text: 'Cerrar Sesión',
+                    handler: () => {
+                      this.flag = false;
+                      this._sGenerales.signout();
+                    },
+                  },
+                ],
+              });
+              this.flag = true;
+              await alert.present();
+            } else {
+              this.time = tactual;
+            }
+          } else {
+            this.presentToast('Doble click para cerrar sesión.');
+            this.time = new Date().getTime();
+          }
+        }
+      );
+    }
+  }
+
+  ionViewWillLeave() {
+    if (this.isModal) {
+    } else {
+      this.subscription.unsubscribe();
+    }
   }
 }

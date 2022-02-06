@@ -24,7 +24,7 @@ export class ComponentsService {
     headers = headers.set('Content-type', 'application/json');
     headers = headers.set(
       'Authorization',
-      'Bearer ' + localStorage.getItem('cofide_token')
+      'Bearer ' + localStorage.getItem('map_control')
     );
     return this.http.get(this.URL_BACKEND + '/api/entry/sumary/day', {
       headers: headers,
@@ -37,7 +37,7 @@ export class ComponentsService {
     headers = headers.set('Content-type', 'application/json');
     headers = headers.set(
       'Authorization',
-      'Bearer ' + localStorage.getItem('cofide_token')
+      'Bearer ' + localStorage.getItem('map_control')
     );
     return this.http.get(this.URL_BACKEND + '/api/user-question/' + id, {
       headers: headers,
@@ -49,7 +49,7 @@ export class ComponentsService {
     headers = headers.set('Content-type', 'application/json');
     headers = headers.set(
       'Authorization',
-      'Bearer ' + localStorage.getItem('cofide_token')
+      'Bearer ' + localStorage.getItem('map_control')
     );
     return this.http.get(this.URL_BACKEND + '/api/user-survey/' + id, {
       headers: headers,
@@ -61,7 +61,7 @@ export class ComponentsService {
     headers = headers.set('Content-type', 'application/json');
     headers = headers.set(
       'Authorization',
-      'Bearer ' + localStorage.getItem('cofide_token')
+      'Bearer ' + localStorage.getItem('map_control')
     );
     return this.http.post(this.URL_BACKEND + '/api/answer-survey', resp, {
       headers: headers,

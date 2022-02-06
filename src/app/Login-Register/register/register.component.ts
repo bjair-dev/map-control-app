@@ -174,8 +174,10 @@ export class RegisterComponent implements OnInit {
         async (response) => {
           localStorage.setItem('email', this.form.get('email').value);
           localStorage.setItem('pass', this.form.get('password').value);
-          this.router.navigateByUrl('/validation');
 
+          this.form.reset();
+          this.form2.reset();
+          this.form3.reset();
           const toast = await this.toastController.create({
             message: response,
             duration: 4000,
@@ -183,9 +185,7 @@ export class RegisterComponent implements OnInit {
           toast.present();
 
           loading.dismiss();
-          this.form.reset();
-          this.form2.reset();
-          this.form3.reset();
+          this.router.navigateByUrl('/validation');
         },
         async (error) => {
           loading.dismiss();
@@ -300,6 +300,43 @@ export class RegisterComponent implements OnInit {
 
     slide.lockSwipes(false);
 
+    slide.slideNext();
+    loading.dismiss();
+  }
+
+  async verificarOneForm(slide: IonSlides) {
+    if (
+      this.form.get('email').value == '' ||
+      this.form.get('email').value == undefined ||
+      this.form.get('email').value == null ||
+      this.form.get('email').invalid
+    ) {
+      this.presentToast('Debe ingresar un email valido');
+      return;
+    }
+
+    if (
+      this.form.get('password').value == '' ||
+      this.form.get('password').value == undefined ||
+      this.form.get('password').value == null
+    ) {
+      this.presentToast('Debe ingresar una contraseña valida');
+      return;
+    }
+    const regex = new RegExp(
+      /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/
+    );
+
+    if (regex.test(this.form.get('password').value) == false) {
+      this.presentToast(
+        'Se requiere al menos un numero y un caracter especial'
+      );
+      return;
+    }
+    const loading = await this.presentLoading('Verificando...');
+
+    slide.lockSwipes(false);
+    this.dataCorreo = this.form.get('email').value;
     slide.slideNext();
     loading.dismiss();
   }

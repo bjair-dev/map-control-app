@@ -51,7 +51,7 @@ export class ServiciosGenerales {
     headers = headers.set('Content-type', 'application/json');
     headers = headers.set(
       'Authorization',
-      'Basic ' + localStorage.getItem('cofide_token')
+      'Basic ' + localStorage.getItem('map_control')
     );
 
     return this.http.post(
@@ -68,7 +68,7 @@ export class ServiciosGenerales {
     headers = headers.set('Content-type', 'application/json');
     headers = headers.set(
       'Authorization',
-      'Basic ' + localStorage.getItem('cofide_token')
+      'Basic ' + localStorage.getItem('map_control')
     );
 
     return this.http.post(
@@ -85,7 +85,7 @@ export class ServiciosGenerales {
     headers = headers.set('Content-type', 'application/json');
     headers = headers.set(
       'Authorization',
-      'Basic ' + localStorage.getItem('cofide_token')
+      'Basic ' + localStorage.getItem('map_control')
     );
 
     return this.http.post(this.URL_BACKEND + '/api/restore', customer, {
@@ -104,7 +104,7 @@ export class ServiciosGenerales {
 
   unauthorized() {
     this.menu.close();
-    localStorage.removeItem('cofide_token');
+    localStorage.removeItem('map_control');
     localStorage.clear();
     // this.router.navigateByUrl('/login');
     this.router.navigate(['/login']);
@@ -160,7 +160,7 @@ export class ServiciosGenerales {
     headers = headers.set('Content-type', 'application/json');
     headers = headers.set(
       'Authorization',
-      'Bearer ' + localStorage.getItem('cofide_token')
+      'Bearer ' + localStorage.getItem('map_control')
     );
 
     this.http
@@ -226,7 +226,7 @@ export class ServiciosGenerales {
     headers = headers.set('Content-type', 'application/json');
     headers = headers.set(
       'Authorization',
-      'Bearer ' + localStorage.getItem('cofide_token')
+      'Bearer ' + localStorage.getItem('map_control')
     );
 
     return this.http.get(this.URL_BACKEND + '/api/motivational-phrase', {
@@ -241,7 +241,7 @@ export class ServiciosGenerales {
     headers = headers.set('Content-type', 'application/json');
     headers = headers.set(
       'Authorization',
-      'Bearer ' + localStorage.getItem('cofide_token')
+      'Bearer ' + localStorage.getItem('map_control')
     );
     this.http
       .get(this.URL_BACKEND + '/api/signout', {
@@ -250,7 +250,7 @@ export class ServiciosGenerales {
       .subscribe(
         (resp) => {
           this.menu.close();
-          localStorage.removeItem('cofide_token');
+          localStorage.removeItem('map_control');
           localStorage.clear();
           loading.dismiss();
 
@@ -260,7 +260,7 @@ export class ServiciosGenerales {
         },
         (error) => {
           this.menu.close();
-          localStorage.removeItem('cofide_token');
+          localStorage.removeItem('map_control');
           localStorage.clear();
           loading.dismiss();
           // this.router.navigateByUrl('/login');
@@ -275,7 +275,7 @@ export class ServiciosGenerales {
     headers = headers.set('Content-type', 'application/json');
     headers = headers.set(
       'Authorization',
-      'Bearer ' + localStorage.getItem('cofide_token')
+      'Bearer ' + localStorage.getItem('map_control')
     );
     return this.http.get<any>(this.URL_BACKEND + `/api/loan-type-user`, {
       headers: headers,
@@ -287,7 +287,7 @@ export class ServiciosGenerales {
     headers = headers.set('Content-type', 'application/json');
     headers = headers.set(
       'Authorization',
-      'Bearer ' + localStorage.getItem('cofide_token')
+      'Bearer ' + localStorage.getItem('map_control')
     );
     return this.http.get<any>(this.URL_BACKEND + `/api/loan-bank/` + `${id}`, {
       headers: headers,
@@ -309,7 +309,7 @@ export class ServiciosGenerales {
     headers = headers.set('Content-type', 'application/json');
     headers = headers.set(
       'Authorization',
-      'Bearer ' + localStorage.getItem('cofide_token')
+      'Bearer ' + localStorage.getItem('map_control')
     );
 
     return this.http.get<any>(
@@ -326,7 +326,7 @@ export class ServiciosGenerales {
     headers = headers.set('Content-type', 'application/json');
     headers = headers.set(
       'Authorization',
-      'Bearer ' + localStorage.getItem('cofide_token')
+      'Bearer ' + localStorage.getItem('map_control')
     );
     return this.http.get<any>(this.URL_BACKEND + `/api/tips-categories-user`, {
       headers: headers,
@@ -337,7 +337,7 @@ export class ServiciosGenerales {
     headers = headers.set('Content-type', 'application/json');
     headers = headers.set(
       'Authorization',
-      'Bearer ' + localStorage.getItem('cofide_token')
+      'Bearer ' + localStorage.getItem('map_control')
     );
     return this.http.get<any>(
       this.URL_BACKEND + `/api/user-content/history/tips/` + id,
@@ -352,7 +352,7 @@ export class ServiciosGenerales {
     headers = headers.set('Content-type', 'application/json');
     headers = headers.set(
       'Authorization',
-      'Bearer ' + localStorage.getItem('cofide_token')
+      'Bearer ' + localStorage.getItem('map_control')
     );
     return this.http.get<any>(
       this.URL_BACKEND + `/api/user-content/history/tips`,
@@ -367,7 +367,7 @@ export class ServiciosGenerales {
     headers = headers.set('Content-type', 'application/json');
     headers = headers.set(
       'Authorization',
-      'Bearer ' + localStorage.getItem('cofide_token')
+      'Bearer ' + localStorage.getItem('map_control')
     );
     return this.http.get<any>(
       this.URL_BACKEND + `/api/user-content/history/videos`,
@@ -382,7 +382,7 @@ export class ServiciosGenerales {
     headers = headers.set('Content-type', 'application/json');
     headers = headers.set(
       'Authorization',
-      'Bearer ' + localStorage.getItem('cofide_token')
+      'Bearer ' + localStorage.getItem('map_control')
     );
 
     return this.http.put<any>(
@@ -399,7 +399,7 @@ export class ServiciosGenerales {
     headers = headers.set('Content-type', 'application/json');
     headers = headers.set(
       'Authorization',
-      'Bearer ' + localStorage.getItem('cofide_token')
+      'Bearer ' + localStorage.getItem('map_control')
     );
 
     return this.http.put<any>(
@@ -416,7 +416,7 @@ export class ServiciosGenerales {
     headers = headers.set('Content-type', 'application/json');
     headers = headers.set(
       'Authorization',
-      'Bearer ' + localStorage.getItem('cofide_token')
+      'Bearer ' + localStorage.getItem('map_control')
     );
     return this.http.post<any>(
       this.URL_BACKEND + `/api/answer-survey/`,
@@ -429,7 +429,7 @@ export class ServiciosGenerales {
     headers = headers.set('Content-type', 'application/json');
     headers = headers.set(
       'Authorization',
-      'Bearer ' + localStorage.getItem('cofide_token')
+      'Bearer ' + localStorage.getItem('map_control')
     );
     return this.http.put<any>(
       this.URL_BACKEND + `/api/notification-pending/status/` + id,
@@ -443,7 +443,7 @@ export class ServiciosGenerales {
     headers = headers.set('Content-type', 'application/json');
     headers = headers.set(
       'Authorization',
-      'Bearer ' + localStorage.getItem('cofide_token')
+      'Bearer ' + localStorage.getItem('map_control')
     );
     return this.http.put<any>(
       this.URL_BACKEND + `/api/user-account/updatepassword`,
@@ -461,7 +461,7 @@ export class ServiciosGenerales {
     headers = headers.set('Content-type', 'application/json');
     headers = headers.set(
       'Authorization',
-      'Bearer ' + localStorage.getItem('cofide_token')
+      'Bearer ' + localStorage.getItem('map_control')
     );
     this.http
       .post<any>(
@@ -487,7 +487,7 @@ export class ServiciosGenerales {
     headers = headers.set('Content-type', 'application/json');
     headers = headers.set(
       'Authorization',
-      'Bearer ' + localStorage.getItem('cofide_token')
+      'Bearer ' + localStorage.getItem('map_control')
     );
     this.http
       .post<any>(
@@ -512,7 +512,7 @@ export class ServiciosGenerales {
     headers = headers.set('Content-type', 'application/json');
     headers = headers.set(
       'Authorization',
-      'Bearer ' + localStorage.getItem('cofide_token')
+      'Bearer ' + localStorage.getItem('map_control')
     );
 
     let tim = new Date().getTime();
@@ -542,7 +542,7 @@ export class ServiciosGenerales {
     headers = headers.set('Content-type', 'application/json');
     headers = headers.set(
       'Authorization',
-      'Bearer ' + localStorage.getItem('cofide_token')
+      'Bearer ' + localStorage.getItem('map_control')
     );
     return this.http.put<any>(
       this.URL_BACKEND + `/api/user-account/gender/dateofbirth`,

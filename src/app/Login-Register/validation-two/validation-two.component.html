@@ -1,0 +1,37 @@
+<ion-content class="login">
+  <div
+    (click)="volverLogin()"
+    class="ion-text-start t-cancel"
+    style="margin-top: 20px; margin-bottom: 20px"
+  >
+    Cancelar
+  </div>
+
+  <div class="wraper-container">
+    <div class="el-center">
+      <div style="text-align: center">
+        <img height="150px" src="assets/img/logo-nikav2.png" />
+      </div>
+
+      <h2 style="padding-bottom: 24px" class="ion-text-center txt-sub">
+        Tu código de verificación es:
+      </h2>
+      <code-input
+        id="codigo"
+        class="codigo"
+        name="codigo"
+        [isCodeHidden]="false"
+        [codeLength]="4"
+        (codeChanged)="onCodeChanged($event)"
+        (codeCompleted)="onCodeCompleted($event)"
+      >
+      </code-input>
+    </div>
+
+    <div style="width: 100%" class="ion-text-center">
+      <button (click)="validarCodigo()" expand="block" class="btn-empezar">
+        Verificar código
+      </button>
+    </div>
+  </div>
+</ion-content>

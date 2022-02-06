@@ -66,8 +66,8 @@ export class ForgotPasswordComponent implements OnInit {
         });
         toast.present();
         loading.dismiss();
-        this.router.navigateByUrl('/validation-pass');
         localStorage.setItem('email', this.sendForm.get('email').value);
+        this.router.navigateByUrl('/validation-code-pass');
       },
       async (error) => {
         const toast = await this.toastController.create({

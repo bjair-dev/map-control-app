@@ -1,0 +1,64 @@
+@import "src/assets/styles/colors";
+ion-content {
+  --background: #1f556d;
+}
+.t-cancel {
+  color: white;
+  font-style: normal;
+  font-weight: bold;
+  font-family: Roboto;
+  padding-top: 20px;
+  padding-left: 20px;
+  font-size: 14px;
+  line-height: 0px;
+}
+
+.sli-full {
+  height: 100vh;
+}
+.c-padd {
+  padding: 20px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-content: space-between;
+  justify-content: space-between;
+}
+.welcome-title {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bolder;
+  font-size: 30px;
+  line-height: 30px;
+  /* or 100% */
+
+  text-align: center;
+
+  color: black;
+}
+
+.colo-text {
+  font-family: Roboto !important;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 10px;
+  color: white;
+}
+.btn-empezar {
+  color: white;
+  font-size: 17px;
+  font-family: Roboto;
+  font-weight: bold;
+  border-radius: 30px !important;
+  background: #41eda5;
+  width: 100%;
+  height: 38px;
+  margin-top: 20px;
+}
+.position {
+  margin-bottom: 20px;
+}
+.wave1 {
+  height: 188px;
+}

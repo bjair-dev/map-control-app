@@ -11,7 +11,7 @@ export class PreloaderComponent implements OnInit {
     setTimeout(() => {
       localStorage.removeItem('email');
       localStorage.removeItem('pass');
-      localStorage.removeItem('cofide_token');
+      localStorage.removeItem('map_control');
       this.router.navigateByUrl('splash');
     }, 3000);
   }

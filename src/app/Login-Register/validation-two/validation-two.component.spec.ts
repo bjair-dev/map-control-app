@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { LoginIComponent } from './login-i.component';
+import { ValidationTwoComponent } from './validation-two.component';
 
-describe('LoginIComponent', () => {
-  let component: LoginIComponent;
-  let fixture: ComponentFixture<LoginIComponent>;
+describe('ValidationTwoComponent', () => {
+  let component: ValidationTwoComponent;
+  let fixture: ComponentFixture<ValidationTwoComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ LoginIComponent ],
+      declarations: [ ValidationTwoComponent ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(LoginIComponent);
+    fixture = TestBed.createComponent(ValidationTwoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

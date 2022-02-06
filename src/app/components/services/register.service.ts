@@ -30,7 +30,7 @@ export class RegisterService {
     headers = headers.set('Content-type', 'application/json');
     headers = headers.set(
       'Authorization',
-      'Basic ' + localStorage.getItem('cofide_token')
+      'Basic ' + localStorage.getItem('map_control')
     );
 
     return this.http.post(this.URL_BACKEND + '/api/signup', customer, {
