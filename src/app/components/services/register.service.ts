@@ -37,4 +37,26 @@ export class RegisterService {
       headers: headers,
     });
   }
+
+  getDepartamento(): Observable<any> {
+    // console.log(token)
+
+    return this.http.get(this.URL_BACKEND + '/api/departamentou');
+  }
+
+  getProvincia(region): Observable<any> {
+    // console.log(token)
+
+    return this.http.get(
+      this.URL_BACKEND + `/api/provinciau?region_id=${region}`
+    );
+  }
+
+  getDistrito(provincia): Observable<any> {
+    // console.log(token)
+
+    return this.http.get(
+      this.URL_BACKEND + `/api/distritou?prov_id=${provincia}`
+    );
+  }
 }

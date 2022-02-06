@@ -89,17 +89,13 @@
 }
 
 /* Works - pass "my-custom-class" in cssClass to increase specificity */
-.my-custom-class {
-  background: red;
-}
+
 .video-modal {
-  z-index: 99999 !important;
-  .modal-default {
-    position: absolute;
-    min-height: initial;
-    top: initial;
-    height: 76vh;
-    --backdrop-opacity: 0.4;
-    // border-radius: 40px;
-  }
+  position: fixed;
+  min-height: initial;
+  top: 50%;
+  width: 100%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 66vh;
 }

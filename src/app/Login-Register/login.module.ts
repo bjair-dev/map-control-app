@@ -8,6 +8,7 @@ import { LoginComponent } from './login/login.component';
 import { ComponentsModule } from '../components/components.module';
 import { PasswordComponent } from './password/password.component';
 import { RegisterComponent } from './register/register.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -16,6 +17,11 @@ import { RegisterComponent } from './register/register.component';
     FormsModule,
     ComponentsModule,
   ],
-  declarations: [LoginComponent, PasswordComponent, RegisterComponent],
+  declarations: [
+    LoginComponent,
+    PasswordComponent,
+    RegisterComponent,
+    ForgotPasswordComponent,
+  ],
 })
 export class LoginCofidePageModule {}

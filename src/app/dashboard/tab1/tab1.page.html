@@ -31,7 +31,10 @@
       >¡Bienvenido {{ _sGenerales.user.name }} {{ _sGenerales.user.lastname
       }}!</ion-label
     >
-
+    <ion-button (click)="loadMap()" shape="round" color="dark">
+      <ion-icon slot="start" name="locate"></ion-icon>
+      Where I Am
+    </ion-button>
     <div id="map"></div>
     <ion-item class="itm-input">
       <ion-input required maxlength="90" placeholder="Correo"></ion-input>

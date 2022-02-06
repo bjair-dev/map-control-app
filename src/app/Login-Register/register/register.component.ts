@@ -1,7 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AlertController, IonSlides, LoadingController, ToastController } from '@ionic/angular';
+import {
+  AlertController,
+  IonSlides,
+  LoadingController,
+  ToastController,
+} from '@ionic/angular';
 import { LoginService } from 'src/app/components/services/login.service';
 import { RegisterService } from 'src/app/components/services/register.service';
 import { ServiciosGenerales } from 'src/app/components/services/servicios-generales.service';
@@ -12,7 +17,6 @@ import { ServiciosGenerales } from 'src/app/components/services/servicios-genera
   styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent implements OnInit {
-
   userRedesSociales = null;
   slideOpts;
   constructor(
@@ -43,7 +47,15 @@ export class RegisterComponent implements OnInit {
   form2: FormGroup;
   form3: FormGroup;
   form4: FormGroup;
+  departamento;
   ngOnInit() {
+    this._Register.getDepartamento().subscribe(
+      (res: any) => {
+        this.departamento = res;
+      },
+      (error) => {}
+    );
+
     console.log(localStorage.getItem('email'));
     this.form = this.fb.group({
       email: [
@@ -56,48 +68,24 @@ export class RegisterComponent implements OnInit {
         ],
       ],
       password: ['', Validators.required],
-      /*   name: ['', [Validators.required]],
-      lastname: ['', [Validators.required]], */
-    });
-
-    this.form4 = this.fb.group({
-      emailc: [
-        this.dataCorreo,
-
-        [
-          Validators.required,
-          Validators.email,
-          Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
-        ],
-      ],
-      passwordc: ['', Validators.required],
     });
 
     this.form2 = this.fb.group({
       name: ['', [Validators.required]],
       lastname: ['', [Validators.required]],
-      /*  dni: ['', [Validators.required]],
-      date_of_birth: ['', [Validators.required]],
-
-      email: [
-        localStorage.getItem('email'),
-
-        [
-          Validators.required,
-          Validators.email,
-          Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
-        ],
-      ], */
     });
 
     this.form3 = this.fb.group({
-      /*  cellphone: ['', [Validators.required]],
-      sexo: ['', [Validators.required]],
-      password: ['', Validators.required], */
-
       dni: ['', [Validators.required]],
       sexo: ['', [Validators.required]],
     });
+
+    this.form4 = this.fb.group({
+      departamento: ['', [Validators.required]],
+      provincia: ['', Validators.required],
+      distrito: ['', Validators.required],
+    });
+
     let user = this._login.userRedesSociales;
     if (user) {
       this.userRedesSociales = user;
@@ -105,37 +93,68 @@ export class RegisterComponent implements OnInit {
       console.log(user);
     }
   }
+
+  provincia;
+  getProvincia(e) {
+    console.log('llego', e);
+    // this.getDistrito(this.forma.get('prov_id').value);
+
+    this._Register.getProvincia(e.detail.value).subscribe(
+      (dataprov) => {
+        this.provincia = dataprov;
+      },
+      (error) => {
+        this.presentToast('Debes seleccionar un departamento');
+        return;
+      }
+    );
+  }
+  distrito;
+  getDistrito(e) {
+    console.log('llego', e);
+
+    this._Register.getDistrito(e.detail.value).subscribe(
+      (datadis) => {
+        this.distrito = datadis;
+      },
+      (error) => {
+        this.presentToast('Debes seleccionar una provincia');
+        return;
+      }
+    );
+  }
+
   cleanPass() {
     this.form.get('password').reset();
     this.form4.get('passwordc').reset();
   }
   async save() {
     if (
-      this.form3.get('dni').value == '' ||
-      this.form3.get('dni').value == undefined ||
-      this.form3.get('dni').value == null ||
-      this.form3.get('dni').value.length < 8
+      this.form4.get('departamento').value == '' ||
+      this.form4.get('departamento').value == undefined ||
+      this.form4.get('departamento').value == null
     ) {
-      this.presentToast('Debe ingresar un DNI');
+      this.presentToast('Debe seleccionar un departamento');
       return;
     }
 
     if (
-      this.form3.get('sexo').value == '' ||
-      this.form3.get('sexo').value == undefined ||
-      this.form3.get('sexo').value == null
+      this.form4.get('provincia').value == '' ||
+      this.form4.get('provincia').value == undefined ||
+      this.form4.get('provincia').value == null
     ) {
-      this.presentToast('Debe ingresar su sexo');
+      this.presentToast('Debe seleccionar una provincia');
+      return;
+    }
+
+    if (
+      this.form4.get('distrito').value == '' ||
+      this.form4.get('distrito').value == undefined ||
+      this.form4.get('distrito').value == null
+    ) {
+      this.presentToast('Debe seleccionar un distrito');
       return;
     } else {
-      /*    if (
-      this.form3.get('password').value == '' ||
-      this.form3.get('password').value == undefined ||
-      this.form3.get('password').value == null
-    ) {
-      this.presentToast('Debe ingresar una contraseña valida');
-      return;
-    } */
       const loading = await this.presentLoading();
       let FormUser = {
         name: this.form2.get('name').value,
@@ -146,6 +165,9 @@ export class RegisterComponent implements OnInit {
         cellphone: '999999999',
         sexo: this.form3.get('sexo').value,
         password: this.form.get('password').value,
+        region_id: this.form4.get('departamento').value,
+        prov_id: this.form4.get('provincia').value,
+        distrito_id: this.form4.get('distrito').value,
       };
 
       this._Register.RegistrarUser(FormUser).subscribe(
@@ -236,14 +258,7 @@ export class RegisterComponent implements OnInit {
             });
             toast.present();
             this._service.signout();
-          } /* else {
-          const toast = await this.toastController.create({
-            message: error.error.errors[0].msg + error.error.errors[0].param,
-            duration: 4000,
-          });
-          toast.present();
-          loading.dismiss();
-        } */
+          }
           loading.dismiss();
         }
       );
@@ -261,7 +276,35 @@ export class RegisterComponent implements OnInit {
     }
   }
 
-  async verifyEmail2(slide: IonSlides) {
+  async verificarTreeForm(slide: IonSlides) {
+    if (
+      this.form3.get('dni').value == '' ||
+      this.form3.get('dni').value == undefined ||
+      this.form3.get('dni').value == null ||
+      this.form3.get('dni').value.length < 8
+    ) {
+      this.presentToast('Debe ingresar un DNI');
+      return;
+    }
+
+    if (
+      this.form3.get('sexo').value == '' ||
+      this.form3.get('sexo').value == undefined ||
+      this.form3.get('sexo').value == null
+    ) {
+      this.presentToast('Debe ingresar su sexo');
+      return;
+    }
+
+    const loading = await this.presentLoading('Verificando...');
+
+    slide.lockSwipes(false);
+
+    slide.slideNext();
+    loading.dismiss();
+  }
+
+  async verificarTwoForm(slide: IonSlides) {
     if (
       this.form2.get('name').value == '' ||
       this.form2.get('name').value == undefined ||
@@ -284,11 +327,9 @@ export class RegisterComponent implements OnInit {
     const nameArr: Array<string> = name.split('');
     const lastNameAr: Array<string> = lastname.split('');
     let salir = false;
-    // verifyNumbers(name)
     nameArr.forEach((element) => {
       const charCode = element.charCodeAt(0);
       if (charCode > 31 && (charCode < 33 || charCode > 64)) {
-        // return true;
       } else {
         this.presentToast(
           'El NOMBRE no debe contener números ni caracteres especiales.'
@@ -299,7 +340,6 @@ export class RegisterComponent implements OnInit {
     lastNameAr.forEach((element) => {
       const charCode2 = element.charCodeAt(0);
       if (charCode2 > 31 && (charCode2 < 33 || charCode2 > 64)) {
-        // return true;
       } else {
         this.presentToast(
           'El APELLIDO no debe contener números ni caracteres especiales.'
@@ -326,143 +366,14 @@ export class RegisterComponent implements OnInit {
     });
     toast.present();
   }
+
   dataCorreo;
-  async verify2Form(slide: IonSlides) {
-    if (
-      this.form.get('email').value == '' ||
-      this.form.get('email').value == undefined ||
-      this.form.get('email').value == null ||
-      this.form.get('email').invalid
-    ) {
-      this.presentToast('Debe ingresar un email valido');
-      return;
-    }
-
-    if (
-      this.form.get('password').value == '' ||
-      this.form.get('password').value == undefined ||
-      this.form.get('password').value == null
-    ) {
-      this.presentToast('Debe ingresar una contraseña valida');
-      return;
-    }
-    const regex = new RegExp(
-      /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/
-    );
-
-    if (regex.test(this.form.get('password').value) == false) {
-      this.presentToast(
-        'Se requiere al menos un numero y un caracter especial'
-      );
-      return;
-    }
-    const loading = await this.presentLoading('Verificando...');
-
-    slide.lockSwipes(false);
-    this.dataCorreo = this.form.get('email').value;
-    console.log(this.dataCorreo);
-    slide.slideNext();
-    loading.dismiss();
-  }
-
-  async verify22Form(slide: IonSlides) {
-    if (
-      this.form.get('password').value == '' ||
-      this.form.get('password').value == undefined ||
-      this.form.get('password').value == null
-    ) {
-      this.presentToast('Debe ingresar una contraseña');
-      this.cleanPass();
-      return;
-    }
-    if (
-      this.form4.get('passwordc').value == '' ||
-      this.form4.get('passwordc').value == undefined ||
-      this.form4.get('passwordc').value == null
-    ) {
-      this.presentToast('Debe repetir la contraseña');
-      slide.slidePrev();
-      slide.lockSwipes(true);
-      this.cleanPass();
-      return;
-    }
-    if (this.form.get('password').value !== this.form4.get('passwordc').value) {
-      this.presentToast('Las contraseñas no son iguales.');
-      this.cleanPass();
-
-      slide.slidePrev();
-      slide.lockSwipes(true);
-
-      return;
-    }
-
-    if (
-      this.form.get('email').value == '' ||
-      this.form.get('email').value == undefined ||
-      this.form.get('email').value == null ||
-      this.form.get('email').invalid
-    ) {
-      this.presentToast('Debe ingresar un email valido');
-      return;
-    }
-
-    if (
-      this.form4.get('passwordc').value == '' ||
-      this.form4.get('passwordc').value == undefined ||
-      this.form4.get('passwordc').value == null ||
-      this.form4.get('passwordc').invalid
-    ) {
-      this.presentToast('Debe ingresar una contraseña valida');
-      return;
-    } else {
-      const loading = await this.presentLoading('Verificando...');
-
-      slide.lockSwipes(false);
-      this.dataCorreo = this.form.get('email').value;
-      console.log(this.dataCorreo);
-      slide.slideNext();
-      loading.dismiss();
-    }
-  }
-
-  async verify3Form(slide: IonSlides) {
-    if (
-      this.form3.get('cellphone').value == '' ||
-      this.form3.get('cellphone').value == undefined ||
-      this.form3.get('cellphone').value == null ||
-      this.form2.get('dni').value.length >= 9
-    ) {
-      this.presentToast('Debe ingresar un número de celular');
-      return;
-    }
-
-    if (
-      this.form3.get('sexo').value == '' ||
-      this.form3.get('sexo').value == undefined ||
-      this.form3.get('sexo').value == null
-    ) {
-      this.presentToast('Debe ingresar su sexo');
-      return;
-    }
-
-    if (
-      this.form3.get('password').value == '' ||
-      this.form3.get('password').value == undefined ||
-      this.form3.get('password').value == null
-    ) {
-      this.presentToast('Debe ingresar una contraseña valida');
-      return;
-    } else {
-      const loading = await this.presentLoading('Verificando...');
-
-      loading.dismiss();
-    }
-  }
 
   volverLogin() {
     this.form.reset();
     this.form2.reset();
     this.form3.reset();
+    this.form4.reset();
     this.router.navigate(['/login']);
   }
 

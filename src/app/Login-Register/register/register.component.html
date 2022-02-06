@@ -1,5 +1,4 @@
-<!-- <ion-content>
-  <div class="wave3"></div>
+<ion-content>
   <div
     (click)="volverLogin()"
     class="ion-text-start t-cancel"
@@ -7,246 +6,7 @@
   >
     Regresar
   </div>
-
-  <div class="c-padd">
-    <h2 class="ion-text-center welcome-title">¡Registrate!</h2>
-    <div>
-      <ion-slides class="slides-messages">
-        <ion-slide>
-          <app-welcome-message
-            [message]="
-              '
-            Ingresa tus datos correctamente.
-                '
-            "
-          ></app-welcome-message>
-        </ion-slide>
-      </ion-slides>
-    </div>
-    <div>
-      <ion-slides pager="false" #loginSlider [options]="slideOpts">
-        <ion-slide style="flex-direction: column">
-          <form [formGroup]="form">
-            <div class="inli-fx">
-              <ion-item class="itm-input">
-                <ion-input
-                  required
-                  maxlength="90"
-                  formControlName="email"
-                  placeholder="Correo"
-                ></ion-input>
-              </ion-item>
-
-              <ion-item class="itm-input">
-                <ion-input
-                  required
-                  maxlength="50"
-                  formControlName="password"
-                  type="password"
-                  placeholder="Contraseña"
-                ></ion-input>
-              </ion-item>
-            </div>
-
-            <div class="ion-text-center">
-              <button
-                (click)="verify2Form(loginSlider)"
-                expand="block"
-                class="btn-empezar"
-              >
-                Registrarse
-              </button>
-            </div>
-            <br />
-          </form>
-        </ion-slide>
-
-        <ion-slide style="flex-direction: column">
-          <form [formGroup]="form4">
-            <div class="inli-fx">
-              <ion-item class="box-input-container fx-fade">
-                <ion-row style="width: 100%">
-                  <ion-col>
-                    <ion-label class="txt-in">Email</ion-label>
-                    <ion-input
-                      [(ngModel)]="dataCorreo"
-                      [ngModelOptions]="{ standalone: true }"
-                      minlength="10"
-                      maxlength="100"
-                      class="text-po"
-                      disabled
-                      type="email"
-                    ></ion-input>
-                  </ion-col>
-                </ion-row>
-              </ion-item>
-              <ion-item
-                style="background: #f5f5f5"
-                class="box-input-container fx-fade"
-              >
-                <ion-row style="width: 100%">
-                  <ion-col>
-                    <ion-label class="txt-in">Repetir Contraseña</ion-label>
-                    <app-password>
-                      <ion-input
-                        required
-                        maxlength="50"
-                        formControlName="passwordc"
-                        class="text-po"
-                        type="password"
-                      ></ion-input
-                    ></app-password>
-                  </ion-col>
-                </ion-row>
-              </ion-item>
-            </div>
-
-            <div class="ion-text-center">
-              <button
-                (click)="verify22Form(loginSlider)"
-                expand="block"
-                class="btn-empezar"
-              >
-                Siguiente
-              </button>
-            </div>
-            <br />
-          </form>
-        </ion-slide>
-
-        <ion-slide style="flex-direction: column">
-          <form [formGroup]="form2">
-            <div class="inli-fx">
-              <ion-item class="box-input-container fx-fade">
-                <ion-row style="width: 100%">
-                  <ion-col>
-                    <ion-label floating class="txt-in">Nombre</ion-label>
-                    <ion-input
-                      required
-                      maxlength="90"
-                      formControlName="name"
-                      (keypress)="lettersOnly($event)"
-                      class="text-po"
-                      type="text"
-                    ></ion-input>
-                  </ion-col>
-                </ion-row>
-              </ion-item>
-
-              <ion-item class="box-input-container fx-fade">
-                <ion-row style="width: 100%">
-                  <ion-col>
-                    <ion-label class="txt-in">Apellido</ion-label>
-                    <ion-input
-                      formControlName="lastname"
-                      maxlength="90"
-                      (keypress)="lettersOnly($event)"
-                      required
-                      class="text-po"
-                      type="text"
-                    ></ion-input>
-                  </ion-col>
-                </ion-row>
-              </ion-item>
-            </div>
-
-            <div class="ion-text-center">
-              <button
-                (click)="verifyEmail2(loginSlider)"
-                expand="block"
-                class="btn-empezar"
-              >
-                Siguiente
-              </button>
-            </div>
-            <br />
-          </form>
-        </ion-slide>
-
-        <ion-slide style="flex-direction: column">
-          <form [formGroup]="form3">
-            <div>
-              <div class="inli-fx">
-                <ion-item class="box-input-container fx-fade">
-                  <ion-row style="width: 100%">
-                    <ion-col>
-                      <ion-label class="txt-in">DNI</ion-label>
-                      <ion-input
-                        formControlName="dni"
-                        (keypress)="numberOnly($event)"
-                        class="text-po"
-                        minlength="8"
-                        maxlength="8"
-                        type="tel"
-                      ></ion-input>
-                    </ion-col>
-                  </ion-row>
-                </ion-item>
-                <ion-item
-                  style="width: 100%"
-                  class="box-input-container fx-fade"
-                >
-                  <ion-row style="width: 100%">
-                    <ion-col
-                      style="
-                        display: flex;
-
-                        justify-content: flex-end;
-
-                        width: 100%;
-                      "
-                    >
-                      <ion-label
-                        style="
-                          display: flex;
-                          width: 100%;
-                          align-items: flex-start;
-                        "
-                        class="txt-in"
-                        >Género</ion-label
-                      >
-
-                      <ion-select
-                        style="width: 100%"
-                        class="text-po"
-                        formControlName="sexo"
-                        placeholder="Seleccionar"
-                      >
-                        <ion-select-option value="hombre"
-                          >Masculino</ion-select-option
-                        >
-                        <ion-select-option value="mujer"
-                          >Femenino</ion-select-option
-                        >
-                        <ion-select-option value="no especificado"
-                          >Prefiero no responder</ion-select-option
-                        >
-                      </ion-select>
-                    </ion-col>
-                  </ion-row>
-                </ion-item>
-              </div>
-
-              <div class="ion-text-center">
-                <button (click)="save()" expand="block" class="btn-empezar">
-                  Registrarse
-                </button>
-              </div>
-              <br />
-            </div>
-          </form>
-        </ion-slide>
-      </ion-slides>
-    </div>
-    <div class="wave4"></div>
-  </div>
-</ion-content>
- -->
-
-<ion-content>
   <div class="wraper-container">
-    <div class="wave3"></div>
-
     <div class="el-wrapper">
       <div style="text-align: center; margin-top: 20px">
         <img height="150px" src="assets/img/logo-nikav2.png" />
@@ -301,11 +61,11 @@
 
             <div class="ion-text-center">
               <button
-                (click)="verify2Form(loginSlider)"
+                (click)="verificarOneForm(loginSlider)"
                 expand="block"
                 class="btn-empezar"
               >
-                Registrarse
+                Siguiente
               </button>
             </div>
             <br />
@@ -339,7 +99,7 @@
 
               <div class="ion-text-center">
                 <button
-                  (click)="verifyEmail2(loginSlider)"
+                  (click)="verificarTwoForm(loginSlider)"
                   expand="block"
                   class="btn-empezar"
                 >
@@ -355,50 +115,6 @@
           <div style="height: 100%">
             <form [formGroup]="form3">
               <div class="inli-fx">
-                <!--    <ion-item
-                  style="width: 100%"
-                  class="box-input-container fx-fade"
-                >
-                  <ion-row style="width: 100%">
-                    <ion-col
-                      style="
-                        display: flex;
-
-                        justify-content: flex-end;
-
-                        width: 100%;
-                      "
-                    >
-                      <ion-label
-                        style="
-                          display: flex;
-                          width: 100%;
-                          align-items: flex-start;
-                        "
-                        class="txt-in"
-                        >Género</ion-label
-                      >
-
-                      <ion-select
-                        style="width: 100%"
-                        class="text-po"
-                        formControlName="sexo"
-                        placeholder="Seleccionar"
-                      >
-                        <ion-select-option value="hombre"
-                          >Masculino</ion-select-option
-                        >
-                        <ion-select-option value="mujer"
-                          >Femenino</ion-select-option
-                        >
-                        <ion-select-option value="no especificado"
-                          >Prefiero no responder</ion-select-option
-                        >
-                      </ion-select>
-                    </ion-col>
-                  </ion-row>
-                </ion-item> -->
-
                 <ion-item class="itm-input">
                   <ion-input
                     formControlName="dni"
@@ -413,7 +129,7 @@
                   style="width: 100%; background-color: white"
                   class="itm-input"
                   formControlName="sexo"
-                  placeholder="Seleccionar"
+                  placeholder="Género"
                 >
                   <ion-select-option value="hombre"
                     >Masculino</ion-select-option
@@ -427,7 +143,7 @@
 
               <div class="ion-text-center">
                 <button
-                  (click)="verifyEmail2(loginSlider)"
+                  (click)="verificarTreeForm(loginSlider)"
                   expand="block"
                   class="btn-empezar"
                 >
@@ -438,16 +154,63 @@
             </form>
           </div>
         </ion-slide>
+
+        <ion-slide style="flex-direction: column">
+          <div style="height: 100%">
+            <form [formGroup]="form4">
+              <div class="inli-fx">
+                <ion-select
+                  style="width: 100%; background-color: white"
+                  class="itm-input"
+                  formControlName="departamento"
+                  placeholder="Departamento"
+                  (ionChange)="getProvincia($event)"
+                >
+                  <ion-select-option
+                    [value]="item.id"
+                    *ngFor="let item of departamento"
+                    >{{ item.name }}</ion-select-option
+                  >
+                </ion-select>
+
+                <ion-select
+                  style="width: 100%; background-color: white"
+                  class="itm-input"
+                  formControlName="provincia"
+                  placeholder="Provincia"
+                  (ionChange)="getDistrito($event)"
+                >
+                  <ion-select-option
+                    [value]="item.id"
+                    *ngFor="let item of provincia"
+                    >{{ item.name }}</ion-select-option
+                  >
+                </ion-select>
+
+                <ion-select
+                  style="width: 100%; background-color: white"
+                  class="itm-input"
+                  formControlName="distrito"
+                  placeholder="Distrito"
+                >
+                  <ion-select-option
+                    [value]="item.id"
+                    *ngFor="let item of distrito"
+                    >{{ item.name }}</ion-select-option
+                  >
+                </ion-select>
+              </div>
+
+              <div class="ion-text-center">
+                <button (click)="save()" expand="block" class="btn-empezar">
+                  Registrar
+                </button>
+              </div>
+              <br />
+            </form>
+          </div>
+        </ion-slide>
       </ion-slides>
     </div>
-    <br />
-    <div (click)="entrarRegister()" class="txt-subsub">
-      ¿Aún no estas registrado?
-    </div>
-    <!-- <div>
-      <button>walk1</button>
-    </div> -->
-    <br />
-    <div class="wave4"></div>
   </div>
 </ion-content>

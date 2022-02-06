@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { TabsPage } from './dashboard/tabs/tabs.page';
+import { ForgotPasswordComponent } from './Login-Register/forgot-password/forgot-password.component';
 import { LoginComponent } from './Login-Register/login/login.component';
 import { RegisterComponent } from './Login-Register/register/register.component';
 import { PreloaderComponent } from './preloader/preloader.component';
@@ -33,6 +34,16 @@ const routes: Routes = [
         (m) => m.LoginCofidePageModule
       ),
   },
+
+  {
+    path: 'send-mail',
+    component: ForgotPasswordComponent,
+    loadChildren: () =>
+      import('./Login-Register/login.module').then(
+        (m) => m.LoginCofidePageModule
+      ),
+  },
+
   {
     path: 'dashboard',
     loadChildren: () =>
