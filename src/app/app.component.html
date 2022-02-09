@@ -8,33 +8,20 @@
     <ion-content class="contentmenu">
       <div class="userdata">
         <div class="user-profile">
-          <ion-avatar *ngIf="_sGenerales.user">
+          <ion-avatar
+            style="border: 2px solid #00b468"
+            *ngIf="_sGenerales.user"
+          >
             <img [src]="_sGenerales.user.path" />
           </ion-avatar>
-          <ion-label class="username" *ngIf="_sGenerales.user">{{
-            _sGenerales.user.name
-          }}</ion-label>
-          <!-- <ion-label class="useremail" *ngIf="_sGenerales.user">{{
-            _sGenerales.user.email
-          }}</ion-label> -->
+          <p class="username" *ngIf="_sGenerales.user">
+            {{ _sGenerales.user.name }}
+          </p>
         </div>
         <div class="medals-profile">
           <ion-buttons class="btnedit" slot="end" (click)="editarPerfil()">
             <span class="linkedit">Editar perfil</span>
           </ion-buttons>
-          <div class="medals" *ngIf="_sGenerales.medals >= 0">
-            <img
-              *ngFor="let item of [].constructor(_sGenerales.medals)"
-              src="../assets/img/Grupo 953.png"
-              alt=""
-            />
-            <!--        <img src="../assets/img/Grupo 1090.png" alt="" />
-            <img src="../assets/img/Grupo 1090.png" alt="" />
-            <img src="../assets/img/Grupo 1090.png" alt="" /> -->
-          </div>
-          <div class="divnivel">
-            <ion-label class="nivel">Nivel "Ordena las cuentas"</ion-label>
-          </div>
         </div>
       </div>
       <div class="userdata">
@@ -42,22 +29,13 @@
           _sGenerales.user.email
         }}</ion-label>
       </div>
-      <!--  <div class="imgmenu">
-        <img class="imgstatic" src="../assets/img/menu_statistic.png" alt="" />
-        <button (click)="abrirSimu()" mat-stroked-button class="btn-simulador">
-          Ingresa al comparador
-        </button>
-        <button (click)="abrirOldHistory()" mat-stroked-button class="btn-tips">
-          Tips y Videos
-        </button>
-      </div> -->
+
       <div>
         <div class="list-items">
           <div *ngFor="let item of items">
             <div>
               <div class="line-nivel">
                 <div class="items-nivel"></div>
-                <ion-label class="nivel-text">{{ item.nivel }}</ion-label>
               </div>
               <div
                 class="list-item"
@@ -77,6 +55,41 @@
         <div class="list-items">
           <div>
             <div>
+              <div class="list-item">
+                <div class="icon-circle">
+                  <ion-icon name="locate-outline" slot="start"></ion-icon>
+                </div>
+                <ion-label class="opc-name">Mis lugares visitados</ion-label>
+              </div>
+              <div class="line-nivel">
+                <div class="items-nivel"></div>
+                <ion-label class="nivel-text"></ion-label>
+              </div>
+
+              <div class="list-item">
+                <div class="icon-circle">
+                  <ion-icon name="newspaper-outline" slot="start"></ion-icon>
+                </div>
+                <ion-label class="opc-name">Noticias</ion-label>
+              </div>
+
+              <div class="list-item">
+                <div class="icon-circle">
+                  <ion-icon
+                    name="navigate-circle-outline"
+                    slot="start"
+                  ></ion-icon>
+                </div>
+                <ion-label class="opc-name">Ubicación</ion-label>
+              </div>
+
+              <div class="list-item">
+                <div class="icon-circle">
+                  <ion-icon name="cloudy-night-outline" slot="start"></ion-icon>
+                </div>
+                <ion-label class="opc-name">Clima</ion-label>
+              </div>
+
               <div class="line-nivel">
                 <div class="items-nivel"></div>
                 <ion-label class="nivel-text"></ion-label>

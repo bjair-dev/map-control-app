@@ -126,9 +126,8 @@ export class ServiciosGenerales {
       })
       .subscribe((resp) => {
         this.user = resp;
-        console.log(resp);
 
-        /*   let seguir = true;
+        let seguir = true;
         if (this.user.terms_and_conditions == false) {
           this.router.navigateByUrl('/terms-conditions');
           seguir = false;
@@ -139,7 +138,7 @@ export class ServiciosGenerales {
             localStorage.setItem('onboard', '1');
             this.launchOnBoard();
           }
-        } */
+        }
       });
   }
   async launchOnBoard() {

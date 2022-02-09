@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ServiciosGenerales } from 'src/app/components/services/servicios-generales.service';
 
 @Component({
   selector: 'app-tabs',
@@ -6,5 +7,7 @@ import { Component } from '@angular/core';
   styleUrls: ['tabs.page.scss'],
 })
 export class TabsPage {
-  constructor() {}
+  constructor(private _sGenerales: ServiciosGenerales) {
+    this._sGenerales.getProfile();
+  }
 }
