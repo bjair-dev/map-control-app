@@ -1,9 +1,11 @@
 import {
   Component,
+  ElementRef,
   HostListener,
   Input,
   OnDestroy,
   OnInit,
+  ViewChild,
 } from '@angular/core';
 import {
   AlertController,
@@ -17,6 +19,13 @@ import { ModalInforComponent } from 'src/app/components/modal-infor/modal-infor.
 import { ComponentsService } from 'src/app/components/services/components.service';
 import { Subscription } from 'rxjs';
 declare var google;
+
+import { Geolocation } from '@ionic-native/geolocation/ngx';
+import {
+  NativeGeocoder,
+  NativeGeocoderResult,
+  NativeGeocoderOptions,
+} from '@ionic-native/native-geocoder/ngx';
 interface Marker {
   position: {
     lat: number;
@@ -32,12 +41,19 @@ interface Marker {
 export class Tab1Page implements OnInit, OnDestroy {
   @Input() isModal;
 
+  @ViewChild('map', { static: false }) mapElement: ElementRef;
+  map: any;
+  address: string;
+
+  latitude: number;
+  longitude: number;
   constructor(
     public modalController: ModalController,
     public _sGenerales: ServiciosGenerales,
     private alertController: AlertController,
     private _sToast: ToastController,
-
+    private geolocation: Geolocation,
+    private nativeGeocoder: NativeGeocoder,
     private _sComponents: ComponentsService,
     private platform: Platform
   ) {
@@ -61,7 +77,6 @@ export class Tab1Page implements OnInit, OnDestroy {
     return await modal.present();
   }
 
-  map = null;
   markers: Marker[] = [
     {
       position: {
@@ -96,103 +111,174 @@ export class Tab1Page implements OnInit, OnDestroy {
     this.loadMap();
   }
 
-  @HostListener('unloaded')
-  ngOnDestroy(): void {
-    console.log('Destroy');
+  ngOnDestroy(): void {}
+
+  /* loadMap() {
+    this.geolocation
+      .getCurrentPosition()
+      .then((resp) => {
+        this.latitude = resp.coords.latitude;
+        this.longitude = resp.coords.longitude;
+
+        let latLng = new google.maps.LatLng(
+          resp.coords.latitude,
+          resp.coords.longitude
+        );
+        let mapOptions = {
+          center: latLng,
+          zoom: 15,
+          mapTypeId: google.maps.MapTypeId.ROADMAP,
+        };
+
+        this.getAddressFromCoords(resp.coords.latitude, resp.coords.longitude);
+
+        this.map = new google.maps.Map(
+          this.mapElement.nativeElement,
+          mapOptions
+        );
+
+        this.map.addListener('dragend', () => {
+          this.latitude = this.map.center.lat();
+          this.longitude = this.map.center.lng();
+
+          this.getAddressFromCoords(
+            this.map.center.lat(),
+            this.map.center.lng()
+          );
+        });
+      })
+      .catch((error) => {
+        console.log('Error getting location', error);
+      });
   }
+
+  getAddressFromCoords(lattitude, longitude) {
+    console.log('getAddressFromCoords ' + lattitude + ' ' + longitude);
+    let options: NativeGeocoderOptions = {
+      useLocale: true,
+      maxResults: 5,
+    };
+
+    this.nativeGeocoder
+      .reverseGeocode(lattitude, longitude, options)
+      .then((result: NativeGeocoderResult[]) => {
+        this.address = '';
+        let responseAddress = [];
+        for (let [key, value] of Object.entries(result[0])) {
+          if (value.length > 0) responseAddress.push(value);
+        }
+        responseAddress.reverse();
+        for (let value of responseAddress) {
+          this.address += value + ', ';
+        }
+        this.address = this.address.slice(0, -2);
+      })
+      .catch((error: any) => {
+        this.address = 'Address Not Available!';
+      });
+  } */
+
+  // loadMap() {
+  //   // create a new map by passing HTMLElement
+  //   const mapEle: HTMLElement = document.getElementById('map');
+  //   // create LatLng object -13.075416, -76.378901
+
+  //   const myLatLng = { lat: -13.075416, lng: -76.378901 };
+  //   // create map
+  //   this.map = new google.maps.Map(mapEle, {
+  //     center: myLatLng,
+  //     zoom: 15,
+  //   });
+
+  //   google.maps.event.addListenerOnce(this.map, 'idle', () => {
+  //     this.renderMarkers();
+  //     mapEle.classList.add('show-map');
+  //   });
+  // }
+
+  // renderMarkers() {
+  //   this.markers.forEach((marker) => {
+  //     this.addMarker(marker);
+  //   });
+  // }
+
+  // addMarker(marker: Marker) {
+  //   return new google.maps.Marker({
+  //     position: marker.position,
+  //     map: this.map,
+  //     title: marker.title,
+  //   });
+  // }
+  // async presentToast(m) {
+  //   const toast = await this._sToast.create({
+  //     message: m,
+  //     duration: 3000,
+  //   });
+  //   toast.present();
+  // }
 
   loadMap() {
-    // create a new map by passing HTMLElement
-    const mapEle: HTMLElement = document.getElementById('map');
-    // create LatLng object -13.075416, -76.378901
+    this.geolocation
+      .getCurrentPosition()
+      .then((resp) => {
+        this.latitude = resp.coords.latitude;
+        this.longitude = resp.coords.longitude;
 
-    const myLatLng = { lat: -13.075416, lng: -76.378901 };
-    // create map
-    this.map = new google.maps.Map(mapEle, {
-      center: myLatLng,
-      zoom: 15,
-    });
+        let latLng = new google.maps.LatLng(
+          resp.coords.latitude,
+          resp.coords.longitude
+        );
+        let mapOptions = {
+          center: latLng,
+          zoom: 15,
+          mapTypeId: google.maps.MapTypeId.ROADMAP,
+        };
 
-    google.maps.event.addListenerOnce(this.map, 'idle', () => {
-      this.renderMarkers();
-      mapEle.classList.add('show-map');
-    });
+        this.getAddressFromCoords(resp.coords.latitude, resp.coords.longitude);
+
+        this.map = new google.maps.Map(
+          this.mapElement.nativeElement,
+          mapOptions
+        );
+
+        this.map.addListener('dragend', () => {
+          this.latitude = this.map.center.lat();
+          this.longitude = this.map.center.lng();
+
+          this.getAddressFromCoords(
+            this.map.center.lat(),
+            this.map.center.lng()
+          );
+        });
+      })
+      .catch((error) => {
+        console.log('Error getting location', error);
+      });
   }
 
-  renderMarkers() {
-    this.markers.forEach((marker) => {
-      this.addMarker(marker);
-    });
-  }
+  getAddressFromCoords(lattitude, longitude) {
+    console.log('getAddressFromCoords ' + lattitude + ' ' + longitude);
+    let options: NativeGeocoderOptions = {
+      useLocale: true,
+      maxResults: 5,
+    };
 
-  addMarker(marker: Marker) {
-    return new google.maps.Marker({
-      position: marker.position,
-      map: this.map,
-      title: marker.title,
-    });
-  }
-  async presentToast(m) {
-    const toast = await this._sToast.create({
-      message: m,
-      duration: 3000,
-    });
-    toast.present();
-  }
-
-  subscription = new Subscription();
-  time;
-  flag = false;
-  ionViewDidEnter() {
-    if (this.isModal) {
-    } else {
-      this.subscription = this.platform.backButton.subscribeWithPriority(
-        9999,
-        async (a) => {
-          if (this.time > 0) {
-            let tactual = new Date().getTime();
-            if (tactual - this.time < 500 && this.flag == false) {
-              const alert = await this.alertController.create({
-                cssClass: 'my-custom-class',
-                header: '¡Aviso!',
-                message: '¿Esta seguro de cerrar su sesión?',
-                buttons: [
-                  {
-                    text: 'Cancelar',
-                    role: 'cancel',
-                    cssClass: 'secondary',
-                    handler: (blah) => {
-                      this.flag = false;
-                      this.time = tactual;
-                    },
-                  },
-                  {
-                    text: 'Cerrar Sesión',
-                    handler: () => {
-                      this.flag = false;
-                      this._sGenerales.signout();
-                    },
-                  },
-                ],
-              });
-              this.flag = true;
-              await alert.present();
-            } else {
-              this.time = tactual;
-            }
-          } else {
-            this.presentToast('Doble click para cerrar sesión.');
-            this.time = new Date().getTime();
-          }
+    this.nativeGeocoder
+      .reverseGeocode(lattitude, longitude, options)
+      .then((result: NativeGeocoderResult[]) => {
+        this.address = '';
+        let responseAddress = [];
+        for (let [key, value] of Object.entries(result[0])) {
+          if (value.length > 0) responseAddress.push(value);
         }
-      );
-    }
-  }
-
-  ionViewWillLeave() {
-    if (this.isModal) {
-    } else {
-      this.subscription.unsubscribe();
-    }
+        responseAddress.reverse();
+        for (let value of responseAddress) {
+          this.address += value + ', ';
+        }
+        this.address = this.address.slice(0, -2);
+      })
+      .catch((error: any) => {
+        this.address = 'Address Not Available!';
+      });
   }
 }

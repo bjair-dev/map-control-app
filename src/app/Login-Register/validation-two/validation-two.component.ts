@@ -75,7 +75,7 @@ export class ValidationTwoComponent implements OnInit {
       this._service.validarUser(PassUser).subscribe(
         async (response) => {
           const toast = await this.toastController.create({
-            message: 'El código se ha verificado con exito"',
+            message: 'El código se ha verificado con exito',
             duration: 3000,
           });
           toast.present();

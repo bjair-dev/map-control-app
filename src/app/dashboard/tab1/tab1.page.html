@@ -36,7 +36,12 @@
       Where I Am
     </ion-button>
 
-    <div id="map"></div>
+    <div class="map-wrapper">
+      <div id="map_center">
+        <img src="assets/img/location-marker.png" />
+      </div>
+      <div #map id="map"></div>
+    </div>
 
     <ion-item class="itm-input">
       <ion-input required maxlength="90" placeholder="Correo"></ion-input>

@@ -118,8 +118,8 @@ export class ServiciosGenerales {
       'Authorization',
       'Bearer ' + localStorage.getItem('map_control')
     );
-    this.getUserMedals();
-    //profile user
+    /*     this.getUserMedals();
+     */ //profile user
     this.http
       .get(this.URL_BACKEND + '/api/user-account', {
         headers: headers,
@@ -203,7 +203,7 @@ export class ServiciosGenerales {
     return await modal.present(); */
   }
 
-  getUserMedals() {
+  /*   getUserMedals() {
     let headers = new HttpHeaders();
     headers = headers.set('Content-type', 'application/json');
     headers = headers.set(
@@ -218,7 +218,7 @@ export class ServiciosGenerales {
       .subscribe((resp: any) => {
         this.medals = resp;
       });
-  }
+  } */
 
   getFraseInicial(): Observable<any> {
     let headers = new HttpHeaders();

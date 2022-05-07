@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  //  BACKEND_URL: 'http://localhost:4001',
-  BACKEND_URL: 'http://52.204.165.174:3000',
+    BACKEND_URL: 'http://localhost:4001',
+  //BACKEND_URL: 'http://52.204.165.174:3000',
   ApiKeyGoogleMaps: 'AIzaSyDT7Ev19nOVXvHUUEJeILVhJZ1ahKs-2UU',
 };
 /*
