@@ -12,7 +12,7 @@ export class PreloaderComponent implements OnInit {
       localStorage.removeItem('email');
       localStorage.removeItem('pass');
       localStorage.removeItem('map_control');
-      this.router.navigateByUrl('splash');
+  this.router.navigateByUrl('splash'); 
     }, 3000);
   }
 

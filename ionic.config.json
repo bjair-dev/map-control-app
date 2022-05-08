@@ -1,6 +1,7 @@
 {
   "name": "nika-app",
   "integrations": {
+    "capacitor": {},
     "cordova": {}
   },
   "type": "angular"

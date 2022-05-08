@@ -8,8 +8,6 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ComponentsModule } from './components/components.module';
-import { Geolocation } from '@ionic-native/geolocation/ngx';
-import { NativeGeocoder } from '@ionic-native/native-geocoder/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -24,7 +22,6 @@ import { NativeGeocoder } from '@ionic-native/native-geocoder/ngx';
   ],
   providers: [
     Geolocation,
-    NativeGeocoder,
     {
       provide: RouteReuseStrategy,
       useClass: IonicRouteStrategy,
