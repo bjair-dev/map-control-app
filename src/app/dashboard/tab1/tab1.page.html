@@ -1,3 +1,5 @@
+
+
 <ion-toolbar>
   <ion-buttons
     slot="start"
@@ -16,7 +18,9 @@
   </ion-buttons>
 </ion-toolbar>
 
-<ion-content class="dash-content bg-white">
+<ion-content class="dash-content bg-white"  >
+
+  
   <div
     style="
       display: flex;
@@ -33,17 +37,13 @@
     >
 
 
-    
-    <div id="map_canvas"></div>
-    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-      <ion-fab-button color="danger" (click)="localizar()">
-        <ion-icon name="pin"></ion-icon>
-      </ion-fab-button>
-    </ion-fab>
+    <div #map  id="map_canvas" class="map"></div>
+
+   
 
     <div>
     <ion-item class="itm-input">
-      <ion-input required maxlength="90" placeholder="Correo"></ion-input>
+      <ion-input disabled="" required maxlength="90" placeholder="Dirección"></ion-input>
     </ion-item>
   </div>
     <div style="width: 100%; display: flex; justify-content: center;">
@@ -62,57 +62,28 @@
       margin-bottom: 20px;
       margin-inline: 20px;
     "
+    *ngFor="let item of comments"
   >
     <div style="display: flex; flex-direction: row">
-      <img src="../assets/img/adriana.png" class="img-ex" />
-      <p style="color: #090909">Bryan Ortiz</p>
+      <img [src]="item.user.path" class="img-ex" />
+      <p style="color: #090909">{{item.user.name}}{{item.user.lastname}}</p>
     </div>
     <div style="margin-left: 24px; font-size: 13.5px; font-family: 'Roboto'">
       <a style="color: #090909"
-        >Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias,
-        quas. Cum consequatur enim assumenda laborum esse accusantium nisi id.
-        Fugit non nihil odio laborum commodi dignissimos nulla soluta voluptates
-        culpa?</a
+        >{{item.coment_text}}</a
       >
     </div>
 
-    <div style="display: flex; flex-direction: row">
-      <img src="../assets/img/adriana.png" class="img-ex" />
-      <p style="color: #090909">Bryan Ortiz</p>
-    </div>
-    <div style="margin-left: 24px; font-size: 13.5px; font-family: 'Roboto'">
-      <a style="color: #090909"
-        >Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias,
-        quas. Cum consequatur enim assumenda laborum esse accusantium nisi id.
-        Fugit non nihil odio laborum commodi dignissimos nulla soluta voluptates
-        culpa?</a
-      >
-    </div>
+   
 
-    <div style="display: flex; flex-direction: row">
-      <img src="../assets/img/adriana.png" class="img-ex" />
-      <p style="color: #090909">Bryan Ortiz</p>
-    </div>
-    <div style="margin-left: 24px; font-size: 13.5px; font-family: 'Roboto'">
-      <a style="color: #090909"
-        >Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias,
-        quas. Cum consequatur enim assumenda laborum esse accusantium nisi id.
-        Fugit non nihil odio laborum commodi dignissimos nulla soluta voluptates
-        culpa?</a
-      >
-    </div>
+    
 
-    <div style="display: flex; flex-direction: row">
-      <img src="../assets/img/adriana.png" class="img-ex" />
-      <p style="color: #090909">Bryan Ortiz</p>
-    </div>
-    <div style="margin-left: 24px; font-size: 13.5px; font-family: 'Roboto'">
-      <a style="color: #090909"
-        >Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias,
-        quas. Cum consequatur enim assumenda laborum esse accusantium nisi id.
-        Fugit non nihil odio laborum commodi dignissimos nulla soluta voluptates
-        culpa?</a
-      >
-    </div>
+  
   </div>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="danger" (click)="mylocation()">
+      <ion-icon name="pin"></ion-icon>
+    </ion-fab-button>
+  </ion-fab> 
 </ion-content>

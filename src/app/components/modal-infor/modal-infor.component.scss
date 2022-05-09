@@ -4,19 +4,21 @@
 }
 .btn-empezar {
   color: white;
-  font-size: 25px;
-  font-weight: bold;
+  font-size: 18px;
+  font-weight: 300;
   border-radius: 30px !important;
   background: #4ecf97;
   right: 0;
   left: 0;
   width: 70%;
-  height: 55px;
+  height: 30px;
 }
 .medi-r {
-  display: flex;
+ display: flex;
   flex-direction: column;
   justify-content: flex-start;
+   height: 100%;  
+  overflow: scroll;
 }
 .bord-item {
   width: 90%;
@@ -46,6 +48,7 @@
 .stylebox {
   height: 100%;
   display: flex;
+  z-index: 99999 !important;
   flex-direction: column;
   justify-content: space-around;
 }

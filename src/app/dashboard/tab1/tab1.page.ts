@@ -1,10 +1,9 @@
 import {
   Component,
   ElementRef,
-  HostListener,
+  Inject,
   Input,
-  OnDestroy,
-  OnInit,
+  Renderer2,
   ViewChild,
 } from '@angular/core';
 import {
@@ -18,7 +17,14 @@ import { EditperfilComponent } from 'src/app/components/editperfil/editperfil.co
 import { ModalInforComponent } from 'src/app/components/modal-infor/modal-infor.component';
 import { ComponentsService } from 'src/app/components/services/components.service';
 import { Subscription } from 'rxjs';
-declare var google;
+
+import { Plugins } from '@capacitor/core';
+import { GooglemapsService } from './servicemaps/google.maps.service';
+import { DOCUMENT } from '@angular/common';
+import { CommentService } from 'src/app/components/services/comments.service';
+const {Geolocation} = Plugins;
+
+declare var google: any;
 
 
 interface Marker {
@@ -33,25 +39,29 @@ interface Marker {
   templateUrl: 'tab1.page.html',
   styleUrls: ['tab1.page.scss'],
 })
-export class Tab1Page implements OnInit, OnDestroy {
+export class Tab1Page  {
   @Input() isModal;
 
-  @ViewChild('map', { static: false }) mapElement: ElementRef;
-  map: any;
-  address: string;
+  enableBackdropDismiss = false;
+  showBackdrop = false;
+  shouldPropagate = false;
 
-  latitude: number;
-  longitude: number;
+
+
   constructor(
     public modalController: ModalController,
     public _sGenerales: ServiciosGenerales,
     private alertController: AlertController,
     private _sToast: ToastController,
-
+    private renderer: Renderer2,
+    @Inject(DOCUMENT) private document,
+    private googlemapsService: GooglemapsService,
     private _sComponents: ComponentsService,
-    private platform: Platform
+    private platform: Platform,
+    private _sComments: CommentService
   ) {
     this._sGenerales.getProfile();
+    this.getComments();
   }
 
   async abrirPerfil() {
@@ -71,145 +81,153 @@ export class Tab1Page implements OnInit, OnDestroy {
     return await modal.present();
   }
 
-  markers: Marker[] = [
-    {
-      position: {
-        lat: 4.658383846282959,
-        lng: -74.09394073486328,
-      },
-      title: 'Parque Simón Bolivar',
-    },
-    {
-      position: {
-        lat: 4.667945861816406,
-        lng: -74.09964752197266,
-      },
-      title: 'Jardín Botánico',
-    },
-    {
-      position: {
-        lat: 4.676802158355713,
-        lng: -74.04825592041016,
-      },
-      title: 'Parque la 93',
-    },
-    {
-      position: {
-        lat: 4.6554284,
-        lng: -74.1094989,
-      },
-      title: 'Maloka',
-    },
-  ];
-  ngOnInit() {
-  }
 
-  ngOnDestroy(): void {}
 
-  /* loadMap() {
-    this.geolocation
-      .getCurrentPosition()
-      .then((resp) => {
-        this.latitude = resp.coords.latitude;
-        this.longitude = resp.coords.longitude;
+// coordenadas cuenca
+@Input() position = {  
+  lat: -2.898116,
+  lng: -78.99958149999999
+};
 
-        let latLng = new google.maps.LatLng(
-          resp.coords.latitude,
-          resp.coords.longitude
-        );
-        let mapOptions = {
-          center: latLng,
-          zoom: 15,
-          mapTypeId: google.maps.MapTypeId.ROADMAP,
+label = {
+  titulo:'Ubicación',
+  subtitulo: 'Mi ubicación de envío'
+} 
+
+map: any;
+marker: any;
+infowindow: any;
+positionSet: any
+
+
+
+
+
+ngOnInit(): void {
+  this.init();
+
+  console.log('position ->', this.position)
+}
+
+async init() {
+
+  this.googlemapsService.init(this.renderer, this.document).then( () => {
+        this.initMap();
+  }).catch( (err) => {    
+        console.log(err);
+  });
+  
+}
+
+
+
+@ViewChild('map') divMap: ElementRef;
+
+initMap() {
+
+  const position = this.position;
+
+  let latLng = new google.maps.LatLng(position.lat, position.lng);
+
+  let mapOptions = {
+        center: latLng,
+        zoom: 15,
+        disableDefaultUI: true,
+        clickableIcons: false,
+  };
+
+  this.map = new google.maps.Map(this.divMap.nativeElement, mapOptions);
+  this.marker = new google.maps.Marker({
+        map: this.map,
+        animation: google.maps.Animation.DROP,
+        draggable: false,
+  });
+  this.clickHandleEvent();
+  this.infowindow = new google.maps.InfoWindow();
+  this.addMarker(position);
+  this.setInfoWindow(this.marker, this.label.titulo, this.label.subtitulo);
+
+}
+
+clickHandleEvent() {
+
+  this.map.addListener('click', (event: any) => {
+        const position = {
+              lat: event.latLng.lat(),
+              lng: event.latLng.lng(),
         };
+        this.addMarker(position);
+  });
 
-        this.getAddressFromCoords(resp.coords.latitude, resp.coords.longitude);
+}
 
-        this.map = new google.maps.Map(
-          this.mapElement.nativeElement,
-          mapOptions
-        );
 
-        this.map.addListener('dragend', () => {
-          this.latitude = this.map.center.lat();
-          this.longitude = this.map.center.lng();
 
-          this.getAddressFromCoords(
-            this.map.center.lat(),
-            this.map.center.lng()
-          );
-        });
-      })
-      .catch((error) => {
-        console.log('Error getting location', error);
-      });
+addMarker(position: any): void {
+
+  let latLng = new google.maps.LatLng(position.lat, position.lng);
+
+  this.marker.setPosition(latLng);
+  this.map.panTo(position);
+  this.positionSet = position;
+
+}
+
+
+setInfoWindow(marker: any, titulo: string, subtitulo: string) {
+
+  const contentString  =  '<div id="contentInsideMap">' +
+                          '<div>' +
+                          '</div>' +
+                          '<p style="font-weight: bold; margin-bottom: 5px;">' + titulo + '</p>' +
+                          '<div id="bodyContent">' +
+                          '<p class"normal m-0">'
+                          + subtitulo + '</p>' +
+                          '</div>' +
+                          '</div>';
+  this.infowindow.setContent(contentString);
+  this.infowindow.open(this.map, marker);
+
+}
+
+async mylocation() {
+
+console.log('mylocation() click')
+
+Geolocation.getCurrentPosition().then((res) => {
+
+  console.log('mylocation() -> get ', res);
+
+  const position = {
+        lat: res.coords.latitude,
+        lng: res.coords.longitude,
   }
+  this.addMarker(position);
 
-  getAddressFromCoords(lattitude, longitude) {
-    console.log('getAddressFromCoords ' + lattitude + ' ' + longitude);
-    let options: NativeGeocoderOptions = {
-      useLocale: true,
-      maxResults: 5,
-    };
+});
 
-    this.nativeGeocoder
-      .reverseGeocode(lattitude, longitude, options)
-      .then((result: NativeGeocoderResult[]) => {
-        this.address = '';
-        let responseAddress = [];
-        for (let [key, value] of Object.entries(result[0])) {
-          if (value.length > 0) responseAddress.push(value);
-        }
-        responseAddress.reverse();
-        for (let value of responseAddress) {
-          this.address += value + ', ';
-        }
-        this.address = this.address.slice(0, -2);
-      })
-      .catch((error: any) => {
-        this.address = 'Address Not Available!';
-      });
-  } */
+}
 
-  // loadMap() {
-  //   // create a new map by passing HTMLElement
-  //   const mapEle: HTMLElement = document.getElementById('map');
-  //   // create LatLng object -13.075416, -76.378901
-
-  //   const myLatLng = { lat: -13.075416, lng: -76.378901 };
-  //   // create map
-  //   this.map = new google.maps.Map(mapEle, {
-  //     center: myLatLng,
-  //     zoom: 15,
-  //   });
-
-  //   google.maps.event.addListenerOnce(this.map, 'idle', () => {
-  //     this.renderMarkers();
-  //     mapEle.classList.add('show-map');
-  //   });
-  // }
-
-  // renderMarkers() {
-  //   this.markers.forEach((marker) => {
-  //     this.addMarker(marker);
-  //   });
-  // }
-
-  // addMarker(marker: Marker) {
-  //   return new google.maps.Marker({
-  //     position: marker.position,
-  //     map: this.map,
-  //     title: marker.title,
-  //   });
-  // }
-  // async presentToast(m) {
-  //   const toast = await this._sToast.create({
-  //     message: m,
-  //     duration: 3000,
-  //   });
-  //   toast.present();
-  // }
+aceptar() {
+  console.log('click aceptar -> ', this.positionSet);
+  this.modalController.dismiss({pos: this.positionSet})
+}
 
   
+comments
+getComments() {
+  this._sComments.getComments().subscribe(
+    (data ) => {
+   
+      this.comments = data;
+   
+    },
+    (error) => {
+    console.log(error)
+      // console.log(error);
+    }
+  );
+}
+
 
 }

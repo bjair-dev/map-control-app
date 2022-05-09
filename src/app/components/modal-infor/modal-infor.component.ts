@@ -25,10 +25,26 @@ export class ModalInforComponent implements OnInit {
     if (e.detail.value == 'reportpos') {
       this.aparecePositivo = true;
       this.apareceNegativo = false;
+      this.apareceComentarioNega = false
     }
   }
+  apareceComentarioNega
+  actualizarTipoNegativo(e){
+    console.log(e.detail.value)
+
+    if (e.detail.value == 'asesinato' || e.detail.value == 'robo' || e.detail.value == 'viola' ) {
+this.apareceComentarioNega = true
+    }
+  
+  }
+
 
   close() {
     this._sModal.dismiss();
   }
+
+
+  enableBackdropDismiss = false;
+  showBackdrop = false;
+  shouldPropagate = false;
 }
