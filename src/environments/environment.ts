@@ -4,9 +4,9 @@
 
 export const environment = {
   production: false,
-   BACKEND_URL: 'http://localhost:4001',
-    // BACKEND_URL: 'http://52.204.165.174:3000',
-  ApiKeyGoogleMaps: 'AIzaSyCaG3aW5sIzeCJ70EK8Qxc6tCin4mD9BxQ',
+  // BACKEND_URL: "http://localhost:4001",
+  BACKEND_URL: "http://52.204.165.174:3000",
+  ApiKeyGoogleMaps: "AIzaSyCaG3aW5sIzeCJ70EK8Qxc6tCin4mD9BxQ",
 };
 /*
  * For easier debugging in development mode, you can import the following file
