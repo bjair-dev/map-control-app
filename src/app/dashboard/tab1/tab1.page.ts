@@ -18,8 +18,9 @@ import { ModalInforComponent } from "src/app/components/modal-infor/modal-infor.
 import { ComponentsService } from "src/app/components/services/components.service";
 import { Subscription } from "rxjs";
 import { CommentService } from "src/app/components/services/comments.service";
-import { MouseEvent } from "@agm/core";
+import { MapsAPILoader, MouseEvent } from "@agm/core";
 import { LatLngLiteral } from "@agm/core/services/google-maps-types";
+declare var google: any;
 
 interface marker {
   lat: number;
@@ -41,13 +42,18 @@ export class Tab1Page {
     private alertController: AlertController,
     private _sToast: ToastController,
     private renderer: Renderer2,
-
+    public mapsApiLoader: MapsAPILoader,
     private _sComponents: ComponentsService,
     private platform: Platform,
     private _sComments: CommentService
   ) {
     this._sGenerales.getProfile();
     this.getComments();
+
+    this.mapsApiLoader.load().then(() => {
+      this.geocoder = new google.maps.Geocoder();
+      console.log(this.geocoder, "geo");
+    });
   }
 
   async abrirPerfil() {
@@ -84,59 +90,67 @@ export class Tab1Page {
     );
   }
 
-  z; // google maps zoom level
-  zoom: number = 8;
-
-  // initial center position for the map
-  /*   lat: number = 51.673858;
-  lng: number = 7.815982; */
+  zoom: number = 18;
 
   clickedMarker(label: string, index: number) {
     console.log(`clicked the marker: ${label || index}`);
   }
 
   mapClicked($event: MouseEvent) {
+    console.log($event);
+
     this.markers.push({
       lat: $event.coords.lat,
       lng: $event.coords.lng,
       draggable: true,
     });
   }
+  geocoder: any;
+
+  findAddressByCoordinates() {
+    this.geocoder.geocode(
+      {
+        location: {
+          lat: this.lat,
+          lng: this.lng,
+        },
+      },
+      (results, status) => {
+        console.log(results, "0");
+        /*  this.onAutocompleteSelected(results[0]); */
+      }
+    );
+  }
 
   markerDragEnd(m: marker, $event: MouseEvent) {
     console.log("dragEnd", m, $event);
   }
 
-  markers: marker[] = [
-    {
-      lat: 51.673858,
-      lng: 7.815982,
-      label: "A",
-      draggable: true,
-    },
-    {
-      lat: 51.373858,
-      lng: 7.215982,
-      label: "B",
-      draggable: false,
-    },
-    {
-      lat: 51.723858,
-      lng: 7.895982,
-      label: "C",
-      draggable: true,
-    },
-  ];
+  markers: marker[] = [];
 
   lat: number = 0;
   lng: number = 0;
-
+  valorNuevo;
   obtenerUbi() {
     if (navigator && navigator.geolocation.getCurrentPosition) {
       const position = (pos) => {
         console.log(pos, "data de posicion");
         this.lng = pos.coords.longitude;
         this.lat = pos.coords.latitude;
+        this.valorNuevo = "Latitud: " + this.lat + " Longitud: " + this.lng;
+        this.geocoder.geocode(
+          {
+            location: {
+              lat: pos.coords.latitude,
+              lng: pos.coords.longitude,
+            },
+          },
+          (results, status) => {
+            console.log(results, "0");
+            console.log(status, "0");
+            /*  this.onAutocompleteSelected(results[0]); */
+          }
+        );
       };
 
       const error = (error) => {
@@ -149,12 +163,4 @@ export class Tab1Page {
       navigator.geolocation.getCurrentPosition(position, error);
     }
   }
-}
-
-// just an interface for type safety.
-interface marker {
-  lat: number;
-  lng: number;
-  label?: string;
-  draggable: boolean;
 }
