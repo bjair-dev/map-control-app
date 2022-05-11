@@ -1,15 +1,44 @@
-<ion-content fullscreen>
-  <div style="padding-top: 30px; padding-left: 25px" (click)="close()">
-    <span class="linkedit">Cerrar</span>
-  </div>
-  <div style="height: 100%">
-    <div class="perfil" *ngIf="_sGenerales.user">
-      <img [src]="_sGenerales.user.path" class="img-e" />
-    </div>
-    <ion-fab horizontal="end" vertical="bottom" slot="fixed">
+<ion-content>
+  <!-- <div class="bg" >
+   
+
+   <ion-fab horizontal="end" vertical="bottom" slot="fixed">
       <ion-fab-button>
         <ion-icon name="pencil-outline"></ion-icon>
       </ion-fab-button>
-    </ion-fab>
+    </ion-fab> 
+  </div>-->
+  <div class="parent">
+    <div>
+      <div style="padding-top: 30px; padding-left: 25px" (click)="close()">
+        <span class="linkedit">Cerrar</span>
+      </div>
+      <div class="perfil" *ngIf="_sGenerales.user">
+        <img [src]="_sGenerales.user.path" class="img-e" />
+        <ion-label class="username" *ngIf="_sGenerales.user"
+          >{{ _sGenerales.user.name }}
+          {{ _sGenerales.user.lastname }}</ion-label
+        >
+      </div>
+      <!--   <ion-fab horizontal="end" vertical="center" slot="false">
+        <ion-fab-button>
+          <ion-icon name="pencil-outline"></ion-icon>
+        </ion-fab-button>
+      </ion-fab> -->
+    </div>
+    <div>
+      <div style="width: 100%; display: flex; justify-content: center">
+        <button class="btn-empezar">Editar Perfil</button>
+      </div>
+
+      <div
+        style="width: 100%; display: flex; justify-content: center"
+        *ngIf="_sGenerales.user"
+      >
+        <ion-item class="itm-input">
+          <ion-input disabled [ngModel]="_sGenerales.user.email"></ion-input>
+        </ion-item>
+      </div>
+    </div>
   </div>
 </ion-content>

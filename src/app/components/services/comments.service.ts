@@ -24,12 +24,20 @@ export class CommentService {
       "Bearer " + localStorage.getItem("map_control")
     );
 
-    return this.http.get<any>(
-      this.URL_BACKEND + `/api/comments`,
-      {
-        headers: headers,
-      }
-    );
+    return this.http.get<any>(this.URL_BACKEND + `/api/comments`, {
+      headers: headers,
+    });
   }
 
+  postComentario(user): Observable<any> {
+    let headers = new HttpHeaders();
+    headers = headers.set("Content-type", "application/json");
+    headers = headers.set(
+      "Authorization",
+      "Bearer " + localStorage.getItem("map_control")
+    );
+    return this.http.post<any>(this.URL_BACKEND + `/api/comments`, user, {
+      headers: headers,
+    });
+  }
 }

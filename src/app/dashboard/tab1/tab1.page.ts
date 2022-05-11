@@ -69,6 +69,14 @@ export class Tab1Page {
     const modal = await this.modalController.create({
       component: ModalInforComponent,
       cssClass: "video-modal",
+      componentProps: {
+        latitud: this.lat,
+        longitud: this.lng,
+        direccion: this.direccion,
+      },
+    });
+    modal.onDidDismiss().then((data) => {
+      this.getComments();
     });
     return await modal.present();
   }
@@ -130,6 +138,7 @@ export class Tab1Page {
 
   lat: number = 0;
   lng: number = 0;
+  direccion: any;
   valorNuevo;
   obtenerUbi() {
     if (navigator && navigator.geolocation.getCurrentPosition) {
@@ -146,8 +155,9 @@ export class Tab1Page {
             },
           },
           (results, status) => {
-            console.log(results, "0");
-            console.log(status, "0");
+            console.log(results);
+            (this.direccion = results[3].formatted_address),
+              console.log(status, "0");
             /*  this.onAutocompleteSelected(results[0]); */
           }
         );

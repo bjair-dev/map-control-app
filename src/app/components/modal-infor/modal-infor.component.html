@@ -1,57 +1,79 @@
-
 <div class="stylebox">
   <div class="medi-r">
-    <div style="
-   
-    margin-top: 20px;">
-    <ion-item class="bord-item">
-      <ion-select
-        placeholder="Seleccione una opción"
-        class="brd-item"
-        (ionChange)="actualizarTipo($event)"
-      >
-        <ion-select-option selected value="reportpos"
-          >Califica tú Ubicación</ion-select-option
+    <div style="margin-top: 20px">
+      <ion-item class="bord-item">
+        <ion-select
+          placeholder="Seleccione una opción"
+          class="brd-item"
+          (ionChange)="actualizarTipo($event)"
         >
-        <ion-select-option value="reportneg"
-          >Reportar tú Ubicación</ion-select-option
-        >
-      </ion-select>
-    </ion-item>
+          <ion-select-option selected value="reportpos"
+            >Califica tú Ubicación</ion-select-option
+          >
+          <ion-select-option value="reportneg"
+            >Reportar tú Ubicación</ion-select-option
+          >
+        </ion-select>
+      </ion-item>
 
-  <div *ngIf="aparecePositivo" style="color: black;margin-top: 60px;">
-    <ion-item style="margin-inline: 20px">
-      <ion-label position="floating" class="tx-lis">Mensaje</ion-label>
-      <ion-textarea rows="6" cols="20" class="tx-send"></ion-textarea>
-    </ion-item>
+      <div *ngIf="aparecePositivo" style="color: black; margin-top: 60px">
+        <ion-item style="margin-inline: 20px">
+          <ion-label position="floating" class="tx-lis">Mensaje</ion-label>
+          <ion-textarea
+            [(ngModel)]="comentPositivo"
+            rows="6"
+            cols="20"
+            class="tx-send"
+          ></ion-textarea>
+        </ion-item>
+      </div>
+
+      <div *ngIf="apareceNegativo" style="color: black; margin-top: 40px">
+        <ion-item class="bord-item">
+          <ion-select
+            (ionChange)="actualizarTipoNegativo($event)"
+            placeholder="Seleccione una opción"
+            class="brd-item"
+            [(ngModel)]="motivoReporte"
+          >
+            <ion-select-option selected value="asesinato"
+              >Asesinato</ion-select-option
+            >
+            <ion-select-option value="robo">Robo</ion-select-option>
+            <ion-select-option value="violacion">Violación</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </div>
+
+      <div *ngIf="apareceComentarioNega" style="color: black; margin-top: 40px">
+        <ion-item style="margin-inline: 20px">
+          <ion-label position="floating" class="tx-lis">Mensaje</ion-label>
+          <ion-textarea
+            [(ngModel)]="comentNegativo"
+            rows="6"
+            cols="20"
+            class="tx-send"
+          ></ion-textarea>
+        </ion-item>
+      </div>
+    </div>
   </div>
-
-  
-
-  <div *ngIf="apareceNegativo" style="color: black;margin-top: 40px;">
-    <ion-item class="bord-item">
-      <ion-select (ionChange)="actualizarTipoNegativo($event)" placeholder="Seleccione una opción" class="brd-item">
-        <ion-select-option selected value="asesinato"
-          >Asesinato</ion-select-option
-        >
-        <ion-select-option value="robo">Robo</ion-select-option>
-        <ion-select-option value="viola">Violación</ion-select-option>
-      </ion-select>
-    </ion-item>
+  <div
+    *ngIf="aparecePositivo || apareceComentarioNega"
+    style="
+      display: flex;
+      margin-bottom: 2rem;
+      justify-content: center;
+      align-items: flex-end;
+      margin-top: 20px;
+    "
+  >
+    <button
+      mat-stroked-button
+      class="btn-empezar"
+      (click)="guardarComentario()"
+    >
+      Enviar
+    </button>
   </div>
-
-
-  <div *ngIf="apareceComentarioNega" style="color: black ;margin-top: 40px;">
-    <ion-item style="margin-inline: 20px">
-      <ion-label position="floating" class="tx-lis">Mensaje</ion-label>
-      <ion-textarea rows="6" cols="20" class="tx-send"></ion-textarea>
-    </ion-item>
-  </div>
-</div>
- 
-</div>
-<div *ngIf="aparecePositivo || apareceComentarioNega" style="display: flex; margin-bottom: 2rem; justify-content: center; align-items:flex-end;margin-top: 20px;">
-  <button mat-stroked-button class="btn-empezar" (click)="close()">
-    Enviar
-  </button>
 </div>

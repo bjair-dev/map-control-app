@@ -2,15 +2,22 @@
 
 ion-content {
   --background: url(../../../assets/img/cuadroperfil.png) no-repeat;
-  height: 66%;
+
+  /*   --background: url(../../../assets/img/cuadroperfil.png) no-repeat; */
   background-position: center center;
   background-repeat: no-repeat;
-  /* background-attachment: fixed; */
   background-size: cover;
   position: fixed;
   left: 0;
   right: 0;
 }
+.username {
+  font-size: 26px;
+  color: white;
+  font-family: Roboto;
+  margin-top: 30px;
+}
+
 .img-e {
   width: 300px;
   height: 300px;
@@ -22,6 +29,7 @@ ion-content {
   align-content: center;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
 ion-fab-button {
   --background: #41eda5;
@@ -29,10 +37,39 @@ ion-fab-button {
   border-radius: 30px;
 }
 .linkedit {
+  font-size: 18px;
   color: white;
   font-family: Roboto;
   font-weight: bold;
 }
 .btnedit {
   align-self: flex-end;
+}
+.btn-empezar {
+  color: Black;
+  font-size: 1.1rem;
+  font-family: Roboto;
+  font-weight: bold;
+  border-radius: 30px !important;
+  background: white;
+  right: 0;
+  left: 0;
+  width: 55%;
+  height: 30px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.useremail {
+  font-size: 14px;
+  // font-weight: bold;
+  color: #00000099;
+  line-height: 14px;
+}
+
+.itm-input {
+  width: 65%;
+  height: 40px;
+  border-radius: 30px;
+  --background: #979191;
+  --color: white;
 }

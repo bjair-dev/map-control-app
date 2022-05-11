@@ -64,7 +64,7 @@
           disabled=""
           required
           maxlength="90"
-          [ngModel]="valorNuevo"
+          [ngModel]="direccion"
           placeholder="Dirección"
         ></ion-input>
       </ion-item>
@@ -85,14 +85,38 @@
       margin-bottom: 20px;
       margin-inline: 20px;
     "
-    *ngFor="let item of comments"
   >
-    <div style="display: flex; flex-direction: row">
-      <img [src]="item.user.path" class="img-ex" />
-      <p style="color: #090909">{{item.user.name}}{{item.user.lastname}}</p>
-    </div>
-    <div style="margin-left: 24px; font-size: 13.5px; font-family: 'Roboto'">
-      <a style="color: #090909">{{item.coment_text}}</a>
+    <div style="margin-bottom: 10px" *ngFor="let item of comments">
+      <div
+        style="
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: space-between;
+        "
+      >
+        <div style="display: flex; flex-direction: row">
+          <img [src]="item.user.path" class="img-ex" />
+          <p style="color: #090909">
+            {{item.user.name}} {{item.user.lastname}}
+          </p>
+        </div>
+        <div style="margin-right: 30px">
+          <ion-badge
+            *ngIf="item.coment_calificacion == 'Califica'"
+            color="primary"
+            >Positivo</ion-badge
+          >
+          <ion-badge
+            *ngIf="item.coment_calificacion == 'Reporte'"
+            color="danger"
+            >Reporte</ion-badge
+          >
+        </div>
+      </div>
+      <div style="margin-left: 24px; font-size: 13.5px; font-family: 'Roboto'">
+        <a style="color: #090909; font-weight: 500">{{item.coment_text}}</a>
+      </div>
     </div>
   </div>
 
