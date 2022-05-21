@@ -48,12 +48,13 @@
       <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
 
       <agm-circle
-        [latitude]="lat + 0.3"
-        [longitude]="lng"
-        [radius]="5000"
-        [fillColor]="'red'"
-        [circleDraggable]="true"
-        [editable]="true"
+        *ngFor="let m of colorMap; let i = index"
+        [latitude]="m.lat_direccion"
+        [longitude]="m.long_direccion"
+        [radius]="9000"
+        [fillColor]="m.color"
+        [circleDraggable]="false"
+        [editable]="false"
       >
       </agm-circle>
     </agm-map>
@@ -110,13 +111,35 @@
           <ion-badge
             *ngIf="item.coment_calificacion == 'Reporte'"
             color="danger"
-            >Reporte</ion-badge
+            >Reporte -
+            <a style="text-transform: capitalize; color: white">
+              {{item.coment_motivo}}</a
+            ></ion-badge
           >
+          <!--  <p style="color: #090909; margin: 0">
+            {{item.created | date:"dd/MM/yy"}}
+          </p> -->
         </div>
       </div>
-      <div style="margin-left: 24px; font-size: 13.5px; font-family: 'Roboto'">
+      <div
+        style="
+          margin-left: 20px;
+          margin-right: 20px;
+          font-size: 13.5px;
+          font-family: 'Roboto';
+        "
+      >
         <a style="color: #090909; font-weight: 500">{{item.coment_text}}</a>
       </div>
+    </div>
+    <div class="row" *ngIf="comments?.length <= 0 ">
+      <ng-container>
+        <div style="padding: 1.5rem; color: var(--text-secondary)">
+          <p style="color: black">
+            No hay comentarios disponibles en esta dirección...
+          </p>
+        </div>
+      </ng-container>
     </div>
   </div>
 

@@ -20,6 +20,7 @@ import { Subscription } from "rxjs";
 import { CommentService } from "src/app/components/services/comments.service";
 import { MapsAPILoader, MouseEvent } from "@agm/core";
 import { LatLngLiteral } from "@agm/core/services/google-maps-types";
+import { HttpUrlEncodingCodec } from "@angular/common/http";
 declare var google: any;
 
 interface marker {
@@ -48,7 +49,6 @@ export class Tab1Page {
     private _sComments: CommentService
   ) {
     this._sGenerales.getProfile();
-    this.getComments();
 
     this.mapsApiLoader.load().then(() => {
       this.geocoder = new google.maps.Geocoder();
@@ -76,20 +76,36 @@ export class Tab1Page {
       },
     });
     modal.onDidDismiss().then((data) => {
-      this.getComments();
+      this.getComments(this.direccion);
     });
     return await modal.present();
   }
 
   ngOnInit(): void {
     this.obtenerUbi();
+    this.getColoresMapa();
+  }
+  comments;
+  colorMap;
+  color;
+
+  getColoresMapa() {
+    this._sComments.getColoresMapa().subscribe(
+      (data) => {
+        this.colorMap = data;
+        console.log(data);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 
-  comments;
-  getComments() {
-    this._sComments.getComments().subscribe(
+  getComments(dirf) {
+    this._sComments.getComments(dirf).subscribe(
       (data) => {
         this.comments = data;
+        console.log("comentario", data);
       },
       (error) => {
         console.log(error);
@@ -146,6 +162,7 @@ export class Tab1Page {
         console.log(pos, "data de posicion");
         this.lng = pos.coords.longitude;
         this.lat = pos.coords.latitude;
+
         this.valorNuevo = "Latitud: " + this.lat + " Longitud: " + this.lng;
         this.geocoder.geocode(
           {
@@ -156,8 +173,11 @@ export class Tab1Page {
           },
           (results, status) => {
             console.log(results);
-            (this.direccion = results[3].formatted_address),
-              console.log(status, "0");
+            this.direccion = results[3].formatted_address;
+            let cargo = this.direccion;
+
+            this.getComments(cargo);
+            console.log(status, "0");
             /*  this.onAutocompleteSelected(results[0]); */
           }
         );

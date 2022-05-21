@@ -1,13 +1,5 @@
-<ion-content>
-  <!-- <div class="bg" >
-   
-
-   <ion-fab horizontal="end" vertical="bottom" slot="fixed">
-      <ion-fab-button>
-        <ion-icon name="pencil-outline"></ion-icon>
-      </ion-fab-button>
-    </ion-fab> 
-  </div>-->
+<!-- <ion-content>
+  
   <div class="parent">
     <div>
       <div style="padding-top: 30px; padding-left: 25px" (click)="close()">
@@ -20,11 +12,7 @@
           {{ _sGenerales.user.lastname }}</ion-label
         >
       </div>
-      <!--   <ion-fab horizontal="end" vertical="center" slot="false">
-        <ion-fab-button>
-          <ion-icon name="pencil-outline"></ion-icon>
-        </ion-fab-button>
-      </ion-fab> -->
+  
     </div>
     <div>
       <div style="width: 100%; display: flex; justify-content: center">
@@ -42,3 +30,189 @@
     </div>
   </div>
 </ion-content>
+ -->
+
+<div
+  style="
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background: url(../../../assets/img/cuadroperfil.png) no-repeat;
+  "
+>
+  <div style="padding-top: 30px; padding-left: 25px">
+    <ion-buttons class="btnedit" slot="start" (click)="close()">
+      <span class="linkedit">Cerrar</span>
+    </ion-buttons>
+  </div>
+  <div style="overflow: auto">
+    <div style="margin-left: 30px; margin-right: 30px">
+      <div>
+        <div class="user-profile">
+          <!--    <div class="img-e">
+            <img [src]="_sGenerales.user.path" />
+            <div>
+              <ion-icon name="pencil-outline" class="css"></ion-icon>
+            </div>
+          </div> -->
+          <div class="artist is-verified">
+            <div class="artist__header">
+              <div class="artist__info">
+                <div class="profile__img">
+                  <img [src]="_sGenerales.user.path" alt="G-Eazy" />
+                  <div
+                    style="display: flex; justify-content: flex-end"
+                    class="css"
+                  >
+                    <div
+                      style="
+                        display: flex;
+                        background: white;
+                        width: 40px;
+                        height: 40px;
+                        bottom: 0;
+                        position: absolute;
+                        border-radius: 20px;
+                        justify-content: center;
+                        align-items: center;
+                      "
+                    >
+                      <label for="upload">
+                        <span
+                          class="glyphicon glyphicon-folder-open"
+                          aria-hidden="true"
+                        >
+                          <ion-icon
+                            style="color: green; font-size: 20px"
+                            name="pencil-outline"
+                          ></ion-icon
+                        ></span>
+                        <input type="file" id="upload" style="display: none" />
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <ion-label class="username" *ngIf="_sGenerales.user">{{
+            _sGenerales.user.name
+          }}</ion-label>
+          <ion-label class="useremail" *ngIf="_sGenerales.user">{{
+            _sGenerales.user.email
+          }}</ion-label>
+        </div>
+      </div>
+      <div class="line-nivel">
+        <div class="items-nivel"></div>
+        <ion-label class="nivel-text">Datos personales</ion-label>
+      </div>
+      <div>
+        <div>
+          <div style="background: #f5f5f5" class="box-input-container brd">
+            <ion-row>
+              <ion-col *ngIf="_sGenerales.user">
+                <ion-label class="txt-in">Fecha de nacimiento</ion-label>
+                <ion-input
+                  style="color: black"
+                  [(ngModel)]="dateUser"
+                  type="date"
+                ></ion-input>
+                <!--   <ion-datetime
+                  name="dateuser"
+                  class="text-po"
+                  displayFormat="DD MMM YYYY"
+                  monthShortNames="Enero, Febrero, Marzo, Abril, Mayo, Junio, Julio, Agosto, Septiembre, Octubre, Noviembre, Diciembre"
+                  min="1940"
+                  max="2006"
+                  required
+                  [(ngModel)]="dateUser"
+                  placeholder="Seleccione una fecha"
+                >
+                </ion-datetime> -->
+              </ion-col>
+            </ion-row>
+          </div>
+          <ion-list style="margin-bottom: 5px">
+            <div
+              style="height: 45px; display: flex; padding-left: 10px"
+              class="brd"
+            >
+              <ion-label class="txt-in">Sexo</ion-label>
+              <ion-select
+                required
+                class="text-po"
+                style="--padding-start: 5px"
+                placeholder="Seleccionar"
+                [(ngModel)]="sexoUser"
+              >
+                <ion-select-option value="hombre">Masculino</ion-select-option>
+                <ion-select-option value="mujer">Femenino</ion-select-option>
+                <ion-select-option value="no especificado"
+                  >No especificado</ion-select-option
+                >
+              </ion-select>
+            </div>
+          </ion-list>
+        </div>
+      </div>
+      <div
+        class="line-nivel"
+        *ngIf="_sGenerales.user && _sGenerales.user.origin == 'correo'"
+      >
+        <div class="items-nivel"></div>
+        <ion-label class="nivel-text">Cambiar contraseña</ion-label>
+      </div>
+      <div *ngIf="_sGenerales.user && _sGenerales.user.origin == 'correo'">
+        <div>
+          <div class="box-input-container brd-rosa">
+            <ion-row style="width: 100%">
+              <ion-col>
+                <ion-label floating class="txt-in">NUEVA CONTRASEÑA</ion-label>
+                <ion-input
+                  required
+                  minlength="5"
+                  maxlength="90"
+                  class="text-po"
+                  type="password"
+                  [(ngModel)]="newpass"
+                ></ion-input>
+              </ion-col>
+            </ion-row>
+          </div>
+
+          <div class="box-input-container brd-rosa">
+            <ion-row style="width: 100%">
+              <ion-col>
+                <ion-label floating class="txt-in"
+                  >REPETIR NUEVA CONTRASEÑA</ion-label
+                >
+                <ion-input
+                  required
+                  minlength="5"
+                  maxlength="90"
+                  class="text-po"
+                  type="password"
+                  [(ngModel)]="repeatnewpass"
+                ></ion-input>
+              </ion-col>
+            </ion-row>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="box-buttons">
+      <button
+        mat-stroked-button
+        class="btn-empezar"
+        (click)="actualizarPerfil()"
+      >
+        Actualizar mi perfil
+      </button>
+      <a class="link-terminos" (click)="verTerminos()"
+        >Términos y condiciones</a
+      >
+    </div>
+  </div>
+</div>
