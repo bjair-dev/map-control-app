@@ -1,20 +1,25 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, OnInit } from "@angular/core";
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from "@angular/forms";
+import { ActivatedRoute, Router } from "@angular/router";
 import {
   AlertController,
   IonSlides,
   LoadingController,
   ToastController,
-} from '@ionic/angular';
-import { LoginService } from 'src/app/components/services/login.service';
-import { RegisterService } from 'src/app/components/services/register.service';
-import { ServiciosGenerales } from 'src/app/components/services/servicios-generales.service';
+} from "@ionic/angular";
+import { LoginService } from "src/app/components/services/login.service";
+import { RegisterService } from "src/app/components/services/register.service";
+import { ServiciosGenerales } from "src/app/components/services/servicios-generales.service";
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss'],
+  selector: "app-register",
+  templateUrl: "./register.component.html",
+  styleUrls: ["./register.component.scss"],
 })
 export class RegisterComponent implements OnInit {
   userRedesSociales = null;
@@ -46,44 +51,48 @@ export class RegisterComponent implements OnInit {
   form: FormGroup;
   form2: FormGroup;
   form3: FormGroup;
-  form4: FormGroup;
+
+  form4 = new FormGroup({
+    departamento: new FormControl("", [Validators.required]),
+    provincia: new FormControl("", [Validators.required]),
+    distrito: new FormControl("", [Validators.required]),
+  });
   departamento;
   ngOnInit() {
-    this._Register.getDepartamento().subscribe(
+    /*   this.form4.get("departamento").setValue(0); */
+    this.getDepartamentos();
+    this.getProvincias();
+    this.getDistritos();
+
+    /*     this._Register.getDepartamento().subscribe(
       (res: any) => {
         this.departamento = res;
       },
       (error) => {}
     );
-
-    console.log(localStorage.getItem('email'));
+ */
+    console.log(localStorage.getItem("email"));
     this.form = this.fb.group({
       email: [
-        localStorage.getItem('email'),
+        localStorage.getItem("email"),
 
         [
           Validators.required,
           Validators.email,
-          Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
+          Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"),
         ],
       ],
-      password: ['', Validators.required],
+      password: ["", Validators.required],
     });
 
     this.form2 = this.fb.group({
-      name: ['', [Validators.required]],
-      lastname: ['', [Validators.required]],
+      name: ["", [Validators.required]],
+      lastname: ["", [Validators.required]],
     });
 
     this.form3 = this.fb.group({
-      dni: ['', [Validators.required]],
-      sexo: ['', [Validators.required]],
-    });
-
-    this.form4 = this.fb.group({
-      departamento: ['', [Validators.required]],
-      provincia: ['', Validators.required],
-      distrito: ['', Validators.required],
+      dni: ["", [Validators.required]],
+      sexo: ["", [Validators.required]],
     });
 
     let user = this._login.userRedesSociales;
@@ -94,7 +103,7 @@ export class RegisterComponent implements OnInit {
     }
   }
 
-  provincia;
+  /*  provincia;
   getProvincia(e) {
     console.log('llego', e);
     // this.getDistrito(this.forma.get('prov_id').value);
@@ -123,57 +132,57 @@ export class RegisterComponent implements OnInit {
       }
     );
   }
-
+ */
   cleanPass() {
-    this.form.get('password').reset();
-    this.form4.get('passwordc').reset();
+    this.form.get("password").reset();
+    this.form4.get("passwordc").reset();
   }
   async save() {
     if (
-      this.form4.get('departamento').value == '' ||
-      this.form4.get('departamento').value == undefined ||
-      this.form4.get('departamento').value == null
+      this.form4.get("departamento").value == "" ||
+      this.form4.get("departamento").value == undefined ||
+      this.form4.get("departamento").value == null
     ) {
-      this.presentToast('Debe seleccionar un departamento');
+      this.presentToast("Debe seleccionar un departamento");
       return;
     }
 
     if (
-      this.form4.get('provincia').value == '' ||
-      this.form4.get('provincia').value == undefined ||
-      this.form4.get('provincia').value == null
+      this.form4.get("provincia").value == "" ||
+      this.form4.get("provincia").value == undefined ||
+      this.form4.get("provincia").value == null
     ) {
-      this.presentToast('Debe seleccionar una provincia');
+      this.presentToast("Debe seleccionar una provincia");
       return;
     }
 
     if (
-      this.form4.get('distrito').value == '' ||
-      this.form4.get('distrito').value == undefined ||
-      this.form4.get('distrito').value == null
+      this.form4.get("distrito").value == "" ||
+      this.form4.get("distrito").value == undefined ||
+      this.form4.get("distrito").value == null
     ) {
-      this.presentToast('Debe seleccionar un distrito');
+      this.presentToast("Debe seleccionar un distrito");
       return;
     } else {
       const loading = await this.presentLoading();
       let FormUser = {
-        name: this.form2.get('name').value,
-        lastname: this.form2.get('lastname').value,
-        dni: this.form3.get('dni').value,
+        name: this.form2.get("name").value,
+        lastname: this.form2.get("lastname").value,
+        dni: this.form3.get("dni").value,
         email: this.dataCorreo,
-        date_of_birth: '2006-12-10',
-        cellphone: '999999999',
-        sexo: this.form3.get('sexo').value,
-        password: this.form.get('password').value,
-        region_id: this.form4.get('departamento').value,
-        prov_id: this.form4.get('provincia').value,
-        distrito_id: this.form4.get('distrito').value,
+        date_of_birth: "2006-12-10",
+        cellphone: "999999999",
+        sexo: this.form3.get("sexo").value,
+        password: this.form.get("password").value,
+        region_id: this.form4.get("departamento").value,
+        prov_id: this.form4.get("provincia").value,
+        distrito_id: this.form4.get("distrito").value,
       };
 
       this._Register.RegistrarUser(FormUser).subscribe(
         async (response) => {
-          localStorage.setItem('email', this.form.get('email').value);
-          localStorage.setItem('pass', this.form.get('password').value);
+          localStorage.setItem("email", this.form.get("email").value);
+          localStorage.setItem("pass", this.form.get("password").value);
 
           this.form.reset();
           this.form2.reset();
@@ -185,47 +194,47 @@ export class RegisterComponent implements OnInit {
           toast.present();
 
           loading.dismiss();
-          this.router.navigateByUrl('/validation');
+          this.router.navigateByUrl("/validation");
         },
         async (error) => {
           loading.dismiss();
 
-          if (error.error.errors[0].msg == 'No puede ser vacio') {
+          if (error.error.errors[0].msg == "No puede ser vacio") {
             const toast = await this.toastController.create({
-              message: 'El campo nombre y apellidos no puede estar vacío.',
+              message: "El campo nombre y apellidos no puede estar vacío.",
               duration: 4000,
             });
             toast.present();
           }
 
-          if (error.error.errors[0].msg == 'Se require un email') {
+          if (error.error.errors[0].msg == "Se require un email") {
             const toast = await this.toastController.create({
-              message: 'Se requiere un email.',
+              message: "Se requiere un email.",
               duration: 4000,
             });
             toast.present();
           }
 
-          if (error.error.errors[0].msg == 'Ya existe el email') {
+          if (error.error.errors[0].msg == "Ya existe el email") {
             const toast = await this.toastController.create({
               message:
-                'El correo ya se encuentra registrado, ingrese un correo diferente e intente nuevamente.',
+                "El correo ya se encuentra registrado, ingrese un correo diferente e intente nuevamente.",
               duration: 4000,
             });
             toast.present();
           }
 
-          if (error.error.errors[0].msg == 'Se require un date') {
+          if (error.error.errors[0].msg == "Se require un date") {
             const toast = await this.toastController.create({
-              message: 'Ingrese fecha de nacimiento.',
+              message: "Ingrese fecha de nacimiento.",
               duration: 4000,
             });
             toast.present();
           }
 
-          if (error.error.errors[0].msg == 'Se require el DNI') {
+          if (error.error.errors[0].msg == "Se require el DNI") {
             const toast = await this.toastController.create({
-              message: 'Ingrese su DNI.',
+              message: "Ingrese su DNI.",
               duration: 4000,
             });
             toast.present();
@@ -233,19 +242,19 @@ export class RegisterComponent implements OnInit {
 
           if (
             error.error.errors[0].msg ==
-            'Se requiere al menos un numero y un caracter especial'
+            "Se requiere al menos un numero y un caracter especial"
           ) {
             const toast = await this.toastController.create({
               message:
-                'Ingrese un caracter en Mayuscula, un número y un caracter especial.',
+                "Ingrese un caracter en Mayuscula, un número y un caracter especial.",
               duration: 4000,
             });
             toast.present();
           }
 
-          if (error.error.errors[0].msg == 'Debe ser 9 numeros') {
+          if (error.error.errors[0].msg == "Debe ser 9 numeros") {
             const toast = await this.toastController.create({
-              message: 'Ingrese nueve digitos en el campo celular.',
+              message: "Ingrese nueve digitos en el campo celular.",
               duration: 4000,
             });
             toast.present();
@@ -265,10 +274,10 @@ export class RegisterComponent implements OnInit {
     }
   }
 
-  async presentLoading(message: string = 'Guardando.....') {
+  async presentLoading(message: string = "Guardando.....") {
     if (this.form !== null) {
       const loading = await this.loadingController.create({
-        cssClass: '',
+        cssClass: "",
         message,
       });
       await loading.present();
@@ -278,25 +287,25 @@ export class RegisterComponent implements OnInit {
 
   async verificarTreeForm(slide: IonSlides) {
     if (
-      this.form3.get('dni').value == '' ||
-      this.form3.get('dni').value == undefined ||
-      this.form3.get('dni').value == null ||
-      this.form3.get('dni').value.length < 8
+      this.form3.get("dni").value == "" ||
+      this.form3.get("dni").value == undefined ||
+      this.form3.get("dni").value == null ||
+      this.form3.get("dni").value.length < 8
     ) {
-      this.presentToast('Debe ingresar un DNI');
+      this.presentToast("Debe ingresar un DNI");
       return;
     }
 
     if (
-      this.form3.get('sexo').value == '' ||
-      this.form3.get('sexo').value == undefined ||
-      this.form3.get('sexo').value == null
+      this.form3.get("sexo").value == "" ||
+      this.form3.get("sexo").value == undefined ||
+      this.form3.get("sexo").value == null
     ) {
-      this.presentToast('Debe ingresar su sexo');
+      this.presentToast("Debe ingresar su sexo");
       return;
     }
 
-    const loading = await this.presentLoading('Verificando...');
+    const loading = await this.presentLoading("Verificando...");
 
     slide.lockSwipes(false);
 
@@ -306,70 +315,70 @@ export class RegisterComponent implements OnInit {
 
   async verificarOneForm(slide: IonSlides) {
     if (
-      this.form.get('email').value == '' ||
-      this.form.get('email').value == undefined ||
-      this.form.get('email').value == null ||
-      this.form.get('email').invalid
+      this.form.get("email").value == "" ||
+      this.form.get("email").value == undefined ||
+      this.form.get("email").value == null ||
+      this.form.get("email").invalid
     ) {
-      this.presentToast('Debe ingresar un email valido');
+      this.presentToast("Debe ingresar un email valido");
       return;
     }
 
     if (
-      this.form.get('password').value == '' ||
-      this.form.get('password').value == undefined ||
-      this.form.get('password').value == null
+      this.form.get("password").value == "" ||
+      this.form.get("password").value == undefined ||
+      this.form.get("password").value == null
     ) {
-      this.presentToast('Debe ingresar una contraseña valida');
+      this.presentToast("Debe ingresar una contraseña valida");
       return;
     }
     const regex = new RegExp(
       /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/
     );
 
-    if (regex.test(this.form.get('password').value) == false) {
+    if (regex.test(this.form.get("password").value) == false) {
       this.presentToast(
-        'Se requiere al menos un numero y un caracter especial'
+        "Se requiere al menos un numero y un caracter especial"
       );
       return;
     }
-    const loading = await this.presentLoading('Verificando...');
+    const loading = await this.presentLoading("Verificando...");
 
     slide.lockSwipes(false);
-    this.dataCorreo = this.form.get('email').value;
+    this.dataCorreo = this.form.get("email").value;
     slide.slideNext();
     loading.dismiss();
   }
 
   async verificarTwoForm(slide: IonSlides) {
     if (
-      this.form2.get('name').value == '' ||
-      this.form2.get('name').value == undefined ||
-      this.form2.get('name').value == null
+      this.form2.get("name").value == "" ||
+      this.form2.get("name").value == undefined ||
+      this.form2.get("name").value == null
     ) {
-      this.presentToast('Debe ingresar un nombre');
+      this.presentToast("Debe ingresar un nombre");
       return;
     }
     if (
-      this.form2.get('lastname').value == '' ||
-      this.form2.get('lastname').value == undefined ||
-      this.form2.get('lastname').value == null
+      this.form2.get("lastname").value == "" ||
+      this.form2.get("lastname").value == undefined ||
+      this.form2.get("lastname").value == null
     ) {
-      this.presentToast('Debe ingresar un apellido');
+      this.presentToast("Debe ingresar un apellido");
       return;
     }
 
-    const name = this.form2.get('name').value;
-    const lastname = this.form2.get('lastname').value;
-    const nameArr: Array<string> = name.split('');
-    const lastNameAr: Array<string> = lastname.split('');
+    const name = this.form2.get("name").value;
+    const lastname = this.form2.get("lastname").value;
+    const nameArr: Array<string> = name.split("");
+    const lastNameAr: Array<string> = lastname.split("");
     let salir = false;
     nameArr.forEach((element) => {
       const charCode = element.charCodeAt(0);
       if (charCode > 31 && (charCode < 33 || charCode > 64)) {
       } else {
         this.presentToast(
-          'El NOMBRE no debe contener números ni caracteres especiales.'
+          "El NOMBRE no debe contener números ni caracteres especiales."
         );
         salir = true;
       }
@@ -379,7 +388,7 @@ export class RegisterComponent implements OnInit {
       if (charCode2 > 31 && (charCode2 < 33 || charCode2 > 64)) {
       } else {
         this.presentToast(
-          'El APELLIDO no debe contener números ni caracteres especiales.'
+          "El APELLIDO no debe contener números ni caracteres especiales."
         );
         salir = true;
       }
@@ -388,7 +397,7 @@ export class RegisterComponent implements OnInit {
       return;
     }
 
-    const loading = await this.presentLoading('Verificando...');
+    const loading = await this.presentLoading("Verificando...");
 
     slide.lockSwipes(false);
 
@@ -411,7 +420,7 @@ export class RegisterComponent implements OnInit {
     this.form2.reset();
     this.form3.reset();
     this.form4.reset();
-    this.router.navigate(['/login']);
+    this.router.navigate(["/login"]);
   }
 
   numberOnly(event): boolean {
@@ -430,5 +439,40 @@ export class RegisterComponent implements OnInit {
       return true;
     }
     return false;
+  }
+
+  departamentos: Array<any>;
+  provincias: Array<any>;
+  distritos: Array<any>;
+
+  getDepartamentos() {
+    this._Register.getDepartamento().subscribe((data1) => {
+      // console.log(data1.data);
+      this.departamentos = data1;
+      console.log(data1, "depa");
+    });
+  }
+
+  getProvincias() {
+    console.log("holaaa", this.form4.get("departamento").value);
+    this.form4.get("provincia").setValue(0);
+    this.form4.get("distrito").setValue(0);
+    this._Register
+      .getProvincia(this.form4.get("departamento").value)
+      .subscribe((data2) => {
+        // console.log(data2.data);
+        this.provincias = data2;
+      });
+  }
+
+  getDistritos() {
+    console.log(this.form4.get("distrito").setValue(0), "2312321");
+    this.form4.get("distrito").setValue(0);
+    this._Register
+      .getDistrito(this.form4.get("provincia").value)
+      .subscribe((data3) => {
+        // console.log(data3.data);
+        this.distritos = data3;
+      });
   }
 }

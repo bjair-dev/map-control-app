@@ -65,7 +65,7 @@ export class EditperfilComponent implements OnInit {
       let f = new Date(this.dateUser);
       let t = `${f.getFullYear()}-${
         f.getMonth() + 1 < 10 ? `0${f.getMonth() + 1}` : f.getMonth() + 1
-      }-${f.getDate() < 10 ? `0${f.getDate()}` : f.getDate()}`;
+      }-${f.getDate() < 10 ? `0${f.getDate()}` : f.getDate() - 1}`;
       // console.log('actualizar fecha nacimiento');
       // console.log(t);
       obj.date_of_birth = t;

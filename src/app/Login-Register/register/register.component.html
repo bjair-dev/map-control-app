@@ -160,43 +160,43 @@
             <form [formGroup]="form4">
               <div class="inli-fx">
                 <ion-select
-                  style="width: 100%; background-color: white"
+                  style="width: 100%; background-color: white; color: black"
                   class="itm-input"
                   formControlName="departamento"
                   placeholder="Departamento"
-                  (ionChange)="getProvincia($event)"
+                  (ionChange)="getProvincias()"
                 >
                   <ion-select-option
-                    [value]="item.id"
-                    *ngFor="let item of departamento"
-                    >{{ item.name }}</ion-select-option
+                    [value]="d.code_departamento"
+                    *ngFor="let d of departamentos"
+                    >{{ d.departamento }}</ion-select-option
                   >
                 </ion-select>
 
                 <ion-select
-                  style="width: 100%; background-color: white"
+                  style="width: 100%; background-color: white; color: black"
                   class="itm-input"
                   formControlName="provincia"
                   placeholder="Provincia"
-                  (ionChange)="getDistrito($event)"
+                  (ionChange)="getDistritos()"
                 >
                   <ion-select-option
-                    [value]="item.id"
-                    *ngFor="let item of provincia"
-                    >{{ item.name }}</ion-select-option
+                    *ngFor="let p of provincias"
+                    [value]="p.code_provincia"
+                    >{{ p.provincia }}</ion-select-option
                   >
                 </ion-select>
 
                 <ion-select
-                  style="width: 100%; background-color: white"
+                  style="width: 100%; background-color: white; color: black"
                   class="itm-input"
                   formControlName="distrito"
                   placeholder="Distrito"
                 >
                   <ion-select-option
-                    [value]="item.id"
-                    *ngFor="let item of distrito"
-                    >{{ item.name }}</ion-select-option
+                    *ngFor="let d of distritos"
+                    [value]="d.ubigeo"
+                    >{{ d.distrito }}</ion-select-option
                   >
                 </ion-select>
               </div>
