@@ -139,27 +139,27 @@ export class RegisterComponent implements OnInit {
   }
   async save() {
     if (
-      this.form4.get("departamento").value == "" ||
-      this.form4.get("departamento").value == undefined ||
-      this.form4.get("departamento").value == null
+      this.form4.get("departamento").value.code_departamento == "" ||
+      this.form4.get("departamento").value.code_departamento == undefined ||
+      this.form4.get("departamento").value.code_departamento == null
     ) {
       this.presentToast("Debe seleccionar un departamento");
       return;
     }
 
     if (
-      this.form4.get("provincia").value == "" ||
-      this.form4.get("provincia").value == undefined ||
-      this.form4.get("provincia").value == null
+      this.form4.get("provincia").value.code_provincia == "" ||
+      this.form4.get("provincia").value.code_provincia == undefined ||
+      this.form4.get("provincia").value.code_provincia == null
     ) {
       this.presentToast("Debe seleccionar una provincia");
       return;
     }
 
     if (
-      this.form4.get("distrito").value == "" ||
-      this.form4.get("distrito").value == undefined ||
-      this.form4.get("distrito").value == null
+      this.form4.get("distrito").value.ubigeo == "" ||
+      this.form4.get("distrito").value.ubigeo == undefined ||
+      this.form4.get("distrito").value.ubigeo == null
     ) {
       this.presentToast("Debe seleccionar un distrito");
       return;
@@ -174,11 +174,15 @@ export class RegisterComponent implements OnInit {
         cellphone: "999999999",
         sexo: this.form3.get("sexo").value,
         password: this.form.get("password").value,
-        region_id: this.form4.get("departamento").value,
-        prov_id: this.form4.get("provincia").value,
-        distrito_id: this.form4.get("distrito").value,
+        code_departamento:
+          this.form4.get("departamento").value.code_departamento,
+        code_provincia: this.form4.get("provincia").value.code_provincia,
+        ubigeo: this.form4.get("distrito").value.ubigeo,
+        name_departamento: this.form4.get("departamento").value.departamento,
+        name_provincia: this.form4.get("provincia").value.provincia,
+        name_distrito: this.form4.get("distrito").value.distrito,
       };
-
+      console.log("ESTO MANDA ", FormUser);
       this._Register.RegistrarUser(FormUser).subscribe(
         async (response) => {
           localStorage.setItem("email", this.form.get("email").value);
@@ -454,11 +458,11 @@ export class RegisterComponent implements OnInit {
   }
 
   getProvincias() {
-    console.log("holaaa", this.form4.get("departamento").value);
+    /*     console.log("holaaa", this.form4.get("departamento").value);
     this.form4.get("provincia").setValue(0);
-    this.form4.get("distrito").setValue(0);
+    this.form4.get("distrito").setValue(0); */
     this._Register
-      .getProvincia(this.form4.get("departamento").value)
+      .getProvincia(this.form4.get("departamento").value.code_departamento)
       .subscribe((data2) => {
         // console.log(data2.data);
         this.provincias = data2;
@@ -466,10 +470,10 @@ export class RegisterComponent implements OnInit {
   }
 
   getDistritos() {
-    console.log(this.form4.get("distrito").setValue(0), "2312321");
-    this.form4.get("distrito").setValue(0);
+    /*     console.log(this.form4.get("distrito").setValue(0), "2312321");
+    this.form4.get("distrito").setValue(0); */
     this._Register
-      .getDistrito(this.form4.get("provincia").value)
+      .getDistrito(this.form4.get("provincia").value.code_provincia)
       .subscribe((data3) => {
         // console.log(data3.data);
         this.distritos = data3;

@@ -20,22 +20,15 @@
         <ion-slide>
           <app-welcome-message
             [message]="
-              'Vamos a ayudarte a ordenar tu presupuesto, proponerte
-        objetivos y celebrar pequeños triunfos todos los días.
-                '
+              'Vamos a ayudarte a ordenar tu presupuesto, proponerte objetivos y celebrar pequeños triunfos todos los días.'
             "
           ></app-welcome-message>
         </ion-slide>
       </ion-slides>
     </div>
-
+    <!--     [options]="slideOpts" -->
     <div>
-      <ion-slides
-        pager="false"
-        #loginSlider
-        [options]="slideOpts"
-        style="width: 100%"
-      >
+      <ion-slides pager="false" #loginSlider style="width: 100%">
         <ion-slide style="flex-direction: column">
           <form [formGroup]="form">
             <div class="inli-fx">
@@ -167,7 +160,7 @@
                   (ionChange)="getProvincias()"
                 >
                   <ion-select-option
-                    [value]="d.code_departamento"
+                    [value]="d"
                     *ngFor="let d of departamentos"
                     >{{ d.departamento }}</ion-select-option
                   >
@@ -180,11 +173,9 @@
                   placeholder="Provincia"
                   (ionChange)="getDistritos()"
                 >
-                  <ion-select-option
-                    *ngFor="let p of provincias"
-                    [value]="p.code_provincia"
-                    >{{ p.provincia }}</ion-select-option
-                  >
+                  <ion-select-option *ngFor="let p of provincias" [value]="p">{{
+                    p.provincia
+                  }}</ion-select-option>
                 </ion-select>
 
                 <ion-select
@@ -193,11 +184,9 @@
                   formControlName="distrito"
                   placeholder="Distrito"
                 >
-                  <ion-select-option
-                    *ngFor="let d of distritos"
-                    [value]="d.ubigeo"
-                    >{{ d.distrito }}</ion-select-option
-                  >
+                  <ion-select-option *ngFor="let d of distritos" [value]="d">{{
+                    d.distrito
+                  }}</ion-select-option>
                 </ion-select>
               </div>
 

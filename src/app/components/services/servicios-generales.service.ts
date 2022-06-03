@@ -1,24 +1,24 @@
-import { EventEmitter, Injectable, Output } from '@angular/core';
+import { EventEmitter, Injectable, Output } from "@angular/core";
 import {
   HttpClient,
   HttpHeaders,
   HttpErrorResponse,
-} from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { retry, catchError } from 'rxjs/operators';
-import { environment } from '../../../environments/environment';
-import { Router } from '@angular/router';
+} from "@angular/common/http";
+import { Observable, throwError } from "rxjs";
+import { retry, catchError } from "rxjs/operators";
+import { environment } from "../../../environments/environment";
+import { Router } from "@angular/router";
 import {
   LoadingController,
   MenuController,
   ModalController,
   NavController,
-} from '@ionic/angular';
+} from "@ionic/angular";
 /* import { NotificationDetailsPage } from 'src/app/notification-details/notification-details.page';
 import { OnboardComponent } from '../../components/onboard/onboard.component';
 import { ComponentsService } from './components.service'; */
 @Injectable({
-  providedIn: 'root',
+  providedIn: "root",
 })
 export class ServiciosGenerales {
   @Output() changeTab = new EventEmitter<any>();
@@ -42,20 +42,20 @@ export class ServiciosGenerales {
   // Http Options
   httpOptions = {
     headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*',
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*",
     }),
   };
   validarUser(customer): Observable<any> {
     let headers = new HttpHeaders();
-    headers = headers.set('Content-type', 'application/json');
+    headers = headers.set("Content-type", "application/json");
     headers = headers.set(
-      'Authorization',
-      'Basic ' + localStorage.getItem('map_control')
+      "Authorization",
+      "Basic " + localStorage.getItem("map_control")
     );
 
     return this.http.post(
-      this.URL_BACKEND + '/api/active/verifycode',
+      this.URL_BACKEND + "/api/active/verifycode",
       customer,
       {
         headers: headers,
@@ -65,14 +65,14 @@ export class ServiciosGenerales {
 
   enviarCodigo(customer): Observable<any> {
     let headers = new HttpHeaders();
-    headers = headers.set('Content-type', 'application/json');
+    headers = headers.set("Content-type", "application/json");
     headers = headers.set(
-      'Authorization',
-      'Basic ' + localStorage.getItem('map_control')
+      "Authorization",
+      "Basic " + localStorage.getItem("map_control")
     );
 
     return this.http.post(
-      this.URL_BACKEND + '/api/sendcodeverification',
+      this.URL_BACKEND + "/api/sendcodeverification",
       customer,
       {
         headers: headers,
@@ -82,20 +82,20 @@ export class ServiciosGenerales {
 
   changePass(customer): Observable<any> {
     let headers = new HttpHeaders();
-    headers = headers.set('Content-type', 'application/json');
+    headers = headers.set("Content-type", "application/json");
     headers = headers.set(
-      'Authorization',
-      'Basic ' + localStorage.getItem('map_control')
+      "Authorization",
+      "Basic " + localStorage.getItem("map_control")
     );
 
-    return this.http.post(this.URL_BACKEND + '/api/restore', customer, {
+    return this.http.post(this.URL_BACKEND + "/api/restore", customer, {
       headers: headers,
     });
   }
 
-  async presentLoading(message: string = 'Cerrando sesión.....') {
+  async presentLoading(message: string = "Cerrando sesión.....") {
     const loading = await this.loadingController.create({
-      cssClass: '',
+      cssClass: "",
       message,
     });
     await loading.present();
@@ -104,24 +104,24 @@ export class ServiciosGenerales {
 
   unauthorized() {
     this.menu.close();
-    localStorage.removeItem('map_control');
+    localStorage.removeItem("map_control");
     localStorage.clear();
     // this.router.navigateByUrl('/login');
-    this.router.navigate(['/login']);
+    this.router.navigate(["/login"]);
   }
 
   getProfile() {
     this.user = null;
     let headers = new HttpHeaders();
-    headers = headers.set('Content-type', 'application/json');
+    headers = headers.set("Content-type", "application/json");
     headers = headers.set(
-      'Authorization',
-      'Bearer ' + localStorage.getItem('map_control')
+      "Authorization",
+      "Bearer " + localStorage.getItem("map_control")
     );
     /*     this.getUserMedals();
      */ //profile user
     this.http
-      .get(this.URL_BACKEND + '/api/user-account', {
+      .get(this.URL_BACKEND + "/api/user-account", {
         headers: headers,
       })
       .subscribe((resp) => {
@@ -129,13 +129,13 @@ export class ServiciosGenerales {
 
         let seguir = true;
         if (this.user.terms_and_conditions == false) {
-          this.router.navigateByUrl('/terms-conditions');
+          this.router.navigateByUrl("/terms-conditions");
           seguir = false;
         }
         if (seguir) {
-          let ob = +localStorage.getItem('onboard');
+          let ob = +localStorage.getItem("onboard");
           if (this.user.number_of_sessions == 1 && ob) {
-            localStorage.setItem('onboard', '1');
+            localStorage.setItem("onboard", "1");
             this.launchOnBoard();
           }
         }
@@ -156,14 +156,14 @@ export class ServiciosGenerales {
   getNotification() {
     this.noti = null;
     let headers = new HttpHeaders();
-    headers = headers.set('Content-type', 'application/json');
+    headers = headers.set("Content-type", "application/json");
     headers = headers.set(
-      'Authorization',
-      'Bearer ' + localStorage.getItem('map_control')
+      "Authorization",
+      "Bearer " + localStorage.getItem("map_control")
     );
 
     this.http
-      .get(this.URL_BACKEND + '/api/notification-pending', {
+      .get(this.URL_BACKEND + "/api/notification-pending", {
         headers: headers,
       })
       .subscribe((respx: any) => {
@@ -222,13 +222,13 @@ export class ServiciosGenerales {
 
   getFraseInicial(): Observable<any> {
     let headers = new HttpHeaders();
-    headers = headers.set('Content-type', 'application/json');
+    headers = headers.set("Content-type", "application/json");
     headers = headers.set(
-      'Authorization',
-      'Bearer ' + localStorage.getItem('map_control')
+      "Authorization",
+      "Bearer " + localStorage.getItem("map_control")
     );
 
-    return this.http.get(this.URL_BACKEND + '/api/motivational-phrase', {
+    return this.http.get(this.URL_BACKEND + "/api/motivational-phrase", {
       headers: headers,
     });
   }
@@ -237,33 +237,33 @@ export class ServiciosGenerales {
     const loading = await this.presentLoading();
 
     let headers = new HttpHeaders();
-    headers = headers.set('Content-type', 'application/json');
+    headers = headers.set("Content-type", "application/json");
     headers = headers.set(
-      'Authorization',
-      'Bearer ' + localStorage.getItem('map_control')
+      "Authorization",
+      "Bearer " + localStorage.getItem("map_control")
     );
     this.http
-      .get(this.URL_BACKEND + '/api/signout', {
+      .get(this.URL_BACKEND + "/api/signout", {
         headers: headers,
       })
       .subscribe(
         (resp) => {
           this.menu.close();
-          localStorage.removeItem('map_control');
+          localStorage.removeItem("map_control");
           localStorage.clear();
           loading.dismiss();
 
           // this.router.navigateByUrl('/login');
-          this._sNav.navigateRoot('/login');
+          this._sNav.navigateRoot("/login");
           // this.router.navigate(['/login']);
         },
         (error) => {
           this.menu.close();
-          localStorage.removeItem('map_control');
+          localStorage.removeItem("map_control");
           localStorage.clear();
           loading.dismiss();
           // this.router.navigateByUrl('/login');
-          this._sNav.navigateRoot('/login');
+          this._sNav.navigateRoot("/login");
           // this.router.navigate(['/login']);
         }
       );
@@ -271,10 +271,10 @@ export class ServiciosGenerales {
 
   getObtenerLoantype() {
     let headers = new HttpHeaders();
-    headers = headers.set('Content-type', 'application/json');
+    headers = headers.set("Content-type", "application/json");
     headers = headers.set(
-      'Authorization',
-      'Bearer ' + localStorage.getItem('map_control')
+      "Authorization",
+      "Bearer " + localStorage.getItem("map_control")
     );
     return this.http.get<any>(this.URL_BACKEND + `/api/loan-type-user`, {
       headers: headers,
@@ -283,10 +283,10 @@ export class ServiciosGenerales {
 
   getObtenerFinanciera(id) {
     let headers = new HttpHeaders();
-    headers = headers.set('Content-type', 'application/json');
+    headers = headers.set("Content-type", "application/json");
     headers = headers.set(
-      'Authorization',
-      'Bearer ' + localStorage.getItem('map_control')
+      "Authorization",
+      "Bearer " + localStorage.getItem("map_control")
     );
     return this.http.get<any>(this.URL_BACKEND + `/api/loan-bank/` + `${id}`, {
       headers: headers,
@@ -295,20 +295,20 @@ export class ServiciosGenerales {
 
   getRoute(categoria): string {
     if (categoria === 1) {
-      return 'tips';
+      return "tips";
     } else {
       if (categoria === 2) {
-        return 'videos';
+        return "videos";
       }
     }
   }
 
   getTipoHistory() {
     let headers = new HttpHeaders();
-    headers = headers.set('Content-type', 'application/json');
+    headers = headers.set("Content-type", "application/json");
     headers = headers.set(
-      'Authorization',
-      'Bearer ' + localStorage.getItem('map_control')
+      "Authorization",
+      "Bearer " + localStorage.getItem("map_control")
     );
 
     return this.http.get<any>(
@@ -320,12 +320,12 @@ export class ServiciosGenerales {
   }
 
   getCategoríaTips() {
-    console.log('llegan lasc ategorias');
+    console.log("llegan lasc ategorias");
     let headers = new HttpHeaders();
-    headers = headers.set('Content-type', 'application/json');
+    headers = headers.set("Content-type", "application/json");
     headers = headers.set(
-      'Authorization',
-      'Bearer ' + localStorage.getItem('map_control')
+      "Authorization",
+      "Bearer " + localStorage.getItem("map_control")
     );
     return this.http.get<any>(this.URL_BACKEND + `/api/tips-categories-user`, {
       headers: headers,
@@ -333,10 +333,10 @@ export class ServiciosGenerales {
   }
   getHistoryTips(id) {
     let headers = new HttpHeaders();
-    headers = headers.set('Content-type', 'application/json');
+    headers = headers.set("Content-type", "application/json");
     headers = headers.set(
-      'Authorization',
-      'Bearer ' + localStorage.getItem('map_control')
+      "Authorization",
+      "Bearer " + localStorage.getItem("map_control")
     );
     return this.http.get<any>(
       this.URL_BACKEND + `/api/user-content/history/tips/` + id,
@@ -378,10 +378,10 @@ export class ServiciosGenerales {
 
   enviarCodigos(id): Observable<any> {
     let headers = new HttpHeaders();
-    headers = headers.set('Content-type', 'application/json');
+    headers = headers.set("Content-type", "application/json");
     headers = headers.set(
-      'Authorization',
-      'Bearer ' + localStorage.getItem('map_control')
+      "Authorization",
+      "Bearer " + localStorage.getItem("map_control")
     );
 
     return this.http.put<any>(
@@ -395,10 +395,10 @@ export class ServiciosGenerales {
 
   updateDaySession(): Observable<any> {
     let headers = new HttpHeaders();
-    headers = headers.set('Content-type', 'application/json');
+    headers = headers.set("Content-type", "application/json");
     headers = headers.set(
-      'Authorization',
-      'Bearer ' + localStorage.getItem('map_control')
+      "Authorization",
+      "Bearer " + localStorage.getItem("map_control")
     );
 
     return this.http.put<any>(
@@ -412,10 +412,10 @@ export class ServiciosGenerales {
 
   dataAnsweer(dataSurvey): Observable<any> {
     let headers = new HttpHeaders();
-    headers = headers.set('Content-type', 'application/json');
+    headers = headers.set("Content-type", "application/json");
     headers = headers.set(
-      'Authorization',
-      'Bearer ' + localStorage.getItem('map_control')
+      "Authorization",
+      "Bearer " + localStorage.getItem("map_control")
     );
     return this.http.post<any>(
       this.URL_BACKEND + `/api/answer-survey/`,
@@ -425,10 +425,10 @@ export class ServiciosGenerales {
   }
   updateEstadonoti(id): Observable<any> {
     let headers = new HttpHeaders();
-    headers = headers.set('Content-type', 'application/json');
+    headers = headers.set("Content-type", "application/json");
     headers = headers.set(
-      'Authorization',
-      'Bearer ' + localStorage.getItem('map_control')
+      "Authorization",
+      "Bearer " + localStorage.getItem("map_control")
     );
     return this.http.put<any>(
       this.URL_BACKEND + `/api/notification-pending/status/` + id,
@@ -439,10 +439,10 @@ export class ServiciosGenerales {
 
   updatePassword(pass): Observable<any> {
     let headers = new HttpHeaders();
-    headers = headers.set('Content-type', 'application/json');
+    headers = headers.set("Content-type", "application/json");
     headers = headers.set(
-      'Authorization',
-      'Bearer ' + localStorage.getItem('map_control')
+      "Authorization",
+      "Bearer " + localStorage.getItem("map_control")
     );
     return this.http.put<any>(
       this.URL_BACKEND + `/api/user-account/updatepassword`,
@@ -457,10 +457,10 @@ export class ServiciosGenerales {
 
   registrarIncidencia(actionId, contentId) {
     let headers = new HttpHeaders();
-    headers = headers.set('Content-type', 'application/json');
+    headers = headers.set("Content-type", "application/json");
     headers = headers.set(
-      'Authorization',
-      'Bearer ' + localStorage.getItem('map_control')
+      "Authorization",
+      "Bearer " + localStorage.getItem("map_control")
     );
     this.http
       .post<any>(
@@ -483,10 +483,10 @@ export class ServiciosGenerales {
   };
   registrarIncidenciaRes(actionId, contentId) {
     let headers = new HttpHeaders();
-    headers = headers.set('Content-type', 'application/json');
+    headers = headers.set("Content-type", "application/json");
     headers = headers.set(
-      'Authorization',
-      'Bearer ' + localStorage.getItem('map_control')
+      "Authorization",
+      "Bearer " + localStorage.getItem("map_control")
     );
     this.http
       .post<any>(
@@ -508,10 +508,10 @@ export class ServiciosGenerales {
 
   actualizarIndicenciaRes() {
     let headers = new HttpHeaders();
-    headers = headers.set('Content-type', 'application/json');
+    headers = headers.set("Content-type", "application/json");
     headers = headers.set(
-      'Authorization',
-      'Bearer ' + localStorage.getItem('map_control')
+      "Authorization",
+      "Bearer " + localStorage.getItem("map_control")
     );
 
     let tim = new Date().getTime();
@@ -538,10 +538,10 @@ export class ServiciosGenerales {
    */
   updatePerfilUser(user): Observable<any> {
     let headers = new HttpHeaders();
-    headers = headers.set('Content-type', 'application/json');
+    headers = headers.set("Content-type", "application/json");
     headers = headers.set(
-      'Authorization',
-      'Bearer ' + localStorage.getItem('map_control')
+      "Authorization",
+      "Bearer " + localStorage.getItem("map_control")
     );
     return this.http.put<any>(
       this.URL_BACKEND + `/api/user-account/gender/dateofbirth`,
@@ -549,6 +549,20 @@ export class ServiciosGenerales {
       {
         headers: headers,
       }
+    );
+  }
+
+  updatePerfilImage(DataImg) {
+    let headers = new HttpHeaders();
+    headers = headers.set("Content-type", "application/json");
+    headers = headers.set(
+      "Authorization",
+      "Bearer " + localStorage.getItem("map_control")
+    );
+    return this.http.put(
+      this.URL_BACKEND + `/api/user-account/image`,
+      DataImg,
+      { headers: headers }
     );
   }
 }
