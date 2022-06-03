@@ -111,6 +111,8 @@ export class EditperfilComponent implements OnInit {
         this.presentToast("Tus datos personales se actualizaron correctamente");
         this.ActualizarImg();
         this._sGenerales.getProfile();
+        this._sGenerales.actualizarPerfil.emit();
+
         // this._sModal.dismiss();
       },
       (error) => {

@@ -32,27 +32,6 @@
 
       <div>
         <div class="list-items">
-          <div *ngFor="let item of items">
-            <div>
-              <div class="line-nivel">
-                <div class="items-nivel"></div>
-              </div>
-              <div
-                class="list-item"
-                [ngClass]="{ 'item-disabled': opc.disabled }"
-                *ngFor="let opc of item.opciones"
-                (click)="clickLink(opc.link)"
-              >
-                <div class="icon-circle">
-                  <ion-icon name="{{ opc.icon }}" slot="start"></ion-icon>
-                </div>
-                <ion-label class="opc-name">{{ opc.name }}</ion-label>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="list-items">
           <div>
             <div>
               <div class="list-item">
@@ -66,7 +45,7 @@
                 <ion-label class="nivel-text"></ion-label>
               </div>
 
-              <div class="list-item">
+              <div (click)="abreNoticia()" class="list-item">
                 <div class="icon-circle">
                   <ion-icon name="newspaper-outline" slot="start"></ion-icon>
                 </div>

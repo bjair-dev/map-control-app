@@ -109,6 +109,20 @@ export class ServiciosGenerales {
     // this.router.navigateByUrl('/login');
     this.router.navigate(["/login"]);
   }
+  @Output() actualizarPerfil = new EventEmitter<any>();
+
+  getNoticias(): Observable<any> {
+    let headers = new HttpHeaders();
+    headers = headers.set("Content-type", "application/json");
+    headers = headers.set(
+      "Authorization",
+      "Bearer " + localStorage.getItem("map_control")
+    );
+
+    return this.http.get<any>(this.URL_BACKEND + `/api/user-account/noticias`, {
+      headers: headers,
+    });
+  }
 
   getProfile() {
     this.user = null;

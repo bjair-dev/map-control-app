@@ -15,6 +15,7 @@ import { AgmCoreModule } from "@agm/core";
     FormsModule,
     ExploreContainerComponentModule,
     Tab1PageRoutingModule,
+
     AgmCoreModule.forRoot({
       // please get your own API key here:
       // https://developers.google.com/maps/documentation/javascript/get-api-key?hl=en

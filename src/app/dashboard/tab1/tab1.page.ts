@@ -49,7 +49,9 @@ export class Tab1Page {
     private _sComments: CommentService
   ) {
     this._sGenerales.getProfile();
-
+    this._sGenerales.actualizarPerfil.subscribe(() => {
+      this._sGenerales.getProfile();
+    });
     this.mapsApiLoader.load().then(() => {
       this.geocoder = new google.maps.Geocoder();
       console.log(this.geocoder, "geo");

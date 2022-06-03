@@ -1,9 +1,16 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
-import { IonSlides, LoadingController, ToastController } from "@ionic/angular";
+import {
+  IonSlides,
+  LoadingController,
+  Platform,
+  ToastController,
+} from "@ionic/angular";
 import { IPayload } from "src/app/components/interface/login-interface";
 import { LoginService } from "src/app/components/services/login.service";
+import { OneSignal } from "@ionic-native/onesignal/ngx";
+import { ServiciosGenerales } from "src/app/components/services/servicios-generales.service";
 
 @Component({
   selector: "app-login",
@@ -13,6 +20,9 @@ import { LoginService } from "src/app/components/services/login.service";
 export class LoginComponent implements OnInit {
   constructor(
     public router: Router,
+    private platform: Platform,
+    private oneSignal: OneSignal,
+    private sGenerales: ServiciosGenerales,
     public loadingController: LoadingController,
     private _login: LoginService,
     public toastController: ToastController,
@@ -172,5 +182,44 @@ export class LoginComponent implements OnInit {
 
   entrarRegister() {
     this.router.navigateByUrl("/register");
+  }
+
+  onseSignalAppId: string = "745e92d8-31fb-47ed-9315-b3ff0e90528e";
+  googleProjectId: string = "239683653001";
+  configSignal() {
+    console.log("aqui llego");
+    this.platform.ready().then(() => {
+      if (this.platform.is("capacitor")) {
+        if (this.platform.is("android")) {
+          this.oneSignal.startInit(this.onseSignalAppId, this.googleProjectId);
+        }
+        if (this.platform.is("ios")) {
+          this.oneSignal.startInit(this.onseSignalAppId);
+        }
+        this.oneSignal.inFocusDisplaying(
+          this.oneSignal.OSInFocusDisplayOption.Notification
+        );
+
+        this.oneSignal.endInit();
+
+        this.oneSignal
+          .getIds()
+          .then(async (identity) => {
+            console.log("configSignal identity", identity);
+            const updObs = await this.sGenerales.enviarCodigos(identity.userId);
+            updObs.subscribe(
+              (data) => {
+                console.log("updateIdDevice OK");
+              },
+              (err) => {
+                console.log("updateIdDevice ERR", err);
+              }
+            );
+          })
+          .catch((err) => {
+            console.error("Error configSignal identity", err);
+          });
+      }
+    });
   }
 }
