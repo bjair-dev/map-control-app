@@ -391,6 +391,7 @@ export class ServiciosGenerales {
   } */
 
   enviarCodigos(id): Observable<any> {
+    console.log(id, "se envio el codigo");
     let headers = new HttpHeaders();
     headers = headers.set("Content-type", "application/json");
     headers = headers.set(

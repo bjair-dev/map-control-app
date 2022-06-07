@@ -9,6 +9,7 @@ import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { ComponentsModule } from "./components/components.module";
 /* import { AgmCoreModule } from '@agm/core'; */
+import { OneSignal } from "@ionic-native/onesignal/ngx";
 
 @NgModule({
   declarations: [AppComponent],
@@ -21,7 +22,7 @@ import { ComponentsModule } from "./components/components.module";
     IonicModule.forRoot(),
     AppRoutingModule,
   ],
-  providers: [],
+  providers: [{ provide: OneSignal }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

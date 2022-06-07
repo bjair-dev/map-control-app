@@ -6,10 +6,12 @@ import {
   Validators,
 } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
+import { OneSignal } from "@ionic-native/onesignal/ngx";
 import {
   AlertController,
   IonSlides,
   LoadingController,
+  Platform,
   ToastController,
 } from "@ionic/angular";
 import { LoginService } from "src/app/components/services/login.service";
@@ -33,7 +35,11 @@ export class RegisterComponent implements OnInit {
     private _service: ServiciosGenerales,
     public alertController: AlertController,
     public toastController: ToastController,
-    private _sActivate: ActivatedRoute
+    private _sActivate: ActivatedRoute,
+    private oneSignal: OneSignal,
+    private _serviceG: ServiciosGenerales,
+
+    private platform: Platform
   ) {
     this.slideOpts = {
       allowTouchMove: false,
@@ -478,5 +484,47 @@ export class RegisterComponent implements OnInit {
         // console.log(data3.data);
         this.distritos = data3;
       });
+  }
+
+  onseSignalAppId: string = "f10f4fad-bb50-4e88-ad8f-813e89803883";
+  googleProjectId: string = "726000195370";
+  configSignal() {
+    console.log("aqui llego");
+    this.platform.ready().then(() => {
+      // Okay, so the platform is ready and our plugins are available.
+      // Here you can do any higher level native things you might need.
+
+      if (this.platform.is("capacitor")) {
+        if (this.platform.is("android")) {
+          this.oneSignal.startInit(this.onseSignalAppId, this.googleProjectId);
+        }
+        if (this.platform.is("ios")) {
+          this.oneSignal.startInit(this.onseSignalAppId);
+        }
+        this.oneSignal.inFocusDisplaying(
+          this.oneSignal.OSInFocusDisplayOption.Notification
+        );
+
+        this.oneSignal.endInit();
+
+        this.oneSignal
+          .getIds()
+          .then(async (identity) => {
+            console.log("configSignal identity", identity);
+            const updObs = await this._serviceG.enviarCodigos(identity.userId);
+            updObs.subscribe(
+              (data) => {
+                console.log("updateIdDevice OK");
+              },
+              (err) => {
+                console.log("updateIdDevice ERR", err);
+              }
+            );
+          })
+          .catch((err) => {
+            console.error("Error configSignal identity", err);
+          });
+      }
+    });
   }
 }

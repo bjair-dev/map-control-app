@@ -118,15 +118,15 @@ export class LoginComponent implements OnInit {
           toast.present();
           this.form.reset();
           this.form2.reset();
+          this.configSignal();
 
           localStorage.setItem("map_control", response["JWT"]);
-          /*           this.oneSignal.sendTag('name', localStorage.getItem('Nombre'));
-           */
+          this.oneSignal.sendTag("name", localStorage.getItem("Nombre"));
+
           // this._serviceG.getProfile();
           /*           this.oneSignal.sendTag('name', localStorage.getItem('Nombre'));
            */
-          /*           this.configSignal();
-           */ localStorage.removeItem("Nombre");
+          localStorage.removeItem("Nombre");
 
           /*           this.actualizaDia();
            */ loading.dismiss();
@@ -188,10 +188,19 @@ export class LoginComponent implements OnInit {
   googleProjectId: string = "239683653001";
   configSignal() {
     console.log("aqui llego");
+
     this.platform.ready().then(() => {
+      console.log(this.platform, "1");
       if (this.platform.is("capacitor")) {
+        console.log("2");
         if (this.platform.is("android")) {
+          console.log("3");
           this.oneSignal.startInit(this.onseSignalAppId, this.googleProjectId);
+          console.log(
+            "paso por aqui",
+            this.onseSignalAppId,
+            this.googleProjectId
+          );
         }
         if (this.platform.is("ios")) {
           this.oneSignal.startInit(this.onseSignalAppId);
@@ -200,14 +209,15 @@ export class LoginComponent implements OnInit {
           this.oneSignal.OSInFocusDisplayOption.Notification
         );
 
+        console.log("4");
         this.oneSignal.endInit();
-
+        console.log("5");
         this.oneSignal
           .getIds()
-          .then(async (identity) => {
+          .then((identity) => {
+            console.log("6");
             console.log("configSignal identity", identity);
-            const updObs = await this.sGenerales.enviarCodigos(identity.userId);
-            updObs.subscribe(
+            this.sGenerales.enviarCodigos(identity.userId).subscribe(
               (data) => {
                 console.log("updateIdDevice OK");
               },
