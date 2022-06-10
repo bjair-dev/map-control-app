@@ -22,6 +22,17 @@ export class AppComponent {
     private oneSignal: OneSignal
   ) {}
 
+  ngOnInit() {
+    let t = null;
+    t = localStorage.getItem("map_control");
+    if (t != null) {
+      // console.log('tiene token pase usted');
+      /*   this.actualizaDia(); */
+
+      this.router.navigateByUrl("/dashboard/home");
+    }
+  }
+
   logout() {
     this._sComponents.openModal = true;
     this._sGenerales.signout();

@@ -40,12 +40,12 @@ export class LoginComponent implements OnInit {
     this.router.navigateByUrl("/send-mail");
   }
   form: FormGroup = this.fb.group({
-    email: ["bryano@yopmail.com", [Validators.required]],
+    email: ["", [Validators.required]],
   });
 
   form2: FormGroup = this.fb.group({
     /*     email: ['', [Validators.required, Validators.email]],
-     */ password: ["gabriel@1", [Validators.required]],
+     */ password: ["", [Validators.required]],
   });
   async presentToast(m) {
     const toast = await this.toastController.create({
