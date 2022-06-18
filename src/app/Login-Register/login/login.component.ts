@@ -50,10 +50,10 @@ export class LoginComponent implements OnInit {
     /*     email: ['', [Validators.required, Validators.email]],
      */ password: ["", [Validators.required]],
   });
-  async presentToast(m) {
+  async presentToast(m, d) {
     const toast = await this.toastController.create({
       message: m,
-      duration: 2000,
+      duration: d,
     });
     toast.present();
   }
@@ -75,7 +75,7 @@ export class LoginComponent implements OnInit {
       this.form.get("email").value == null ||
       this.form.get("email").invalid
     ) {
-      this.presentToast("Debe ingresar un email valido");
+      this.presentToast("Debe ingresar un email valido", 4000);
       return;
     } else {
       const loading = await this.presentLoading("Verificando...");
@@ -92,7 +92,7 @@ export class LoginComponent implements OnInit {
       this.form2.get("password").value == undefined ||
       this.form2.get("password").value == null
     ) {
-      this.presentToast("La contraseña no puede estar vacio");
+      this.presentToast("La contraseña no puede estar vacio", 4000);
       return;
     }
     const loading = await this.presentLoading();
@@ -257,16 +257,19 @@ export class LoginComponent implements OnInit {
             null
           )
           .then(async (user: any) => {
+            console.log(user, "recibe");
             const userFacebook = {
               name: user.first_name,
               lastname: user.last_name,
               password: "",
               email: user.email,
+              path: user.picture.data.url,
               sexo: "no especificado",
               origin: "facebook",
             };
             console.log(userFacebook, "esto recibe");
-            /*            this.loginRedes(userFacebook); */
+
+            this.loginRedes(userFacebook);
             // const loading = await this.presentLoading();
             // console.log('data del usuario FB', userFacebook);
             // this._login.loginSocialNetwork(userFacebook).subscribe(
@@ -315,5 +318,99 @@ export class LoginComponent implements OnInit {
         });
         toast.present();
       });
+  }
+
+  async loginRedes(obj) {
+    console.log(obj, "esto recibe de la funcion ");
+    // let obj = {
+    //   name: 'Pruebas',
+    //   lastname: 'dev frank',
+    //   password: '',
+    //   email: 'croujoitratreuke-3005@yopmail.com',
+    //   sexo: 'no especificado',
+    //   origin: 'google',
+    // };
+    // console.log(obj);
+
+    let obj2 = {
+      email: obj.email,
+      password: obj.password,
+    };
+    // console.log(obj2);
+    //verificar si usuario existe
+    /*   const loading = await this.presentLoading(); */
+    this._login.verificarEmailUser(obj2).subscribe(
+      async (data) => {
+        console.log(obj2);
+        console.log(data);
+
+        if (data) {
+          // console.log('existe, pasar');
+          // console.log('la data es ', data);
+          localStorage.removeItem("map_control");
+          const toast = await this.toastController.create({
+            message: "Bievenido, el cambio comienza ahora",
+            duration: 4000,
+          });
+          toast.present();
+
+          localStorage.setItem("map_control", data["JWT"]);
+
+          this.oneSignal.sendTag("name", obj.name);
+
+          this.configSignal();
+
+          /*  this.actualizaDia(); */
+          /*    loading.dismiss(); */
+          this.router.navigateByUrl("/dashboard/home");
+        } else {
+          // console.log('no existe enviar registro');
+          /*  this._login.userRedesSociales = obj;
+          loading.dismiss();
+          this.router.navigateByUrl("/register-social-cofide"); */
+
+          let userx = {
+            name: obj.name,
+            lastname: obj.lastname,
+            dni: "",
+            email: obj.email,
+            path: obj.path,
+            date_of_birth: "2000-01-01",
+            cellphone: "999999999",
+            sexo: "no especificado",
+            password: "",
+            origin: "facebook",
+            code_departamento: "15",
+            code_provincia: "1501",
+            ubigeo: "150101",
+            name_departamento: "LIMA",
+            name_provincia: "LIMA",
+            name_distrito: "LIMA",
+            key: "null",
+          };
+
+          // console.log(user);
+          this._login.loginSocialNetwork(userx).subscribe(
+            async (data) => {
+              localStorage.setItem("map_control", data["JWT"]);
+              // this.presentToast('Bievenido, el cambio comienza ahora', 4000);
+              this.oneSignal.sendTag("name", obj.name);
+              this.configSignal();
+              /*    this.actualizaDia(); */
+              /*   loading.dismiss(); */
+              this.router.navigateByUrl("/dashboard/home");
+            },
+            (error) => {
+              this.presentToast("No se pudo registrar correctamente", 4000);
+              /*   loading.dismiss(); */
+            }
+          );
+        }
+      },
+      (error) => {
+        console.log(error);
+        /*      loading.dismiss(); */
+      }
+    );
   }
 }
