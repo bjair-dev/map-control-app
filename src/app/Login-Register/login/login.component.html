@@ -38,7 +38,11 @@
                   placeholder="Correo"
                 ></ion-input>
               </ion-item>
-              <button expand="block" class="btn-fb fxf-i">
+              <button
+                (click)="loginWithFb()"
+                expand="block"
+                class="btn-fb fxf-i"
+              >
                 <i class="emp-fx"> <img src="assets/icon/fb.png" /> </i>
                 <a class="txt-red">Iniciar sesión con Facebook </a>
               </button>

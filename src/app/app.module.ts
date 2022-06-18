@@ -10,6 +10,7 @@ import { AppComponent } from "./app.component";
 import { ComponentsModule } from "./components/components.module";
 /* import { AgmCoreModule } from '@agm/core'; */
 import { OneSignal } from "@ionic-native/onesignal/ngx";
+import { Facebook } from "@ionic-native/facebook/ngx";
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,7 +23,7 @@ import { OneSignal } from "@ionic-native/onesignal/ngx";
     IonicModule.forRoot(),
     AppRoutingModule,
   ],
-  providers: [{ provide: OneSignal }],
+  providers: [{ provide: OneSignal }, Facebook],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

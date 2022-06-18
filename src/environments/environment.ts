@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  BACKEND_URL: "http://localhost:4002",
+  BACKEND_URL: "https://nika-test.loca.lt",
   //  BACKEND_URL: "http://52.204.165.174:3000",
   ApiKeyGoogleMaps: "AIzaSyCaG3aW5sIzeCJ70EK8Qxc6tCin4mD9BxQ",
 };

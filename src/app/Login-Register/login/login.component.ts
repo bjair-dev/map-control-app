@@ -11,6 +11,7 @@ import { IPayload } from "src/app/components/interface/login-interface";
 import { LoginService } from "src/app/components/services/login.service";
 import { OneSignal } from "@ionic-native/onesignal/ngx";
 import { ServiciosGenerales } from "src/app/components/services/servicios-generales.service";
+import { Facebook, FacebookLoginResponse } from "@ionic-native/facebook/ngx";
 
 @Component({
   selector: "app-login",
@@ -20,6 +21,8 @@ import { ServiciosGenerales } from "src/app/components/services/servicios-genera
 export class LoginComponent implements OnInit {
   constructor(
     public router: Router,
+    private facebook: Facebook,
+
     private platform: Platform,
     private oneSignal: OneSignal,
     private sGenerales: ServiciosGenerales,
@@ -231,5 +234,86 @@ export class LoginComponent implements OnInit {
           });
       }
     });
+  }
+
+  async loginWithFb() {
+    console.log("fb");
+
+    this.facebook
+      .login(["public_profile", "email"])
+      .then((res: FacebookLoginResponse) => {
+        console.log("Logged into Facebook!", res);
+
+        this.facebook
+          .api(
+            "me?fields=" +
+              [
+                "name",
+                "email",
+                "first_name",
+                "last_name",
+                "picture.type(large)",
+              ].join(),
+            null
+          )
+          .then(async (user: any) => {
+            const userFacebook = {
+              name: user.first_name,
+              lastname: user.last_name,
+              password: "",
+              email: user.email,
+              sexo: "no especificado",
+              origin: "facebook",
+            };
+            console.log(userFacebook, "esto recibe");
+            /*            this.loginRedes(userFacebook); */
+            // const loading = await this.presentLoading();
+            // console.log('data del usuario FB', userFacebook);
+            // this._login.loginSocialNetwork(userFacebook).subscribe(
+            //   async (data) => {
+            //     console.log('la data es ', data);
+            //     const toast = await this.toastController.create({
+            //       message: 'Bievenido, el cambio comienza ahora',
+            //       duration: 4000,
+            //     });
+            //     toast.present();
+
+            //     localStorage.setItem('cofide_token', data['JWT']);
+            //     this.oneSignal.sendTag('name', userFacebook.name);
+
+            //     this.configSignal();
+
+            //     this.actualizaDia();
+            //     loading.dismiss();
+            //     this.router.navigateByUrl('/dashboard-cofide');
+            //   },
+            //   async (err) => {
+            //     console.log(err);
+            //     loading.dismiss();
+            //     const toast = await this.toastController.create({
+            //       message: 'Ocurrio un error, intentelo más tarde',
+            //       duration: 2000,
+            //     });
+            //     toast.present();
+            //   }
+            // );
+          })
+          .catch(async (e) => {
+            console.log(e);
+            const toast = await this.toastController.create({
+              message: "Ocurrió un error, intentelo más tarde",
+              duration: 2000,
+            });
+            toast.present();
+          });
+      })
+      .catch(async (e) => {
+        console.log(e.errorMessage);
+        const toast = await this.toastController.create({
+          message: "Ocurrió un error, intentelo más tarde",
+          duration: 2000,
+        });
+        toast.present();
+      });
   }
 }
