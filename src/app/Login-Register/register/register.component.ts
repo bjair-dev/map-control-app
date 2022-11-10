@@ -97,8 +97,8 @@ export class RegisterComponent implements OnInit {
     });
 
     this.form3 = this.fb.group({
-      dni: ["", [Validators.required]],
-      sexo: ["", [Validators.required]],
+      /*       dni: ["", [Validators.required]],
+       */ sexo: ["", [Validators.required]],
     });
 
     let user = this._login.userRedesSociales;
@@ -174,7 +174,7 @@ export class RegisterComponent implements OnInit {
       let FormUser = {
         name: this.form2.get("name").value,
         lastname: this.form2.get("lastname").value,
-        dni: this.form3.get("dni").value,
+        /*         dni: this.form3.get("dni").value, */
         email: this.dataCorreo,
         date_of_birth: "2006-12-10",
         cellphone: "999999999",
@@ -187,6 +187,7 @@ export class RegisterComponent implements OnInit {
         name_departamento: this.form4.get("departamento").value.departamento,
         name_provincia: this.form4.get("provincia").value.provincia,
         name_distrito: this.form4.get("distrito").value.distrito,
+        key: "",
       };
       console.log("ESTO MANDA ", FormUser);
       this._Register.RegistrarUser(FormUser).subscribe(
@@ -242,9 +243,31 @@ export class RegisterComponent implements OnInit {
             toast.present();
           }
 
-          if (error.error.errors[0].msg == "Se require el DNI") {
+          /*  if (error.error.errors[0].msg == "Se require el DNI") {
             const toast = await this.toastController.create({
               message: "Ingrese su DNI.",
+              duration: 4000,
+            });
+            toast.present();
+          } */
+          if (error.error.errors[0].msg == "Se requiere un departamento") {
+            const toast = await this.toastController.create({
+              message: "Seleccione un departamento.",
+              duration: 4000,
+            });
+            toast.present();
+          }
+          if (error.error.errors[0].msg == "Se requiere una provincia") {
+            const toast = await this.toastController.create({
+              message: "Seleccione una provincia.",
+              duration: 4000,
+            });
+            toast.present();
+          }
+
+          if (error.error.errors[0].msg == "Se requiere un distrito") {
+            const toast = await this.toastController.create({
+              message: "Seleccione un distrito.",
               duration: 4000,
             });
             toast.present();
@@ -296,7 +319,7 @@ export class RegisterComponent implements OnInit {
   }
 
   async verificarTreeForm(slide: IonSlides) {
-    if (
+    /*  if (
       this.form3.get("dni").value == "" ||
       this.form3.get("dni").value == undefined ||
       this.form3.get("dni").value == null ||
@@ -304,7 +327,7 @@ export class RegisterComponent implements OnInit {
     ) {
       this.presentToast("Debe ingresar un DNI");
       return;
-    }
+    } */
 
     if (
       this.form3.get("sexo").value == "" ||

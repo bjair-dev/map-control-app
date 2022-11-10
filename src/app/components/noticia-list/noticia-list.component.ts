@@ -14,15 +14,17 @@ export class NoticiaListComponent implements OnInit {
   }
   noticias;
   getNoticias() {
-    this._sGenerales.getNoticias().subscribe(
-      (data) => {
-        this.noticias = data;
-        console.log("noticias", data);
-      },
-      (error) => {
-        console.log(error);
-        // console.log(error);
-      }
-    );
+    this._sGenerales
+      .getNoticias(this._sGenerales.user.code_departamento)
+      .subscribe(
+        (data) => {
+          this.noticias = data;
+          console.log("noticias", data);
+        },
+        (error) => {
+          console.log(error);
+          // console.log(error);
+        }
+      );
   }
 }

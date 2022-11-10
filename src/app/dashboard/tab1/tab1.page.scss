@@ -14,7 +14,7 @@ ion-content {
 }
 ::-webkit-scrollbar {
   display: none;
-  }
+}
 #address {
   padding: 10px;
   font-size: 18px;
@@ -55,6 +55,8 @@ map {
   height: 30px;
 }
 .img-ex {
+  background: white;
+  border-radius: 20px;
   width: 30px;
   height: 30px;
   margin-left: 24px;
@@ -94,4 +96,9 @@ map {
   border-radius: 30px;
   --background: #979191;
   --color: white;
+}
+::ng-deep.agm-map-container-inner {
+  width: inherit;
+  height: inherit;
+  border-radius: 16px !important;
 }

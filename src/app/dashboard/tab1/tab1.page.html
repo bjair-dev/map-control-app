@@ -45,13 +45,18 @@
       [zoomControl]="false"
       (mapClick)="mapClicked($event)"
     >
-      <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+      <agm-marker
+        *ngFor="let m of nuevoArregloMap; let i = index"
+        [latitude]="Number(m.latitud)"
+        [longitude]="Number(m.longitud)"
+        [label]="String(m.count)"
+      ></agm-marker>
 
       <agm-circle
-        *ngFor="let m of colorMap; let i = index"
-        [latitude]="m.lat_direccion"
-        [longitude]="m.long_direccion"
-        [radius]="9000"
+        *ngFor="let m of nuevoArregloMap; let i = index"
+        [latitude]="Number(m.latitud)"
+        [longitude]="Number(m.longitud)"
+        [radius]="150"
         [fillColor]="m.color"
         [circleDraggable]="false"
         [editable]="false"
@@ -143,8 +148,13 @@
     </div>
   </div>
 
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button style="--background: #4ecf97" (click)="obtenerUbi()">
+  <ion-fab
+    vertical="bottom"
+    horizontal="end"
+    slot="fixed"
+    (click)="obtenerUbi()"
+  >
+    <ion-fab-button style="--background: #4ecf97">
       <ion-icon name="location-outline"></ion-icon>
     </ion-fab-button>
   </ion-fab>

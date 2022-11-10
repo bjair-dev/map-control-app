@@ -90,19 +90,78 @@ export class Tab1Page {
   comments;
   colorMap;
   color;
+  colormapa;
+  nuevoArregloMap = [];
+  removeDuplicates(myArray, Prop) {
+    return myArray.filter((obj, pos, arr) => {
+      return arr.map((mapObj) => mapObj[Prop]).indexOf(obj[Prop]) === pos;
+    });
+  }
+  removeDuplicatesArrayById;
+  words;
+  someString;
+  i = 0;
+  callColor(event, tipo) {
+    console.log(event, tipo);
+    if (tipo == "Califica") {
+      return "green";
+    }
 
+    if (tipo == "Reporte" && event >= 1) {
+      return "yellow";
+    }
+
+    if (tipo == "Reporte" && event > 7) {
+      return "red";
+    }
+  }
   getColoresMapa() {
     this._sComments.getColoresMapa().subscribe(
       (data) => {
         this.colorMap = data;
-        console.log(data);
+        console.log(this.colorMap, "colorMap");
+
+        const count = Array.from(
+          this.colorMap.reduce(
+            (r, c, index) => r.set(c.unido, (r.get(c.unido) || 0) + 1),
+
+            new Map()
+          ),
+          ([key, count, index = this.i++, separado]) => ({
+            key,
+            count,
+
+            latitud: key.split(/\&+/)[0],
+            longitud: key.split(/\&+/)[1],
+            coment_calification: key.split(/\&+/)[2],
+            color: this.callColor(count, key.split(/\&+/)[2]),
+          })
+        );
+
+        console.log(count, "count");
+
+        const filterMax = count.filter((item, index, arr) => {
+          const aggrupate = arr.filter(
+            (value) =>
+              value.latitud == item.latitud && value.longitud == item.longitud
+          );
+          const mappingCount = aggrupate.map((value) => value.count);
+          if (Math.max(...mappingCount) == item.count) return item;
+        });
+        console.log(filterMax);
+        this.nuevoArregloMap = filterMax;
       },
       (error) => {
         console.log(error);
       }
     );
   }
-
+  Number(event) {
+    return Number(event);
+  }
+  String(event) {
+    return String(event);
+  }
   getComments(dirf) {
     this._sComments.getComments(dirf).subscribe(
       (data) => {
@@ -194,5 +253,10 @@ export class Tab1Page {
       // navigator.geolocation.getCurrentPosition( position, error );
       navigator.geolocation.getCurrentPosition(position, error);
     }
+  }
+
+  obtieneColor(event) {
+    console.log(event, "color");
+    return event;
   }
 }

@@ -57,11 +57,11 @@ export class EditperfilComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.image);
-    if (this.image == undefined) {
-      this.image = this._sGenerales.user.path;
+    console.log(this.adjunto);
+    if (this.adjunto == undefined) {
+      this.adjunto = this._sGenerales.user.path;
     } else {
-      this.image = "";
+      this.adjunto = "";
     }
   }
 
@@ -80,7 +80,7 @@ export class EditperfilComponent implements OnInit {
       let f = new Date(this.dateUser);
       let t = `${f.getFullYear()}-${
         f.getMonth() + 1 < 10 ? `0${f.getMonth() + 1}` : f.getMonth() + 1
-      }-${f.getDate() < 10 ? `0${f.getDate()}` : f.getDate() - 1}`;
+      }-${f.getDate() < 10 ? `0${f.getDate()}` : f.getDate() + 1}`;
       // console.log('actualizar fecha nacimiento');
       // console.log(t);
       obj.date_of_birth = t;
@@ -88,6 +88,9 @@ export class EditperfilComponent implements OnInit {
     if (obj.date_of_birth != "" || obj.sexo != "") {
       cont++;
       this.actualizarUser(obj);
+      this.ActualizarImg();
+      this._sGenerales.getProfile();
+      this._sGenerales.actualizarPerfil.emit();
       console.log("actualizar perfil");
     }
     if (
@@ -109,9 +112,8 @@ export class EditperfilComponent implements OnInit {
     this._sGenerales.updatePerfilUser(obj).subscribe(
       (resp) => {
         this.presentToast("Tus datos personales se actualizaron correctamente");
-        this.ActualizarImg();
-        this._sGenerales.getProfile();
-        this._sGenerales.actualizarPerfil.emit();
+        /*         this.ActualizarImg();
+         */
 
         // this._sModal.dismiss();
       },

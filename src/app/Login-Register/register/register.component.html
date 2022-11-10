@@ -16,13 +16,13 @@
       ¡Hola Nika usuario!
     </h2>
     <div>
-      <ion-slides pager="true" mode="ios" class="slides-messages">
+      <ion-slides pager="false" mode="ios" class="slides-messages">
         <ion-slide>
-          <app-welcome-message
+          <!--    <app-welcome-message
             [message]="
               'Vamos a ayudarte a ordenar tu presupuesto, proponerte objetivos y celebrar pequeños triunfos todos los días.'
             "
-          ></app-welcome-message>
+          ></app-welcome-message> -->
         </ion-slide>
       </ion-slides>
     </div>
@@ -108,7 +108,7 @@
           <div style="height: 100%">
             <form [formGroup]="form3">
               <div class="inli-fx">
-                <ion-item class="itm-input">
+                <!--      <ion-item class="itm-input">
                   <ion-input
                     formControlName="dni"
                     (keypress)="numberOnly($event)"
@@ -117,7 +117,7 @@
                     type="tel"
                     placeholder="DNI"
                   ></ion-input>
-                </ion-item>
+                </ion-item> -->
                 <ion-select
                   style="width: 100%; background-color: white"
                   class="itm-input"
