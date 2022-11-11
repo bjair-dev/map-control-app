@@ -11,9 +11,10 @@ import { ComponentsModule } from "./components/components.module";
 /* import { AgmCoreModule } from '@agm/core'; */
 import { OneSignal } from "@ionic-native/onesignal/ngx";
 import { Facebook } from "@ionic-native/facebook/ngx";
+import { SplashComponent } from "./splash/splash.component";
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, SplashComponent],
   entryComponents: [],
   imports: [
     BrowserModule,
